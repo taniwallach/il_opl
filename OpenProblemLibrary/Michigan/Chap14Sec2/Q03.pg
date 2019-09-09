@@ -12,6 +12,9 @@ loadMacros(
   "PGcourse.pl"
 );
 
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
+
 ## Tagged by glr 07/31/09
 
 
@@ -58,41 +61,36 @@ Context()->texStrings;
 TEXT(beginproblem());
 BEGIN_TEXT
 
-Find the partial derivatives indicated.
-Assume the variables are restricted to a domain on
-which the function is defined.
-\[
-    f(x,y) = $f.
-\]
-
-\( f_x($x0,$y0) = \) \{ ans_rule(35) \}
 $BR
-\( f_y($x0,$y0) = \) \{ ans_rule(35) \}
+נתונה הפונקציה:
+\( f(x, y) = $f \)
+$BR
+יש לחשב את נגזרותיה החלקיות מסדר ראשון בנקודה
+\(($x0, $y0)\).
+$BR
+א.
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(f_x($x0, $y0) = \)
+\{ ans_rule(30) \}
+\{ closeSpan() \}
+$BR
+ב.
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(f_y($x0, $y0) = \)
+\{ ans_rule(30) \}
+\{ closeSpan() \}
 
 END_TEXT
 Context()->normalStrings;
 
-$fx = $f->D('x');
-$fy = $f->D('y');
-$fx0 = $fx->eval(x=>$x0,y=>$y0);
-$fy0 = $fy->eval(x=>$x0,y=>$y0);
+$dfdx = $f->D('x');
+$dfdy = $f->D('y');
+$fx0 = $dfdx->eval(x=>$x0,y=>$y0);
+$fy0 = $dfdy->eval(x=>$x0,y=>$y0);
 
 ANS($fx0->cmp() );
 ANS($fy0->cmp() );
 
-Context()->texStrings;
-SOLUTION(EV3(<<'END_SOLUTION'));
-$PAR SOLUTION $PAR
-
-We have
-\[ f_x(x,y) = $fx\quad \mbox{  and  }\quad f_y(x,y)
-    = $fy,\]
-so
-\[ f_x($x0,$y0) = $fx0\quad \mbox{  and  }\quad f_y($x0,$y0) =
-$fy0.\]
-
-
-END_SOLUTION
 Context()->normalStrings;
 
 

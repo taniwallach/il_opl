@@ -34,6 +34,8 @@ loadMacros(
   "PGcourse.pl"
 );
 
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
 
 TEXT(beginproblem());
 
@@ -45,15 +47,15 @@ Context("Numeric")->variables->are(x=>'Real',y=>'Real');
 #
 #  The function
 #
-$a = random(1,5,1);
-$b = random(1,5,1);
+$p1 = random(1,5,1);
+$p2 = random(1,5,1);
 
-$f = Formula("sqrt($a x + $b y)")->reduce;
+$f = Formula("sqrt($p2_1 x + $p2_2 y)")->reduce;
 
 #
 #  The point
 #
-($x,$y) = (random(1,5,1),random(1,5,1));
+($x0,$y0) = (random(1,5,1),random(1,5,1));
 
 #
 #  The derivatives
@@ -61,8 +63,8 @@ $f = Formula("sqrt($a x + $b y)")->reduce;
 #$fx = $a/(2*sqrt($a*$x+$b*$y));
 #$fy = $b/(2*sqrt($a*$x+$b*$y));
 
-$fx = $f->D('x')->eval(x=>$x,y=>$y);
-$fy = $f->D('y')->eval(x=>$x,y=>$y);
+$dfdx = $f->D('x')->eval(x=>$x0,y=>$y0);
+$dfdy = $f->D('y')->eval(x=>$x0,y=>$y0);
 
 
 ##############################################
@@ -71,15 +73,24 @@ $fy = $f->D('y')->eval(x=>$x,y=>$y);
 Context()->texStrings;
 BEGIN_TEXT
 
-Let \(z = $f\).  Then:
-$PAR
-
-The rate of change in \(z\) at \(($x,$y)\) as we change \(x\)
-but hold \(y\) fixed is \{ans_rule(15)\}, and
-$PAR
-
-The rate of change in \(z\) at \(($x,$y)\) as we change \(y\)
-but hold \(x\) fixed is \{ans_rule(15)\}.
+$BR
+נתונה הפונקציה:
+\(f(x,y) = $f\)
+$BR
+יש לחשב את נגזרותיה החלקיות מסדר ראשון בנקודה
+\(($x0, $y0)\).
+$BR
+א.
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(f_x($x0, $y0) = \)
+\{ ans_rule(30) \}
+\{ closeSpan() \}
+$BR
+ב.
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(f_y($x0, $y0) = \)
+\{ ans_rule(30) \}
+\{ closeSpan() \}
 
 END_TEXT
 Context()->texStrings;
@@ -87,8 +98,8 @@ Context()->texStrings;
 ##################################################
 #  Answers
 
-ANS($fx->cmp);
-ANS($fy->cmp);
+ANS($dfdx->cmp);
+ANS($dfdy->cmp);
 
 $showPartialCorrectAnswers = 1;
 
