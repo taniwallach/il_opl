@@ -37,6 +37,9 @@ loadMacros(
   "PGcourse.pl"
 );
 
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
+
 TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
 
@@ -46,13 +49,24 @@ $dfdx = 1;
 $dfdy = -1;
 
 BEGIN_TEXT
-$PAR
-Find the first partial derivatives of \( f(x, y) = \sin(x - y) \) at the point
-($a, $a).
-$PAR
-A. \( f_x($a, $a) = \) \{ ans_rule(30) \}
-$PAR
-B. \( f_y($a, $a) = \) \{ ans_rule(30) \}
+$BR
+יש למצוא את הנגזרות החלקיות מסדר ראשון של
+\( f(x, y) = \sin(x - y) \)
+בנקודה
+\(($a, $a)\).
+$BR
+א.
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(f_x($a, $a) = \)
+\{ ans_rule(30) \}
+\{ closeSpan() \}
+$BR
+ב.
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(f_y($a, $a) = \)
+\{ ans_rule(30) \}
+\{ closeSpan() \}
+
 END_TEXT
 ANS(num_cmp($dfdx));
 ANS(num_cmp($dfdy));
