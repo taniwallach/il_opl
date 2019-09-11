@@ -27,6 +27,8 @@ loadMacros(
   "PGcourse.pl"
 );
  
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 
 ## Do NOT show partial correct answers
 $showPartialCorrectAnswers = 0;
@@ -58,21 +60,54 @@ $dfdz = "arctan(($b*y)/($a*x))";
 
 
 BEGIN_TEXT
-$PAR
-Find the first partial derivatives of 
+$BR
+יש למצוא את הנגזרות החלקיות מסדר ראשון של:
+$BR
 \(\displaystyle f(x,y,z) = z \ \arctan\left($quotient\right) \).
 $BR
 $BR
 
-$BBOLD Caution: $EBOLD ay/bx and ay/(bx) are very different, the
-former equals axy/b.  Parentheses are your friends!
+$BBOLD שים לב: $EBOLD 
+\{ openSpan( { "dir" => "ltr" } ) \}
+$NBSP
+ay/bx
+$NBSP
+\{ closeSpan() \}
+ ו 
+\{ openSpan( { "dir" => "ltr" } ) \}
+$NBSP
+ay/(bx)
+$NBSP
+\{ closeSpan() \}
+הם שני דברים מאוד שונים, הראשון שווה ל
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(\frac{axy}{b}\)
+\{ closeSpan() \}
+והשני שווה ל
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(\frac{ay}{bx}\)
+\{ closeSpan() \}
+מומלץ להשתמש בסוגריים! .
 
-$PAR
-A. \(\displaystyle \frac{\partial f}{\partial x} = \) \{ ans_rule(40) \}
-$PAR
-B. \(\displaystyle \frac{\partial f}{\partial y} = \) \{ ans_rule(40) \}
-$PAR
-C. \(\displaystyle \frac{\partial f}{\partial z} = \) \{ ans_rule(40) \}
+$BR
+א.
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(\displaystyle \frac{\partial f}{\partial x} = \)
+\{ ans_rule(30) \}
+\{ closeSpan() \}
+$BR
+ב.
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(\displaystyle \frac{\partial f}{\partial y} = \)
+\{ ans_rule(30) \}
+\{ closeSpan() \}
+$BR
+ג.
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(\displaystyle \frac{\partial f}{\partial z} = \)
+\{ ans_rule(30) \}
+\{ closeSpan() \}
+
 END_TEXT
 
 ANS(fun_cmp($dfdx, limits=>[[1,2],[1,2],[1,2]], var=>3));
