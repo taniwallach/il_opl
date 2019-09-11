@@ -65,6 +65,7 @@ $b_y = clean_scalar_string($b, "y");
 BEGIN_TEXT
 $BR
 נתונה הפונקציה:
+$BR
 \(\displaystyle f(x,y) = \frac{$a_x - $b_y}{$a_x + $b_y} \)
 $BR
 יש לחשב את נגזרותיה החלקיות מסדר ראשון בנקודה
