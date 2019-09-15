@@ -7,8 +7,9 @@
 ## DBchapter(Geometric and algebraic foundations for trigonometry)
 ## DBsection(Arc length, sector area, angular and linear velocity)
 ## Date(9/10/2012)
-## Institution(Mississippi College)
-## Author(John Travis)
+## Institution(Mississippi College, Technion)
+# Hebrew translation by Arkadi Piven
+## Author(John Travis, Arkadi Piven)
 ## Level(3)
 ## MO(1)
 ## KEYWORDS('trigonometry', 'angle', 'degree')
@@ -25,7 +26,8 @@ loadMacros(
 
 # Print problem number and point value (weight) for the problem
 TEXT(beginproblem());
-
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
 # Show which answers are correct and which ones are incorrect
 $showPartialCorrectAnswers = 0;
 
@@ -47,10 +49,18 @@ $time_till_180 = Compute("$time/2");
 #
 
 BEGIN_TEXT
+פנס חיפוש מבצע סיבוב מלא כל 
+$time
+.שניות
+חשב:
+
 
 A searchlight rotates through one complete revolution every $time seconds.  Determine:
 $PAR
-the angle covered in one second = \{ans_rule(5)\}
+the angle covered in one second
+
+הזווית שהוא עובר בכל שניה
+= \{ans_rule(5)\}
 $PAR
 the time it takes the light to rotate through \(180^{\circ}\) = \{ans_rule(5)\}
 
