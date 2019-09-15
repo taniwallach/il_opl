@@ -51,18 +51,14 @@ $time_till_180 = Compute("$time/2");
 BEGIN_TEXT
 פנס חיפוש מבצע סיבוב מלא כל 
 $time
-.שניות
+שניות.
 חשב:
-
-
-A searchlight rotates through one complete revolution every $time seconds.  Determine:
 $PAR
-the angle covered in one second
-
 הזווית שהוא עובר בכל שניה
 = \{ans_rule(5)\}
 $PAR
-the time it takes the light to rotate through \(180^{\circ}\) = \{ans_rule(5)\}
+הזמן הנדרש לבצע סיבוב של 
+\(180^{\circ}\) = \{ans_rule(5)\}
 
 END_TEXT
 Context()->normalStrings;
