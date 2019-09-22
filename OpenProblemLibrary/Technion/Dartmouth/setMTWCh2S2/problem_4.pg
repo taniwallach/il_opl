@@ -1,0 +1,105 @@
+## DESCRIPTION
+## Calculus
+## ENDDESCRIPTION
+
+## Tagged by tda2d
+
+## DBsubject(Calculus - multivariable)
+## DBchapter(Differentiation of multivariable functions)
+## DBsection(Partial derivatives)
+## Institution(Dartmouth)
+## MLT(3var2)
+## MLTleader(1)
+## Level(2)
+## TitleText1('Basic Multivariable Calculus')
+## AuthorText1('Marsden, Tromba, Weinstein')
+## EditionText1('3')
+## Section1('2.2')
+## Problem1('')
+## KEYWORDS('partial' 'derivative')
+
+DOCUMENT();
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "contextFraction.pl",
+  "PGcourse.pl"
+);
+ 
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
+
+## Do NOT show partial correct answers
+$showPartialCorrectAnswers = 1;
+
+## Lots of set up goes here
+
+
+## Ok, we are ready to begin the problem...
+##
+TEXT(beginproblem());
+
+Context("Numeric");
+Context()->variables->add(y=>"Real",z=>"Real");
+
+$a = non_zero_random(-4, 4);
+$b = non_zero_random(-4, 4);
+
+$h = Formula("z*arctan($b*y / ($a * x))")->reduce;
+
+($x0,$y0,$z0) = (non_zero_random(-10,10,1),non_zero_random(-10,10,1),non_zero_random(-10,10,1));
+
+$dhdx = $h->D("x")->eval(x => $x0 , y => $y0 , z => $z0);
+$dhdy = $h->D("y")->eval(x => $x0 , y => $y0 , z => $z0);
+$dhdz = $h->D("z")->eval(x => $x0 , y => $y0 , z => $z0);
+
+Context()->variables->remove("x","y","z");
+
+## produces clean version of \frac{by}{ax}
+#$quotient = "\frac{$clean_b_y}{$clean_a_x}";
+
+#$dfdx = "-($a * $b * y * z)/(($a * x)**2 + ($b * y)**2)";
+#$dfdy = "($a * $b * x * z)/(($a * x)**2 + ($b * y)**2)";
+#$dfdz = "arctan(($b*y)/($a*x))";
+
+
+Context()->texStrings;
+
+BEGIN_TEXT
+$BR
+נתונה הפונקציה:
+$BR
+
+\[\displaystyle h(x,y,z)=$h\]
+
+$BR
+יש לחשב את נגזרותיה החלקיות מסדר ראשון בנקודה
+\(($x0,$y0,$z0)\).
+$BR
+א.
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(h_x($x0,$y0,$z0) = \)
+\{ ans_rule(30) \}
+\{ closeSpan() \}
+$BR
+ב.
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(h_y($x0,$y0,$z0) = \)
+\{ ans_rule(30) \}
+\{ closeSpan() \}
+$BR
+ג.
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(h_z($x0,$y0,$z0) = \)
+\{ ans_rule(30) \}
+\{ closeSpan() \}
+
+END_TEXT
+Context()->normalStrings;
+ANS(num_cmp($dhdx));
+ANS(num_cmp($dhdy));
+ANS(num_cmp($dhdz));
+
+
+ENDDOCUMENT();
+

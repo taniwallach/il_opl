@@ -1,0 +1,119 @@
+## DESCRIPTION
+## Calculus
+## ENDDESCRIPTION
+
+## Tagged by tda2d
+
+## DBsubject(Calculus - multivariable)
+## DBchapter(Differentiation of multivariable functions)
+## DBsection(Partial derivatives)
+## Institution(Dartmouth)
+## MLT(3var2)
+## MLTleader(1)
+## Level(2)
+## TitleText1('Basic Multivariable Calculus')
+## AuthorText1('Marsden, Tromba, Weinstein')
+## EditionText1('3')
+## Section1('2.2')
+## Problem1('')
+## KEYWORDS('partial' 'derivative')
+
+DOCUMENT();
+loadMacros(
+  "PGstandard.pl",
+  "PGchoicemacros.pl",
+  "PGgraphmacros.pl",
+  "Dartmouthmacros.pl",
+  "PGcourse.pl"
+);
+ 
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
+
+## Do NOT show partial correct answers
+$showPartialCorrectAnswers = 0;
+
+## Lots of set up goes here
+
+
+## Ok, we are ready to begin the problem...
+##
+TEXT(beginproblem());
+
+$a = non_zero_random(-4, 4);
+$b = non_zero_random(-4, 4);
+
+
+$a_x = clean_scalar_string($a, "x");
+$b_y = clean_scalar_string($b, "y");
+
+@b_over_a = reduced_fraction($b, $a);
+$clean_b_y = clean_scalar_string($b_over_a[0],"y");
+$clean_a_x = clean_scalar_string($b_over_a[1],"x");
+## produces clean version of \frac{by}{ax}
+$quotient = "\frac{$clean_b_y}{$clean_a_x}";
+
+$dfdx = "-($a * $b * y * z)/(($a * x)**2 + ($b * y)**2)";
+$dfdy = "($a * $b * x * z)/(($a * x)**2 + ($b * y)**2)";
+$dfdz = "arctan(($b*y)/($a*x))";
+
+
+
+BEGIN_TEXT
+$BR
+יש למצוא את הנגזרות החלקיות מסדר ראשון של:
+$BR
+\(\displaystyle f(x,y,z) = z \ \arctan\left($quotient\right) \).
+$BR
+$BR
+
+$BBOLD שים לב: $EBOLD 
+\{ openSpan( { "dir" => "ltr" } ) \}
+$NBSP
+ay/bx
+$NBSP
+\{ closeSpan() \}
+ ו 
+\{ openSpan( { "dir" => "ltr" } ) \}
+$NBSP
+ay/(bx)
+$NBSP
+\{ closeSpan() \}
+הם שני דברים מאוד שונים, הראשון שווה ל
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(\frac{axy}{b}\)
+\{ closeSpan() \}
+והשני שווה ל
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(\frac{ay}{bx}\)
+\{ closeSpan() \}
+מומלץ להשתמש בסוגריים! .
+
+$BR
+א.
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(\displaystyle \frac{\partial f}{\partial x} = \)
+\{ ans_rule(30) \}
+\{ closeSpan() \}
+$BR
+ב.
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(\displaystyle \frac{\partial f}{\partial y} = \)
+\{ ans_rule(30) \}
+\{ closeSpan() \}
+$BR
+ג.
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(\displaystyle \frac{\partial f}{\partial z} = \)
+\{ ans_rule(30) \}
+\{ closeSpan() \}
+
+END_TEXT
+
+ANS(fun_cmp($dfdx, limits=>[[1,2],[1,2],[1,2]], var=>3));
+ANS(fun_cmp($dfdy, limits=>[[1,2],[1,2],[1,2]], var=>3));
+ANS(fun_cmp($dfdz, limits=>[[1,2],[1,2]], var=>2));
+
+
+ENDDOCUMENT();
+
