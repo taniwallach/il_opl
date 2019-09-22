@@ -37,6 +37,8 @@ loadMacros(
   "PGcourse.pl"
 );
  
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 
 ## Do NOT show partial correct answers
 $showPartialCorrectAnswers = 1;
@@ -55,14 +57,20 @@ TEXT(beginproblem());
 BEGIN_TEXT
 $BR
 
-Find the partial derivatives of the function
+יש למצוא את הנגזרות החלקיות של הפונקציה:
 \[
     f(x,y) = \frac{$a x - $b y}{$c x + $d y}
 \]
 $BR
+\{ openSpan( { "dir" => "ltr" } ) \}
 \(f_x(x,y) = \)\{ans_rule(60)\}
+\{ closeSpan() \}
+
 $BR
+\{ openSpan( { "dir" => "ltr" } ) \}
+
 \(f_y(x,y) = \)\{ans_rule(60)\}
+\{ closeSpan() \}
 
 $PAR
 END_TEXT
