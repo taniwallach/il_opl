@@ -1,0 +1,103 @@
+## DESCRIPTION
+## Calculus
+## ENDDESCRIPTION
+
+## Tagged by tda2d
+
+## DBsubject(Calculus - multivariable)
+## DBchapter(Differentiation of multivariable functions)
+## DBsection(Partial derivatives)
+## Date(6/3/2002)
+## Institution(Dartmouth)
+## MLT(2varfirstpt)
+## MLTleader(1)
+## Level(2)
+## TitleText1('Basic Multivariable Calculus')
+## AuthorText1('Marsden, Tromba, Weinstein')
+## EditionText1('3')
+## Section1('2.2')
+## Problem1('')
+## TitleText2('Calculus: Early Transcendentals')
+## AuthorText2('Stewart')
+## EditionText2('6')
+## Section2('14.3')
+## Problem2('40 41 42 43 44')
+## TitleText3('Calculus: Early Transcendentals')
+## AuthorText3('Rogawski')
+## EditionText3('1')
+## Section3('14.3')
+## Problem3('40 41 42 43 44')
+## KEYWORDS('partial' 'derivative','Multivariable','derivative' 'partial','vector', 'partial', 'derivative')
+
+DOCUMENT();
+loadMacros(
+  "PGstandard.pl",
+  "PGchoicemacros.pl",
+  "PGgraphmacros.pl",
+  "Dartmouthmacros.pl",
+  "PGcourse.pl"
+);
+
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
+
+$showPartialCorrectAnswers = 1;
+
+## Lots of set up goes here
+
+
+## Ok, we are ready to begin the problem...
+##
+TEXT(beginproblem());
+
+$a = random(1, 4);
+$b = random(1, 4);
+$c = random(1, 4);
+$d = random(1, 4);
+
+$dfdx = 2*$a*$b*$d/($a*$c + $b*$d)**2;
+$dfdy = -2*$a*$b*$c/($a*$c + $b*$d)**2;
+
+
+$a_x = clean_scalar_string($a, "x");
+$b_y = clean_scalar_string($b, "y");
+
+BEGIN_TEXT
+$BR
+נתונה הפונקציה:
+$BR
+\[ f(x,y) = \frac{$a_x - $b_y}{$a_x + $b_y} \]
+$BR
+יש לחשב את נגזרותיה החלקיות מסדר ראשון בנקודה
+\(($c, $d)\).
+$BR
+א.
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(f_x($c, $d) = \)
+\{ ans_rule(30) \}
+\{ closeSpan() \}
+$BR
+ב.
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(f_y($c, $d) = \)
+\{ ans_rule(30) \}
+\{ closeSpan() \}
+
+
+
+END_TEXT
+ANS(num_cmp($dfdx));
+ANS(num_cmp($dfdy));
+
+
+
+
+
+
+
+
+ENDDOCUMENT();
+
+
+
+
