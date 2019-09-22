@@ -37,9 +37,10 @@ loadMacros(
   "PGcourse.pl"
 );
  
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 
-## Do NOT show partial correct answers
-$showPartialCorrectAnswers = 0;
+$showPartialCorrectAnswers = 1;
 
 $a = non_zero_random(-3,3);
 $b = non_zero_random(-3,3);
@@ -61,10 +62,16 @@ TEXT(beginproblem());
 BEGIN_TEXT
 $BR
 
-Find an equation of the tangent plane to the surface
-\(z = $a x^2 + $b y^2 + $c x + $d y + $e \) at the point ($x0, $y0, $z0).
+יש למצוא את משוואת המישור המשיק למשטח
+\(z = $a x^2 + $b y^2 + $c x + $d y + $e \) 
+בנקודה
+($x0, $y0, $z0).
+
 $BR
-\(z = \)\{ans_rule(60)\}
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(z = \)
+\{ans_rule(60)\}
+\{ closeSpan() \}
 
 $PAR
 END_TEXT

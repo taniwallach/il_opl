@@ -12,6 +12,9 @@ loadMacros(
   "PGcourse.pl"
 );
 
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
+
 ## Tagged by glr 08/10/09
 
 
@@ -78,42 +81,24 @@ Context()->texStrings;
 TEXT(beginproblem());
 BEGIN_TEXT
 
-Find the equation of the tangent plane to
+יש למצוא את משוואת המישור המשיק למשטח
 \[ z = $f \]
-at the point \( ($x0, $y0, $z0)\).
+בנקודה
+$NBSP
+\( ($x0, $y0, $z0)\).
 
 $PAR
-\( z = \) \{ ans_rule(35) \}
+\{ openSpan( { "dir" => "ltr" } ) \}
+\( z = \) 
+\{ ans_rule(35) \}
+\{ closeSpan() \}
 
 END_TEXT
 Context()->normalStrings;
 
 ANS($pl->cmp() );
 
-Context()->texStrings;
-SOLUTION(EV3(<<'END_SOLUTION'));
-$PAR SOLUTION $PAR
-
-We have
-\[
-z = $f.
-\]
-The partial derivatives are
-\[ {\partial z\over\partial x}\bigg|_{(x,y) = ($x0,$y0)} =
-    $fx\bigg|_{(x,y)=($x0,$y0)} = $fx0,
-\]
-and
-\[ {\partial z\over\partial y}\bigg|_{(x,y) = ($x0,$y0)} =
-    $fy\bigg|_{(x,y)=($x0,$y0)} = $fy0.
-\]
-So the equation of the tangent plane  is
-\[
-  z = $z0 + $fx0(x - $x0) + $fy0(y - $y0) = $pl.
-\]
-
-END_SOLUTION
-Context()->normalStrings;
 
 
-;
+
 ENDDOCUMENT();

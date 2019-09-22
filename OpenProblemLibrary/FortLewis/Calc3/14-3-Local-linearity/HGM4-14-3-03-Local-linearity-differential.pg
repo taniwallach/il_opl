@@ -35,6 +35,8 @@ loadMacros(
   "PGcourse.pl"
 );
 
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 
 TEXT(beginproblem());
 
@@ -66,10 +68,15 @@ $A = Point($a,0,$c);
 Context()->texStrings;
 BEGIN_TEXT
 
-Find the implicit equation of the tangent plane 
-to \( z = $f \) at the point \( $A \).
+יש למצוא את משוואת המישור המשיק למשטח
+\( z = $f \)
+בנקודה
+\( $A \).
 $BR
-\{ans_rule(40)\}
+
+\{ openSpan( { "dir" => "ltr" } ) \}
+\{ ans_rule(40) \}
+\{ closeSpan() \}
 
 END_TEXT
 Context()->normalStrings;
