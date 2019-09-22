@@ -9,7 +9,8 @@ loadMacros(
   "PGstandard.pl",
   "PGchoicemacros.pl",
   "MathObjects.pl",
-  "PGcourse.pl"
+  "PGcourse.pl",
+  "parserMultiAnswer.pl"
 );
 
 SET_PROBLEM_TEXTDIRECTION("rtl");
@@ -77,27 +78,59 @@ $fy0 = $fy->eval( x=>$x0, y=>$y0 );
 
 $pl = Compute( "$z0 + $fx0*(x - $x0) + $fy0*(y - $y0)" )->reduce();
 
+$normal = Vector($fx0,$fy0,-1);
+
+$vec_ans = MultiAnswer($normal->value)->with(
+  singleResult => 1,
+  checker => sub {
+      my ( $correct, $student, $self ) = @_;
+      my ( $iparam, $jparam , $kparam ) = @{$student};
+      my $student_ans = Vector($iparam, $jparam , $kparam);
+      return $student_ans->isParallel($normal);
+  }
+);
+
 Context()->texStrings;
 TEXT(beginproblem());
 BEGIN_TEXT
+$BR
+יש לרשום את משוואת המישור המשיק ואת וקטור הנורמל למשטח הנתון ע"י
+$BR
 
-יש למצוא את משוואת המישור המשיק למשטח
-\[ z = $f \]
+
+\[
+    z=$f
+\]
+
+$BR
 בנקודה
 $NBSP
-\( ($x0, $y0, $z0)\).
+\((x,y) = ($x0,$y0)\).
+$BR
 
-$PAR
+משוואת המישור המשיק:
 \{ openSpan( { "dir" => "ltr" } ) \}
-\( z = \) 
-\{ ans_rule(35) \}
+\(z=\)
+\{ ans_rule(40) \}
+\{ closeSpan() \}
+
+$BR
+וקטור הנורמל:
+\{ openSpan( { "dir" => "ltr" } ) \}
+(
+\{ $vec_ans->ans_rule(10) \}
+,
+\{ $vec_ans->ans_rule(10) \}
+,
+\{ $vec_ans->ans_rule(10) \}
+)
 \{ closeSpan() \}
 
 END_TEXT
 Context()->normalStrings;
 
-ANS($pl->cmp() );
-
+ANS($pl->cmp());
+ANS($vec_ans->cmp());
 
 
 

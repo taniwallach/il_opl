@@ -34,11 +34,15 @@ loadMacros(
   "PGchoicemacros.pl",
   "PGgraphmacros.pl",
   "Dartmouthmacros.pl",
-  "PGcourse.pl"
+  "PGcourse.pl",
+  "MathObjects.pl",
+  "parserMultiAnswer.pl"
 );
  
 SET_PROBLEM_TEXTDIRECTION("rtl");
 SET_PROBLEM_LANGUAGE("he-IL");
+
+Context("Vector");
 
 $showPartialCorrectAnswers = 1;
 
@@ -53,32 +57,71 @@ $y0 = random(1,5);
 
 $z0 = $a*($x0)**2 + $b*($y0)**2 + $c*$x0 + $d*$y0 + $e;
 
+$f = Compute("$a x^2 + $b y^2 + $c x + $d y + $e")->reduce;
+
+$dfdx = $f->D("x")->eval(x=>$x0 , y=>$y0);
+$dfdy = $f->D("y")->eval(x=>$x0 , y=>$y0);
+
+$z0 = $f->eval(x=>$x0,y=>$y0);
+
+$plane = Compute(" $dfdx( x - $x0 ) + $dfdy( y - $y0 ) + $z0")->reduce();
+
+$normal = Vector($dfdx,$dfdy,-1);
+
+$vec_ans = MultiAnswer($normal->value)->with(
+  singleResult => 1,
+  checker => sub {
+      my ( $correct, $student, $self ) = @_;
+      my ( $iparam, $jparam , $kparam ) = @{$student};
+      my $student_ans = Vector($iparam, $jparam , $kparam);
+      return $student_ans->isParallel($normal);
+  }
+);
 
 ## Ok, we are ready to begin the problem...
 ##
 TEXT(beginproblem());
 
+Context()->texStrings;
 
 BEGIN_TEXT
 $BR
+יש לרשום את משוואת המישור המשיק ואת וקטור הנורמל למשטח הנתון ע"י
+$BR
 
-יש למצוא את משוואת המישור המשיק למשטח
-\(z = $a x^2 + $b y^2 + $c x + $d y + $e \) 
-בנקודה
-($x0, $y0, $z0).
+
+\[
+    z=$f
+\]
 
 $BR
+בנקודה
+$NBSP
+\((x,y) = ($x0,$y0)\).
+$BR
+
+משוואת המישור המשיק:
 \{ openSpan( { "dir" => "ltr" } ) \}
-\(z = \)
-\{ans_rule(60)\}
+\(z=\)
+\{ ans_rule(40) \}
 \{ closeSpan() \}
 
-$PAR
-END_TEXT
-$fx = 2*$a*$x0 + $c;
-$fy = 2*$b*$y0 + $d;
+$BR
+וקטור הנורמל:
+\{ openSpan( { "dir" => "ltr" } ) \}
+(
+\{ $vec_ans->ans_rule(10) \}
+,
+\{ $vec_ans->ans_rule(10) \}
+,
+\{ $vec_ans->ans_rule(10) \}
+)
+\{ closeSpan() \}
 
-ANS(fun_cmp("$z0 + $fx*(x - $x0) + $fy * (y - $y0)", vars=>["x","y"]));
+END_TEXT
+Context()->normalStrings;
+ANS($plane->cmp(vars=>["x","y"]));
+ANS($vec_ans->cmp());
 
 ENDDOCUMENT();
 

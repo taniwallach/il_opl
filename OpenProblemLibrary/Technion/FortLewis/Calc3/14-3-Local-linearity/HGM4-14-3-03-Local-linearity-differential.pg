@@ -32,7 +32,8 @@ loadMacros(
   "MathObjects.pl",
   "parserImplicitPlane.pl",
   "parserVectorUtils.pl",
-  "PGcourse.pl"
+  "PGcourse.pl",
+  "parserMultiAnswer.pl"
 );
 
 SET_PROBLEM_TEXTDIRECTION("rtl");
@@ -45,45 +46,75 @@ TEXT(beginproblem());
 
 Context("ImplicitPlane");
 
-$a = random(2,7,1);
+$x0 = random(2,7,1);
+$y0 = 0;
 $k = random(6,12,1);
-$c = 1 + $a + $a**2 + $k;
 
 $f = Formula("e^y + x + x^2 + $k");
 
-#
-#  The normal vector
-#
-$N = Vector(1+2*$a,1,-1);
 
-#
-#  The points A, B and C
-#
-#$A = non_zero_point3D();
-$A = Point($a,0,$c);
+$dfdx = $f->D("x")->eval(x=>$x0,y=>$y0);
+$dfdy = $f->D("y")->eval(x=>$x0,y=>$y0);
+$z0 = $f->eval(x=>$x0,y=>$y0);
+
+$plane = Compute(" $dfdx( x - $x0 ) + $dfdy( y - $y0 ) + $z0")->reduce();
+
+$normal = Vector($dfdx,$dfdy,-1);
+
+$vec_ans = MultiAnswer($normal->value)->with(
+  singleResult => 1,
+  checker => sub {
+      my ( $correct, $student, $self ) = @_;
+      my ( $iparam, $jparam , $kparam ) = @{$student};
+      my $student_ans = Vector($iparam, $jparam , $kparam);
+      return $student_ans->isParallel($normal);
+  }
+);
 
 ##############################################
 #  Main text
 
 Context()->texStrings;
 BEGIN_TEXT
-
-יש למצוא את משוואת המישור המשיק למשטח
-\( z = $f \)
-בנקודה
-\( $A \).
+$BR
+יש לרשום את משוואת המישור המשיק ואת וקטור הנורמל למשטח הנתון ע"י
 $BR
 
+
+\[
+    z=$f
+\]
+
+$BR
+בנקודה
+$NBSP
+\((x,y) = ($x0,$y0)\).
+$BR
+
+משוואת המישור המשיק:
 \{ openSpan( { "dir" => "ltr" } ) \}
+\(z=\)
 \{ ans_rule(40) \}
 \{ closeSpan() \}
 
+$BR
+וקטור הנורמל:
+\{ openSpan( { "dir" => "ltr" } ) \}
+(
+\{ $vec_ans->ans_rule(10) \}
+,
+\{ $vec_ans->ans_rule(10) \}
+,
+\{ $vec_ans->ans_rule(10) \}
+)
+\{ closeSpan() \}
+
+
 END_TEXT
 Context()->normalStrings;
+ANS($plane->cmp(vars=>["x","y"]));
+ANS($vec_ans->cmp());
 
-##################################################
-
-ANS(ImplicitPlane($A,$N)->cmp);
 $showPartialCorrectAnswers = 1;
 
 
