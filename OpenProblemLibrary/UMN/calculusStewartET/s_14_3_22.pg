@@ -29,6 +29,9 @@ loadMacros(
   "PGcourse.pl"
 );
 
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
+
 ##############################################################
 
 Context("Numeric");
@@ -47,7 +50,8 @@ $ans2 = Compute("-$a*$b*x/[(x+y)^($b2)]");
 
 Context()->texStrings;
 BEGIN_TEXT
-Find the first partial derivatives of the function \(\displaystyle f(x,y) = \frac{$a x}{(x+y)^{$b}}.\)
+יש למצוא את הנגזרות החלקיות מסדר ראשון של הפונקציה
+\[\displaystyle f(x,y) = \frac{$a x}{(x+y)^{$b}}.\]
 $PAR
 $BBOLD 1.$EBOLD \(\displaystyle f_x(x,y) =\) \{ans_rule(30)\} $PAR
 $BBOLD 2.$EBOLD \(\displaystyle f_y(x,y) =\) \{ans_rule(30)\} 

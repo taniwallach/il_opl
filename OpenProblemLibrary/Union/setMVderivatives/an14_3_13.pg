@@ -34,6 +34,8 @@ loadMacros(
   "PGcourse.pl"
 );
 
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 
 TEXT(beginproblem());
 
@@ -76,9 +78,13 @@ $al->qa(
 Context()->texStrings;
 BEGIN_TEXT
 
-Let \(z = $DISPLAY $f\).  Then:
+יהי
+\[z = $DISPLAY $f\]
+אזי:
 $PAR
+\{ openSpan( { "dir" => "ltr" } ) \}
 \{$al->print_q\}
+\{ closeSpan() \}
 
 END_TEXT
 Context()->normalStrings;
