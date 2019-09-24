@@ -21,6 +21,8 @@ loadMacros(
   "PGcourse.pl"
 );
  
+ SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 
 ## Do NOT show partial correct answers
 $showPartialCorrectAnswers = 0;
@@ -44,18 +46,24 @@ TEXT(beginproblem());
 
 
 BEGIN_TEXT
-Find two unit vectors orthogonal to 
-\(\mathbf a = \langle $a[0], $a[1], $a[2]\rangle\) and 
-\(\mathbf b = \langle $b[0], $b[1], $b[2]\rangle\)
+יש למצוא זוג וקטורים 
+\(\ \vec{u}, \vec{v}\)
+המאונכים לוקטורים 
+\(\ \mathbf a = \langle $a[0], $a[1], $a[2]\rangle\)
+,
+\(\ \mathbf b = \langle $b[0], $b[1], $b[2]\rangle\)
 $BR
-Enter your answer so that the first non-zero coordinate of
-the first vector is positive.
+יש להזין את הפתרון כך שהקורדינטה הראשונה שערכה איננו אפס של הוקטור
+\(\ \vec{u} \)
+תהיה חיובית.
 $BR
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(\vec{u} =\) \(\langle\)\{ans_rule(17)\}, \{ans_rule(17)\}, \{ans_rule(17)\}\(\rangle\)$BR
 
-First Vector: \(\langle\)\{ans_rule(17)\}, \{ans_rule(17)\}, \{ans_rule(17)\}\(\rangle\)$BR
-
-Second Vector: \(\langle\)\{ans_rule(17)\}, \{ans_rule(17)\},
+\(\vec{v} =\) \(\langle\)\{ans_rule(17)\}, \{ans_rule(17)\},
  \{ans_rule(17)\}\(\rangle\)
+\{ closeSpan() \}
+
 
 END_TEXT
 if ($c[0] > 0 or ($c[0]==0 and $c[1]>0) or
