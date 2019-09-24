@@ -40,6 +40,9 @@ loadMacros(
               
 TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
+ 
+ SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 
 do {
 $a = random(1, 5, 1);
@@ -57,11 +60,13 @@ $l = $b+2*$d+$f;
 } until ($c*$f != $d*$e);
 
 BEGIN_TEXT
-Find the area of the parallelogram with vertices 
-($a,$b), ($g, $h), ($i, $j), and ($k, $l).
+\{ openSpan( { "dir" => "rtl" } ) \}
+מצא את שטח המקבילית שקודקודיה בנקודות:
+($a,$b), ($g, $h), ($i, $j) ו ($k, $l).
 $BR
 $BR
-Answer: \{ ans_rule(30) \}
+פתרון: \{ ans_rule(30) \}
+\{ closeSpan() \}
 END_TEXT
 
 ANS(num_cmp(abs($c*$f - $d*$e)));
