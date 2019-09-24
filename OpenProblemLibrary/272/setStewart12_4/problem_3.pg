@@ -43,27 +43,44 @@ $u3 = $c[2]/$length_c;
 ## Ok, we are ready to begin the problem...
 ##
 TEXT(beginproblem());
+#יש למצוא זוג וקטורי יחידה 
+#\(\ \vec{u}, \vec{v}\)
+#המאונכים לוקטורים
+#\(\vec{a} =\) $a[0]\(\hat\imath\ +\) $a[1]\(\hat\jmath\ +\) $a[2]\(\hat{k}\),
+#\(\vec{b} =\) $b[0]\(\hat\imath\ +\) $b[1]\(\hat\jmath\ +\) $b[2]\(\hat{k}\)
+#$BR
+#יש להזין את הפתרון כך שהקורדינטה הראשונה שערכה איננו אפס של הוקטור
+#\(\ \vec{u} \)
+#תהיה חיובית
+#$BR
+#\{ openSpan( { "dir" => "ltr" } ) \}
+#\(\hat{u} =\) \{ans_rule(17)\}\(\hat\imath\ +\) \{ans_rule(17)\}\(\hat\jmath\ +\) \{ans_rule(17)\}\\(\hat{k}\)
+#$BR
+#\(\hat{v} =\) \{ans_rule(17)\}\(\hat\imath\ +\) \{ans_rule(17)\}\(\hat\jmath\ +\) \{ans_rule(17)\}\\(\hat{k}\)
+#\{ closeSpan() \}
 
 
 BEGIN_TEXT
-יש למצוא זוג וקטורים 
-\(\ \vec{u}, \vec{v}\)
+יש למצוא זוג וקטורי יחידה  
 המאונכים לוקטורים 
 \(\ \mathbf a = \langle $a[0], $a[1], $a[2]\rangle\)
-,
+ו
 \(\ \mathbf b = \langle $b[0], $b[1], $b[2]\rangle\)
 $BR
-יש להזין את הפתרון כך שהקורדינטה הראשונה שערכה איננו אפס של הוקטור
-\(\ \vec{u} \)
+יש להזין את הפתרון כך שהקורדינטה הראשונה שערכה איננו אפס של הוקטור הראשון
 תהיה חיובית.
 $BR
+
+וקטור ראשון: 
 \{ openSpan( { "dir" => "ltr" } ) \}
-\(\vec{u} =\) \(\langle\)\{ans_rule(17)\}, \{ans_rule(17)\}, \{ans_rule(17)\}\(\rangle\)$BR
-
-\(\vec{v} =\) \(\langle\)\{ans_rule(17)\}, \{ans_rule(17)\},
- \{ans_rule(17)\}\(\rangle\)
+\(\langle\)\{ans_rule(17)\}, \{ans_rule(17)\}, \{ans_rule(17)\}\(\rangle\)
 \{ closeSpan() \}
-
+$BR
+וקטור שני:
+\{ openSpan( { "dir" => "ltr" } ) \}
+ \(\langle\)\{ans_rule(17)\}, \{ans_rule(17)\},
+ \{ans_rule(17)\}\(\rangle\)
+ \{ closeSpan() \}
 
 END_TEXT
 if ($c[0] > 0 or ($c[0]==0 and $c[1]>0) or
