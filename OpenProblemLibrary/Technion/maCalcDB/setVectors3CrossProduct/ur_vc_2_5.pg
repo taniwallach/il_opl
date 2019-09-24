@@ -61,14 +61,14 @@ $l = $b+2*$d+$f;
 
 BEGIN_TEXT
 \{ openSpan( { "dir" => "rtl" } ) \}
-מצא את שטח המקבילית שקודקודיה בנקודות:
-($a,$b), ($g, $h), ($i, $j) ו ($k, $l).
+מצא את שטח המשולש שקודקודיו בנקודות:
+($a,$b), ($g, $h), ($i, $j).
 $BR
 $BR
 פתרון: \{ ans_rule(30) \}
 \{ closeSpan() \}
 END_TEXT
 
-ANS(num_cmp(abs($c*$f - $d*$e)));
+ANS(num_cmp(abs($c*$f - $d*$e)/2));
 
 ENDDOCUMENT();	# This should be the last executable line in the problem.
