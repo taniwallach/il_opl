@@ -28,7 +28,8 @@ loadMacros(
 
 TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
-
+ SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 Context('Numeric');
 
 $x1 = random(-5,5,1);
@@ -50,9 +51,14 @@ $ans = Compute("abs($det/2)");
 
 Context()->texStrings;
 BEGIN_TEXT
-Find the area of the triangle with vertices \( ($x1, $y1) \), \( ($x2, $y2) \), and \( ($x3, $y3) \).
+מצא את שטח המשולש שקודקודיו בנקודות: 
+\{ openSpan( { "dir" => "rtl" } ) \}
+ \( ($x1, $y1) \), \( ($x2, $y2) \), ו \( ($x3, $y3) \).
+
 $BR
-Area = \{ans_rule(15)\}. 
+שטח = 
+\{ans_rule(15)\}. 
+  \{ closeSpan() \}
 END_TEXT
 Context()->normalStrings;
 
