@@ -4,6 +4,8 @@
 
 ## Tagged by nhamblet
 
+# LevelSets/PictureRecognitionFromSurface
+
 ## DBsubject(Calculus - multivariable)
 ## DBchapter(Concepts for multivariable functions)
 ## DBsection(Traces, contours, and level sets)
@@ -24,7 +26,8 @@ loadMacros(
   "PGcourse.pl"
 );
 
-
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 TEXT(beginproblem());
 
 ##############################################
@@ -50,12 +53,12 @@ $live3d = Live3Dfile($lfile.".m",
 #  The Live3D files and their associated GIFs
 #
 @QA = (
-  "Level set for \(z = -1.6\)",  "graph1.gif",
-  "Level set for \(z = -.8\)",   "graph2.gif",
-  "Level set for \(z = 0\)",     "graph3.gif",
-  "Level set for \(z = .2\)",    "graph4.gif",
-  "Level set for \(z = .7\)",    "graph5.gif",
-  "Level set for \(z = 1.4\)",   "graph6.gif",
+  " \(z = -1.6\)",  "graph1.gif",
+  " \(z = -.8\)",   "graph2.gif",
+  " \(z = 0\)",     "graph3.gif",
+  " \(z = 0.2\)",    "graph4.gif",
+  " \(z = 0.7\)",    "graph5.gif",
+  " \(z = 1.4\)",   "graph6.gif",
 );
 
 ##############################################
@@ -82,11 +85,11 @@ $BBR = MODES(TeX => '', Latex2HTML => $bHTML.'<BR>'.$eHTML, HTML => '<BR>');
 #  Main text
 
 BEGIN_TEXT
-
+\{ openSpan( { "dir" => "rtl" } ) \}
 \{ColumnTable(
-  "Consider the function whose graph is the surface$BBR
-   shown at the right.  Match the heights with the$BBR
-   proper level sets below.$PAR".
+  ",בהנתן הפונקציה שהגרף שלה הוא הגרף המוצג בתמונה הדינמית משמאל$BBR
+  יש להתאים לכל גובה את הפונקציה הסתומה המתאימה מתוך הפונקציה המוצגות מטה.$BBR
+  .$PAR".
   $BCENTER.$ml->print_q.$ECENTER,
   $live3d.$LIVEMESSAGE,
   indent => 20, valign => "BOTTOM"
@@ -95,7 +98,7 @@ $PAR
 
 \{$ml->print_a\}
 $PAR
-
+\{ closeSpan() \}
 END_TEXT
 
 ##################################################
