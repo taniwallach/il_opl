@@ -34,6 +34,8 @@ loadMacros(
 
 ## Do NOT show partial correct answers
 $showPartialCorrectAnswers = 0;
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 
 @questions = (
               "\(   x^2 + 4 y^2 + 9 z^2 =1  \)",
@@ -72,9 +74,10 @@ TEXT(beginproblem());
 
 BEGIN_TEXT
 $BR
-Match the equation with its graph labeled A-H.  You may click on any image to get a larger view.
+יש להתאים את המשוואה הריבועית לגרף המתאים לה. ניתן להקליק על התמונות על מנת לקבל תצוגה טובה יותר.
 
 $BR$BR
+\{ openSpan( { "dir" => "rtl" } ) \}
 ${BBOLD}A.$EBOLD$SPACE\{ image($shuffled_subset_of_images[0], width => 200, height => 200, extra_html_tags => 'align="middle"') \}
 $SPACE$SPACE
 ${BBOLD}B.$EBOLD$SPACE\{ image($shuffled_subset_of_images[1], width => 200, height => 200, extra_html_tags => 'align="middle"') \}
@@ -96,6 +99,7 @@ $BR
 \{ ans_rule(5)\} ${BBOLD}4.$EBOLD$SPACE $subset_of_questions[3]   $BR
 \{ ans_rule(5)\} ${BBOLD}5.$EBOLD$SPACE $subset_of_questions[4]  $BR
 \{ ans_rule(5)\} ${BBOLD}6.$EBOLD$SPACE $subset_of_questions[5]  
+\{ closeSpan() \}
 END_TEXT
 
 
