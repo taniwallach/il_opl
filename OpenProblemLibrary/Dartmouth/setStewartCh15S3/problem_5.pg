@@ -7,7 +7,8 @@
 ## DBsubject(Calculus - multivariable)
 ## DBchapter(Differentiation of multivariable functions)
 ## DBsection(Partial derivatives)
-## Institution(ASU)
+## Institution(ASU, Technion)
+## Translated to Hebrew by Julian Northey for the Technion
 ## Level(2)
 ## TitleText1('Calculus')
 ## AuthorText1('Stewart')
@@ -35,6 +36,8 @@ loadMacros(
   "PGcourse.pl"
 );
  
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
 
 ## Do NOT show partial correct answers
 $showPartialCorrectAnswers = 1;
@@ -49,8 +52,10 @@ TEXT(beginproblem());
 BEGIN_TEXT
 $BR
 
-Find the partial derivatives of the function
-\[
+
+מצאו את הנגזרות החלקיות של הפונקציה
+\{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
+        \[
     f(x,y) = xye^{$a y}
 \]
 
@@ -62,6 +67,8 @@ $BR
 \(f_{xy}(x,y) = \)\{ans_rule(60)\}
 $BR
 \(f_{yx}(x,y) = \)\{ans_rule(60)\}
+\{ closeSpan() \}
+
 
 $PAR
 END_TEXT

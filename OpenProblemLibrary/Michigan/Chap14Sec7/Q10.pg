@@ -9,7 +9,8 @@
 ## DBsubject(Calculus - multivariable)
 ## DBchapter(Differentiation of multivariable functions)
 ## DBsection(Partial derivatives)
-## Institution(University of Michigan)
+## Institution(ASU, Technion)
+## Translated to Hebrew by Julian Northey for the Technion
 ## Author(Gavin LaRose)
 ## Level(2)
 ## MO(1)
@@ -42,6 +43,9 @@ loadMacros(
   "PGcourse.pl"
 );
 
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
+
 Context("Numeric");
 Context()->variables->add( y=>'Real' );
 $showPartialCorrectAnswers = 1;
@@ -63,17 +67,24 @@ Context()->texStrings;
 TEXT(beginproblem());
 BEGIN_TEXT
 
-Calculate all
-four second-order partial derivatives and check that \( f_{xy}=f_{yx} \).
-Assume the variables are restricted to a domain on which the function
-is defined.
+חשבו את כל ארבעת הנגזרות החלקיות מסדר שני וודאו כי
+\( f_{xy}=f_{yx} \)
+.
+ניתן להניח כי כל המשתנים נמצאים בתחום ההגדרה של הפונקציה.
+
+\{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
 \[ f(x,y) = $func \]
 
-$PAR
-\( f_{xx} = \) \{ ans_rule(55) \} $BR
-\( f_{yy} = \) \{ ans_rule(55) \} $BR
-\( f_{xy} = \) \{ ans_rule(55) \} $BR
-\( f_{yx} = \) \{ ans_rule(55) \}
+
+$BR
+\( f_{xx} = \)  \{ ans_rule(55) \}
+$BR
+\( f_{yy} = \)  \{ ans_rule(55) \}
+$BR
+\( f_{xy} = \)  \{ ans_rule(55) \}
+$BR
+\( f_{yx} = \)  \{ ans_rule(55) \}
+\{ closeSpan() \}
 
 END_TEXT
 Context()->normalStrings;
