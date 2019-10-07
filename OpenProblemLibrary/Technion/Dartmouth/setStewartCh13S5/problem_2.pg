@@ -34,6 +34,34 @@ $showPartialCorrectAnswers = 0;
 ## Lots of set up goes here
 @p = (random(-5,5),random(-5,5),non_zero_random(-5,5));
 @v = (random(-5,5),random(-5,5),non_zero_random(-5,5));
+@v_str = ();
+if($v[0] == 1){$v_str[0]="\mathbf i";}
+elsif($v[0] == -1){$v_str[0]="-\mathbf i";}
+elsif($v[0] == 0){$v_str[0]="";}
+else{$v_str[0] = "$v[0]\mathbf i";}
+
+if($v[1] == 1){$v_str[1]="+\mathbf j";}
+elsif($v[1] == -1){$v_str[1]="-\mathbf j";}
+elsif($v[1] == 0){$v_str[1]="";}
+else{
+    if($v[1]<0){
+        $v_str[1] = "$v[1]\mathbf j";
+     }
+     else{
+         $v_str[1] = "+$v[1]\mathbf j";
+     }
+}
+
+if($v[2] == 1){$v_str[2]="+\mathbf k";}
+elsif($v[2] == -1){$v_str[2]="-\mathbf k";}
+else{
+    if($v[2]<0){
+        $v_str[2] = "$v[2]\mathbf k";
+     }
+     else{
+         $v_str[2] = "+$v[2]\mathbf k";
+     }
+}
 
 ## Ok, we are ready to begin the problem...
 ##
@@ -42,17 +70,11 @@ TEXT(beginproblem());
 
 BEGIN_TEXT
 $BR
-יש למצוא את ההצגה הוקטורית והפרמטרית עבור הישר העובר דרך הנקודה
+יש למצוא את ההצגה הפרמטרית עבור הישר העובר דרך הנקודה
 \(P($p[0], $p[1], $p[2])\) ומקביל לוקטור
-\($v[0]\mathbf i + $v[1]\mathbf j + $v[2]\mathbf k\).
+\($v_str[0] \ $v_str[1] \ $v_str[2]\).
 $BR
-הצגה וקטורית: 
-\{ openSpan( { "dir" => "ltr" } ) \}
-\(\mathbf r = \langle\)\{ans_rule(10)\}, \{ans_rule(10)\}, \($p[2] \rangle + t \langle\)
-\{ans_rule(10)\}, \{ans_rule(10)\}, \($v[2] \rangle\)
-\{ closeSpan() \}
-$BR
-הצגה פרמטרית: (הפרמטר \(t\), הישר עובר בנקודה \(P\) עבור \(t=0\))
+ (יש להשתמש בפרמטר \(t\), הישר עובר בנקודה \(P\) עבור \(t=0\))
 $BR
 \{ openSpan( { "dir" => "ltr" } ) \}
 \(x = x(t) = \)\{ans_rule(30)\}$BR
@@ -62,10 +84,6 @@ $BR
 
 $PAR
 END_TEXT
-ANS(num_cmp($p[0]));
-ANS(num_cmp($p[1]));
-ANS(num_cmp($v[0]));
-ANS(num_cmp($v[1]));
 
 ANS(fun_cmp("$p[0] + t*$v[0]", vars=>['t']));
 ANS(fun_cmp("$p[1] + t*$v[1]", vars=>['t']));
