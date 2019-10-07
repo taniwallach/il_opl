@@ -41,16 +41,16 @@ $d = -4 - $a;
 $e = 5 - $b;
 $f = 6 - $c;
 
-$s1 = nicestring([$d, $a], ['', 's']);
-$s2 = nicestring([$e, $b], ['', 's']);
-$s3 = nicestring([$f, $c], ['', 's']);
+$s1 = nicestring([$d, $a], ['', 't']);
+$s2 = nicestring([$e, $b], ['', 't']);
+$s3 = nicestring([$f, $c], ['', 't']);
 
 BEGIN_TEXT
 $BR
 יש למצוא את נקודת החיתוך של הישרים: $BR
-\( L_{1}:\ x = -2t,\ y = 1 + 2t,\ z = 3t \) 
+\( L_{1}:\ \ x = -2t,\ \  y = 1 + 2t,\ \ z = 3t \) 
 $BR
-\( L_{2}:\ x = $s1,\ y = $s2,\ z = $s3 \)
+\( L_{2}:\ \ x = $s1,\ \  y = $s2,\ \ z = $s3 \)
 $PAR
 $BR
 \{ openSpan( { "dir" => "ltr" } ) \}
