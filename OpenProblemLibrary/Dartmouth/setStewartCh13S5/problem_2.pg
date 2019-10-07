@@ -25,7 +25,8 @@ loadMacros(
   "Dartmouthmacros.pl",
   "PGcourse.pl"
 );
- 
+ SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 
 ## Do NOT show partial correct answers
 $showPartialCorrectAnswers = 0;
@@ -41,18 +42,23 @@ TEXT(beginproblem());
 
 BEGIN_TEXT
 $BR
-Find the vector and parametric equations for the line through the point
-P($p[0], $p[1], $p[2]) and parallel to the vector 
+יש למצוא את ההצגה הוקטורית והפרמטרית עבור הישר העובר דרך הנקודה
+\(P($p[0], $p[1], $p[2])\) ומקביל לוקטור
 \($v[0]\mathbf i + $v[1]\mathbf j + $v[2]\mathbf k\).
-
-Vector Form: \(\mathbf r = \langle\)\{ans_rule(10)\}, \{ans_rule(10)\}, $p[2] \(\rangle + t \langle\)
-\{ans_rule(10)\}, \{ans_rule(10)\}, $v[2] \(\rangle\)
-
-Parametric form (parameter t, and passing through P when t = 0):$BR
+$BR
+הצגה וקטורית: 
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(\mathbf r = \langle\)\{ans_rule(10)\}, \{ans_rule(10)\}, \($p[2] \rangle + t \langle\)
+\{ans_rule(10)\}, \{ans_rule(10)\}, \($v[2] \rangle\)
+\{ closeSpan() \}
+$BR
+הצגה פרמטרית: (הפרמטר \(t\), הישר עובר בנקודה \(P\) עבור \(t=0\))
+$BR
+\{ openSpan( { "dir" => "ltr" } ) \}
 \(x = x(t) = \)\{ans_rule(30)\}$BR
 \(y = y(t) = \)\{ans_rule(30)\}$BR
 \(z = z(t) = \)\{ans_rule(30)\}$BR
-
+\{ closeSpan() \}
 
 $PAR
 END_TEXT
