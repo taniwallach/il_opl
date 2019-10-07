@@ -46,17 +46,20 @@ $showPartialCorrectAnswers = 0;
 
 ## Ok, we are ready to begin the problem...
 ##
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
+
 TEXT(beginproblem());
 
 
 BEGIN_TEXT
 $BR
 
-Find an equation of a plane containing the three points
-($p[0], $p[1], $p[2]), ($q[0], $q[1], $q[2]), ($r[0], $r[1], $r[2]) in which the coefficient of \(x\) is $n[0].
-
+יש למצוא את משוואת המישור המכיל את שלושת הנקודות 
+\(($p[0], $p[1], $p[2]), ($q[0], $q[1], $q[2]), ($r[0], $r[1], $r[2])\) בו המקדם של  \(x\) הוא \($n[0]\).
+\{ openSpan( { "dir" => "ltr" } ) \}
  $BR \{ans_rule(60)\} = 0.
-
+\{ closeSpan() \}
 
 
 END_TEXT
