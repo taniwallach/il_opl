@@ -30,6 +30,8 @@ loadMacros(
 
 TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
               
 $a = random(1, 5, 1);
 $b = random(1, 5, 1);
@@ -44,16 +46,16 @@ $s2 = nicestring([$e, $b], ['', 's']);
 $s3 = nicestring([$f, $c], ['', 's']);
 
 BEGIN_TEXT
-Consider the two lines $BR
+$BR
+יש למצוא את נקודת החיתוך של הישרים: $BR
 \( L_{1}:\ x = -2t,\ y = 1 + 2t,\ z = 3t \) 
 $BR
-and $BR
 \( L_{2}:\ x = $s1,\ y = $s2,\ z = $s3 \)
 $PAR
-Find the point of intersection of the two lines.
 $BR
-$BR
+\{ openSpan( { "dir" => "ltr" } ) \}
 \(P\) = (\{ ans_rule(5) \}, \{ ans_rule(5) \}, \{ ans_rule(5) \})
+\{ closeSpan() \}
 END_TEXT
 
 ANS(num_cmp( -4 ) );
