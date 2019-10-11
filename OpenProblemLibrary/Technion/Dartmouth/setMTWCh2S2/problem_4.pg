@@ -45,7 +45,35 @@ Context()->variables->add(y=>"Real",z=>"Real");
 $a = non_zero_random(-4, 4);
 $b = non_zero_random(-4, 4);
 
+if($a == 1)
+{
+    $aFactor = "";
+}
+elsif($a == -1)
+{
+    $aFactor = "-";
+}
+else
+{
+    $aFactor = $a;
+}
+
+if($b == 1)
+{
+    $bFactor = "";
+}
+elsif($b == -1)
+{
+    $bFactor = "-";
+}
+else
+{
+    $bFactor = $b;
+}
+
 $h = Formula("z*arctan($b*y / ($a * x))")->reduce;
+#formula displays atan as tan^-1 so we use latex directly
+$hDisplay = "z \arctan(\frac{$bFactor y}{$aFactor x})";
 
 ($x0,$y0,$z0) = (non_zero_random(-10,10,1),non_zero_random(-10,10,1),non_zero_random(-10,10,1));
 
@@ -70,7 +98,7 @@ $BR
 נתונה הפונקציה:
 $BR
 
-\[\displaystyle h(x,y,z)=$h\]
+\[\displaystyle h(x,y,z)=$hDisplay\]
 
 $BR
 יש לחשב את נגזרותיה החלקיות מסדר ראשון בנקודה
