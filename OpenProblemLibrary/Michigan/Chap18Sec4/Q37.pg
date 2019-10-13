@@ -44,6 +44,8 @@ loadMacros(
 
 Context("Numeric");
 $showPartialCorrectAnswers = 1;
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 
 $a   = list_random(3,4,5,6);
 $asq = $a*$a;
@@ -64,26 +66,26 @@ $ans2 = Compute( $a );
 Context()->texStrings;
 TEXT(beginproblem());
 BEGIN_TEXT
-
-Let \( \vec F = $fx\,\vec i + $fy\,\vec j \). Consider
-the line integral of \( \vec F \) around the circle of
-radius \( a \), centered at the origin and traversed
-counterclockwise.
+$BR
+יהי \( \vec F = $fx\,\vec i + $fy\,\vec j \). 
+$BR
+בהנתן האינטגרל הקווי עבור \( \vec F \) מסביב למעגל שרדיוסו \( a \), מרכזו בראשית הצירים וכיוונו נגד כיוון השעון.
 
 $PAR
-${BBOLD}(a)$EBOLD
-Find the line integral for \( a=1 \).
+${BBOLD}.א$EBOLD
+יש למצוא את האינטגרל הקווי עבור \( a=1 \):
 $BR
-line integral = \{ ans_rule(35) \}
+\{ ans_rule(35) \}
 
 $PAR
-${BBOLD}(b)$EBOLD
-For which value of \( a \) is the line integral a maximum?
+${BBOLD}ב.$EBOLD
+יש למצוא את הערך של  \( a \) עבורו האינטגרל הקווי מקסימלי:
 $BR
+\{ openSpan( { "dir" => "ltr" } ) \}
 \( a = \) \{ ans_rule(15) \}
+\{ closeSpan() \}
 $BR
-${BITALIC}(Be sure you can explain why your answer gives the
-correct maximum.)$EITALIC
+${BITALIC}(ודאו כי אתם יכולים להסביר למה הערך המתקבל עבור התשובה שלכם הוא המקסימום הנכון.)$EITALIC
 
 END_TEXT
 Context()->normalStrings;
@@ -100,11 +102,11 @@ $val = ( $d == 1 ) ? $n : "\frac{$n}{$d}";
 
 Context()->texStrings;
 SOLUTION(EV3(<<'END_SOLUTION'));
-$PAR SOLUTION $PAR
+$PAR פתרון $PAR
 
-${BBOLD}(a)$EBOLD
-We use Green's Theorem. Let \(R\) be the region enclosed by the circle \(C\).
-Then
+${BBOLD}א.$EBOLD
+נשתמש בנוסחת גרין. יהי \(R\) השטח החסום על ידי המעגל \(C\).
+אזי:
 \[
 \int_C \vec F\cdot d\vec r =
 \int_R\left( \frac{\partial}{\partial x}$fy -
@@ -113,7 +115,7 @@ Then
 \[
 \int_R $k2 - $k1(x^2 + y^2)\, dA.
 \]
-Converting to polar coordinates, we have
+נמיר לקורדינטות פולריות ונקבל:
 \[
 \int_C \vec F\cdot d\vec r =
 \int_0^{2\pi}\int_0^1 ($k2 - $k1 r^2)r\,dr\,d\theta =
@@ -121,14 +123,12 @@ Converting to polar coordinates, we have
 \]
 
 $PAR
-${BBOLD}(b)$EBOLD
-The integrand of the integral over the disk \(R\) is
-\($k2 - $k1(x^2+y^2)\). Since the integrand is positive for
-\(x^2 + y^2 < \frac{$k2}{$k1} = $asq\) and negative for
-\(x^2 + y^2 > $asq\), the
-integrand is positive inside the circle of radius $a and negative outside that
-circle. Thus, the integral over \(R\) increases with \(a\) until \(a=$a\) and
-then decreases. The maximum value of the line integral occurs when
+${BBOLD}ב.$EBOLD
+האינטגרנד של האינטגרל עבור הדיסקה \(R\) הוא
+\($k2 - $k1(x^2+y^2)\). מכיוון שהאינטגרנד חיובי עבור
+\(x^2 + y^2 < \frac{$k2}{$k1} = $asq\) ושלילי עבור
+\(x^2 + y^2 > $asq\), האינטגרנד חיובי בתוך מעגל ברדיוס $a ושלילי מחוץ למעגל. 
+לכן, האינטגרל ב \(R\) הולך וגדל עם \(a\) עד ש \(a=$a\) ואז הולך וקטן. לכן, הערך המקסימלי מתקבל עבור
 \(a = $a\).
 
 END_SOLUTION
