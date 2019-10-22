@@ -1,0 +1,75 @@
+# Local notes:
+# translated by Idan Kinderman, August 2019, for use in the Technion
+# Based on a W.H.Freeman problem, Author Keith Thompson
+#WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/10_Infinite_Series/10.1_Sequences/10.1.51.pg
+
+##DESCRIPTION
+##ENDDESCRIPTION
+
+## DBsubject(Infi)
+## DBchapter(Limit of a sequence)
+## Institution(Technion)
+## KEYWORDS()
+
+###################################################################
+
+## The original notes:
+## DBsubject(Calculus - single variable)
+## DBchapter(Infinite sequences and series)
+## DBsection(Limit of a sequence)
+## Institution(W.H.Freeman)
+## Author(Keith Thompson)
+## Level(2)
+## MO(1)
+## TitleText1('Calculus: Early Transcendentals')
+## AuthorText1('Rogawski')
+## EditionText1('2')
+## Section1('10.1')
+## Problem1('51')
+## KEYWORDS('calculus', 'derivatives', 'slope')
+
+#########################################################
+
+DOCUMENT();
+loadMacros(
+  "PGstandard.pl",
+  "Parser.pl",
+  "freemanMacros.pl",
+  "PGgraphmacros.pl",
+  "PGcourse.pl",
+   "MathObjects.pl",
+  "PGunion.pl",
+);
+
+  SET_PROBLEM_LANGUAGE("he-IL");
+  SET_PROBLEM_TEXTDIRECTION("rtl");
+  
+TEXT(beginproblem());
+$showPartialCorrectAnswers=1;
+
+$num=random(2,9);
+$den=random(2,13);
+$a = random(2,44);
+$b = random(2,44);
+$ans=Compute("ln($num/$den)");
+Context()->texStrings;
+
+BEGIN_TEXT
+\{ textbook_ref_exact("Rogawski ET 2e", "10.1","51") \}
+$PAR
+
+קבע האם הסדרה הנתונה מתכנסת או מתבדרת. 
+$BR
+אם היא מתכנסת, רשום את גבולה. אם היא מתבדרת, רשום \( \verb+DNE+ \).
+$PAR    
+\(c_n=\ln\left(\frac{$num n-$a}{$den n+$b}\right)\)
+$PAR 
+ \{ans_rule(2)\}  \(\lim\limits_{n\to\infty}c_n = \) 
+END_TEXT
+
+Context()->normalStrings;
+
+#ANS(Real($ans)->cmp);
+ANS($ans->cmp);
+
+ENDDOCUMENT();
