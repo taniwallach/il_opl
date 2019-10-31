@@ -94,7 +94,7 @@ $multians2 = MultiAnswer($b1_corr,$b2_corr,$b3_corr)->with(
         else{
             if(abs($s1) > 1 || abs($s2) > 1 || abs($s3) > 1 || abs(1-                     (($s2)**2+($s3)**2+($s1)**2))>0){
 		        	# is not a unit vector
-		        	 $self->setMessage(1,"הןקטור שרשמת אינננו וקטור יחידה");
+		        	 $self->setMessage(1,"הוקטור שרשמת אינננו וקטור יחידה");
 		    }
             if (($s2 == -$b2_corr) && ($s1 == $b1_corr)&&($s3 == $b3_corr)){
                 $self->setMessage(2,"יתכן שטעית בפיתוח האיבר האמצעי של הדטרמיננט");
@@ -134,9 +134,9 @@ $BR
 \(\vec{b} = $b[0]\hat\imath\ + $b[1]\hat\jmath\ +$b[2]\hat{k}\)
 \{ closeSpan() \}
 $BR
-יש להזין את הפתרון כך שהקורדינטה הראשונה שערכה איננו אפס של הוקטור
+יש להזין את הפתרון כך שהרכיב הראשון שערכו איננו אפס של הוקטור
 \(\ \vec{u} \)
-תהיה חיובית
+יהיה חיובי.
 $BR
 \{ openSpan( { "dir" => "ltr" } ) \}
 \(\hat{u} =\) \{$multians->ans_rule(17)\}\(\hat\imath\ +\) \{$multians->ans_rule(17)\}\(\hat\jmath\ +\) \{$multians->ans_rule(17)\}\(\hat{k}\)
