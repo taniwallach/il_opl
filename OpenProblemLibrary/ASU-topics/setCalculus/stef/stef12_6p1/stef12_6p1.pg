@@ -1,4 +1,7 @@
 ## DESCRIPTION
+##   Identify Level Curves
+## ENDDESCRIPTION
+## DESCRIPTION
 ## Multivariable Calculus
 ## ENDDESCRIPTION
 #LevelSets/QuadricSurfaces/PictureRecognition
@@ -22,93 +25,85 @@
 ## Problem2('1')
 ## KEYWORDS('calculus','parametric,'surface')
 
-DOCUMENT();
+DOCUMENT();        # This should be the first executable line in the problem.
+
 loadMacros(
   "PGstandard.pl",
-  "PGchoicemacros.pl",
-  "PGgraphmacros.pl",
-  "Dartmouthmacros.pl",
+  "PGunion.pl",
+  "MathObjects.pl",
+  "contextABCD.pl",
+  "imageChoice.pl",
+  "LiveGraphics3D.pl",
   "PGcourse.pl"
 );
- 
 
-## Do NOT show partial correct answers
-$showPartialCorrectAnswers = 0;
 SET_PROBLEM_TEXTDIRECTION("rtl");
 SET_PROBLEM_LANGUAGE("he-IL");
-
-@questions = (
-              "\(   x^2 + 4 y^2 + 9 z^2 =1  \)",
-              "\(  9 x^2 + 4 y^2 + z^2 = 1  \)",
-              "\(  x^2 - y^2 +z^2 = 1  \)",
-              "\( - x^2 + y^2 - z^2 = 1  \)",
-              "\(  y = 2 x^2  + z^2   \)",
-              "\(  y^2 = x^2 + 2 z^2   \)",
-              "\(  x^2 + 2  z^2  =1  \)",
-              "\( y =  x^2 - z^2\)"
-              );
-
-@images = (
-            "stewart12_6a.gif",
-            "stewart12_6b.gif",
-            "stewart12_6c.gif",
-            "stewart12_6d.gif",
-            "stewart12_6e.gif",
-            "stewart12_6f.gif",
-            "stewart12_6g.gif",
-            "stewart12_6h.gif"
-             );
-
-@subset = NchooseK(8,6);
-
-@subset_of_questions = @questions[@subset];
-@subset_of_images = @images[@subset];
-
-@permutation = NchooseK(6,6);
-@shuffled_subset_of_images = @subset_of_images[@permutation];
-
-## Ok, we are ready to begin the problem...
-##
 TEXT(beginproblem());
 
+##############################################
+#  Setup
+
+Context("ABCD")->strings->add(E=>{}, F=>{}, G=>{},H=>{});
+
+$size = [250,250];   # the size of the images
+$tsize = 250;        # the tex size of the images
+
+#
+#  The Live3D files and their associated GIFs
+#
+@QA = (
+  "\(   x^2 + 4 y^2 + 9 z^2 =1\  \)",  "stewart12_6a.gif",
+              "\(  9 x^2 + 4 y^2 + z^2 = 1\  \)",  "stewart12_6b.gif",
+              "\(  x^2 - y^2 +z^2 = 1\  \)",  "stewart12_6c.gif",
+              "\( - x^2 + y^2 - z^2 = 1\  \)",  "stewart12_6d.gif",
+              "\(  y = 2 x^2  + z^2\   \)",  "stewart12_6e.gif",
+              "\(  y^2 = x^2 + 2 z^2\   \)",  "stewart12_6f.gif",
+              "\(  x^2 + 2  z^2  =1\  \)",  "stewart12_6g.gif",
+              "\( y =  x^2 - z^2\ \)",  "stewart12_6h.gif"
+);
+
+##############################################
+
+#
+#  use an image match list
+#
+$ml = new_image_match_list(
+  link => 0,                #  don't link to separate image
+  size => $size,            #  image size in pixels
+  tex_size => $tsize,       #  tex size in percent times 10
+  border => 0,              #  image already includes border
+  columns => 3,             #  number of columns
+);
+$ml->{separation} = 3;      # separation for questions in the list
+$ml->rf_print_q(~~&pop_up_list_print_q); # use pop-up-lists
+$ml->ra_pop_up_list([ No_answer=>"?", A=>"A", B=>"B", C=>"C", D=>"D",E=>"E",F=>"F"] );
+$ml->qa(@QA);               #  set the questions and answers
+$ml->choose(6);         #  select 4 of them, include k = 0
+
+##############################################
+#  Main text
 
 BEGIN_TEXT
-$BR
-יש להתאים את המשוואה הריבועית לגרף המתאים לה. ניתן להקליק על התמונות על מנת לקבל תצוגה טובה יותר.
-
-$BR$BR
 \{ openSpan( { "dir" => "rtl" } ) \}
-${BBOLD}A.$EBOLD$SPACE\{ image($shuffled_subset_of_images[0], width => 200, height => 200, extra_html_tags => 'align="middle"') \}
-$SPACE$SPACE
-${BBOLD}B.$EBOLD$SPACE\{ image($shuffled_subset_of_images[1], width => 200, height => 200, extra_html_tags => 'align="middle"') \}
 $BR
-${BBOLD}C.$EBOLD$SPACE\{ image($shuffled_subset_of_images[2], width => 200, height => 200, extra_html_tags => 'align="middle"') \}
-$SPACE$SPACE
-${BBOLD}D.$EBOLD$SPACE\{ image($shuffled_subset_of_images[3], width => 200, height => 200, extra_html_tags => 'align="middle"') \}
-$BR
-${BBOLD}E.$EBOLD$SPACE\{ image($shuffled_subset_of_images[4], width => 200, height => 200, extra_html_tags => 'align="middle"') \}
-$SPACE$SPACE
-${BBOLD}F.$EBOLD$SPACE\{ image($shuffled_subset_of_images[5], width => 200, height => 200, extra_html_tags => 'align="middle"') \}
+יש להתאים את משוואת המשטח הריבועי לציור המתאים לה.
+\{$ml->print_q\}
+$PAR
 
-
-$BR
-$BR
-\{ ans_rule(5)\} ${BBOLD}1.$EBOLD$SPACE $subset_of_questions[0]  $BR
-\{ ans_rule(5)\} ${BBOLD}2.$EBOLD$SPACE $subset_of_questions[1]  $BR
-\{ ans_rule(5)\} ${BBOLD}3.$EBOLD$SPACE $subset_of_questions[2]  $BR
-\{ ans_rule(5)\} ${BBOLD}4.$EBOLD$SPACE $subset_of_questions[3]   $BR
-\{ ans_rule(5)\} ${BBOLD}5.$EBOLD$SPACE $subset_of_questions[4]  $BR
-\{ ans_rule(5)\} ${BBOLD}6.$EBOLD$SPACE $subset_of_questions[5]  
+\{$ml->print_a\}
+$PAR
 \{ closeSpan() \}
 END_TEXT
 
+##################################################
+#  Answers
 
-ANS(str_cmp([@ALPHABET[invert(@permutation)]]));
+ANS(string_cmp($ml->ra_correct_ans));
+
+$showPartialCorrectAnswers = 0;
+install_problem_grader(~~&std_problem_grader);
+
+##################################################
+
 ENDDOCUMENT();
-
-$BR
-\{ ans_rule(5)\} ${BBOLD}7.$EBOLD$SPACE $subset_of_questions[6]  $BR
-\{ ans_rule(5)\} ${BBOLD}8.$EBOLD$SPACE $subset_of_questions[7]   $BR
-${BBOLD}G.$EBOLD$SPACE\{ image($shuffled_subset_of_images[6], width => 200, height => 200, extra_html_tags => 'align="middle"') \}
-$SPACE$SPACE
-${BBOLD}H.$EBOLD$SPACE\{ image($shuffled_subset_of_images[7], width => 200, height => 200, extra_html_tags => 'align="middle"') \}

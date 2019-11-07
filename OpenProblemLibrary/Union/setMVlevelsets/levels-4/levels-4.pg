@@ -37,7 +37,7 @@ Context("ABCD")->strings->add(E=>{}, F=>{});
 
 $size = [150,150];   # the size of the images
 $tsize = 250;        # the tex size of the images
-$lsize = [200,200];  # the size of the Live3D images
+$lsize = [350,350];  # the size of the Live3D images
 $ltsize = 600;       # the tex size of Live3D images
 $lfile = "levels-4"; # name of the Live3D object
 
@@ -53,12 +53,12 @@ $live3d = Live3Dfile($lfile.".m",
 #  The Live3D files and their associated GIFs
 #
 @QA = (
-  " \(z = -1.6\)",  "graph1.gif",
-  " \(z = -.8\)",   "graph2.gif",
-  " \(z = 0\)",     "graph3.gif",
-  " \(z = 0.2\)",    "graph4.gif",
-  " \(z = 0.7\)",    "graph5.gif",
-  " \(z = 1.4\)",   "graph6.gif",
+  " \(z = -1.6\ \)",  "graph1.gif",
+  " \(z = -0.8\ \)",   "graph2.gif",
+  " \(z = 0\ \)",     "graph3.gif",
+  " \(z = 0.2\ \)",    "graph4.gif",
+  " \(z = 0.7\ \)",    "graph5.gif",
+  " \(z = 1.4\ \)",   "graph6.gif",
 );
 
 ##############################################
@@ -87,8 +87,9 @@ $BBR = MODES(TeX => '', Latex2HTML => $bHTML.'<BR>'.$eHTML, HTML => '<BR>');
 BEGIN_TEXT
 \{ openSpan( { "dir" => "rtl" } ) \}
 \{ColumnTable(
-  ",בהנתן הפונקציה שהגרף שלה הוא הגרף המוצג בתמונה הדינמית משמאל$BBR
-  יש להתאים לכל גובה את הפונקציה הסתומה המתאימה מתוך הפונקציה המוצגות מטה.$BBR
+  "בהנתן הפונקציה שהגרף שלה הוא המשטח המוצג בתמונה הדינמית משמאל,$BR
+יש להתאים לכל גובה את החתך המתאים מבין הציורים הנתונים למטה.$BR
+(נא לגרור את העכבר על גבי הציור על מנת לסובב את המשטח).$BBR.
   .$PAR".
   $BCENTER.$ml->print_q.$ECENTER,
   $live3d.$LIVEMESSAGE,
