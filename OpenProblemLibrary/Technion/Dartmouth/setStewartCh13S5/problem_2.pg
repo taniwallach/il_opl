@@ -23,14 +23,18 @@ loadMacros(
   "PGchoicemacros.pl",
   "PGgraphmacros.pl",
   "Dartmouthmacros.pl",
-  "PGcourse.pl"
+  "PGcourse.pl",
+    "parserMultiAnswer.pl",
 );
+
+
  SET_PROBLEM_TEXTDIRECTION("rtl");
 SET_PROBLEM_LANGUAGE("he-IL");
 
 ## Do NOT show partial correct answers
-$showPartialCorrectAnswers = 0;
-
+$showPartialCorrectAnswers = 1;
+Context("Numeric");
+ Context()->variables->add(t=>'Real');
 ## Lots of set up goes here
 @p = (random(-5,5),random(-5,5),non_zero_random(-5,5));
 @v = (random(-5,5),random(-5,5),non_zero_random(-5,5));
@@ -63,6 +67,43 @@ else{
      }
 }
 
+
+$sx_cor = Formula("$p[0] + t*$v[0]");
+$sy_cor = Formula("$p[1] + t*$v[1]");
+$sz_cor = Formula("$p[2] + t*$v[2]");
+
+$multians = MultiAnswer($sx_cor,$sy_cor,$sz_cor)->with(
+  singleResult => 1,
+  allowBlankAnswers => 1,
+  checker => sub {
+  Context("Vector");
+		my ( $correct, $student, $self ) = @_;
+		my ( $sx,$sy,$sz) = @{$student};
+        if($sx eq "" || $sy eq "" || $sz eq "") {
+		$self->setMessage(1,"אין להשאיר שדות ריקים.");
+		return 0;
+
+        }
+        $sx0 = $sx->eval(t=>0);
+        $sy0 = $sy->eval(t=>0);
+        $sz0 = $sz->eval(t=>0);
+        $sx1 = $sx->eval(t=>1)-$p[0];
+        $sy1 = $sy->eval(t=>1)-$p[1];
+        $sz1 = $sz->eval(t=>1)-$p[2];
+		$vec_v = Vector([$v[0],$v[1],$v[2] ] );
+		$vec_w = Vector([$sx1,$sy1,$sz1 ]  );
+
+		if ($sx0 !=$p[0]||$sy0 !=$p[1]||$sz0 !=$p[2]){
+
+			return 0;
+		}
+
+        if (($vec_v->cross($vec_w))->norm()<0.001){
+			return 1;
+		}
+
+});
+
 ## Ok, we are ready to begin the problem...
 ##
 TEXT(beginproblem());
@@ -77,17 +118,16 @@ $BR
  (יש להשתמש בפרמטר \(t\), הישר עובר בנקודה \(P\) עבור \(t=0\))
 $BR
 \{ openSpan( { "dir" => "ltr" } ) \}
-\(x = x(t) = \)\{ans_rule(30)\}$BR
-\(y = y(t) = \)\{ans_rule(30)\}$BR
-\(z = z(t) = \)\{ans_rule(30)\}$BR
+\(x = x(t) = \)\{$multians->ans_rule(30)\}$BR
+\(y = y(t) = \)\{$multians->ans_rule(30)\}$BR
+\(z = z(t) = \)\{$multians->ans_rule(30)\}$BR
 \{ closeSpan() \}
 
 $PAR
 END_TEXT
 
-ANS(fun_cmp("$p[0] + t*$v[0]", vars=>['t']));
-ANS(fun_cmp("$p[1] + t*$v[1]", vars=>['t']));
-ANS(fun_cmp("$p[2] + t*$v[2]", vars=>['t']));
+ANS($multians->cmp());
+
 
 ENDDOCUMENT();
 

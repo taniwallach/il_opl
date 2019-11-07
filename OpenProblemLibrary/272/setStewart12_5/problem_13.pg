@@ -1,7 +1,7 @@
 ## -*- perl -*- ##
 ## Line above puts emacs in perl mode
 ##
-## Description  
+## Description
 ##   This is a generic problem template
 ## EndDescription
 
@@ -23,10 +23,10 @@ loadMacros(
   "Dartmouthmacros.pl",
   "PGcourse.pl"
 );
- 
+
 
 ## Do NOT show partial correct answers
-$showPartialCorrectAnswers = 0;
+$showPartialCorrectAnswers = 1;
 
 ## Point through which plane is to pass
 @p = (random(-5,5),random(-5,5),random(-5,5));
@@ -41,7 +41,7 @@ $showPartialCorrectAnswers = 0;
 @r = vector_sum(@p, @v2);
 
 ## Normal to plane containing @p, @q, @r
-@n = cross_product(@v1, @v2);  
+@n = cross_product(@v1, @v2);
 
 
 ## Ok, we are ready to begin the problem...
@@ -55,8 +55,13 @@ TEXT(beginproblem());
 BEGIN_TEXT
 $BR
 
-יש למצוא את משוואת המישור המכיל את שלושת הנקודות 
-\(($p[0], $p[1], $p[2]), ($q[0], $q[1], $q[2]), ($r[0], $r[1], $r[2])\) בו המקדם של  \(x\) הוא \($n[0]\).
+יש למצוא את משוואת המישור שעובר דרך הנקודות
+\(($p[0], $p[1], $p[2]), ($q[0], $q[1], $q[2]), ($r[0], $r[1], $r[2])\) כך שהמקדם של  \(x\) הוא \($n[0]\).
+$BR
+יש להקפיד שהמקדם של
+\(x\)
+יהיה המקדם שנדרש בשאלה.
+$BR
 \{ openSpan( { "dir" => "ltr" } ) \}
  $BR \{ans_rule(60)\} = 0.
 \{ closeSpan() \}
