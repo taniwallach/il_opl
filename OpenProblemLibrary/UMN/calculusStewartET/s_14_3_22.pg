@@ -53,8 +53,16 @@ BEGIN_TEXT
 יש למצוא את הנגזרות החלקיות מסדר ראשון של הפונקציה
 \[\displaystyle f(x,y) = \frac{$a x}{(x+y)^{$b}}.\]
 $PAR
-$BBOLD 1.$EBOLD \(\displaystyle f_x(x,y) =\) \{ans_rule(30)\} $PAR
-$BBOLD 2.$EBOLD \(\displaystyle f_y(x,y) =\) \{ans_rule(30)\} 
+$BBOLD 1.$EBOLD 
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(\displaystyle f_x(x,y) =\) \{ans_rule(30)\} 
+\{ closeSpan() \}
+$BR
+$BBOLD 2.$EBOLD
+\{ openSpan( { "dir" => "ltr" } ) \}
+ \(\displaystyle f_y(x,y) =\) \{ans_rule(30)\} 
+\{ closeSpan() \}
+
 $HR
 END_TEXT
 Context()->normalStrings;
