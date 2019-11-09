@@ -42,6 +42,9 @@ loadMacros(
   "PGcourse.pl"
 );
 
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
+
 Context("Numeric");
 Context()->variables->add( y=>'Real' );
 $showPartialCorrectAnswers = 1;
@@ -62,19 +65,17 @@ $fyx = Compute( "-$abc*cos($b*x)*sin($c*y)" );
 Context()->texStrings;
 TEXT(beginproblem());
 BEGIN_TEXT
-
-Calculate all
-four second-order partial derivatives and check that \( f_{xy}=f_{yx} \).
-Assume the variables are restricted to a domain on which the function
-is defined.
+$BR
+יש למצוא את הנגזרות החלקיות עבור הפונקציה
 \[ f(x,y) = $func \]
-
 $PAR
-\( f_{xx} = \) \{ ans_rule(55) \} $BR
-\( f_{yy} = \) \{ ans_rule(55) \} $BR
-\( f_{xy} = \) \{ ans_rule(55) \} $BR
-\( f_{yx} = \) \{ ans_rule(55) \}
+\{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
 
+\( f_{xx} = \) \{ ans_rule(40) \} $BR
+\( f_{yy} = \) \{ ans_rule(40) \} $BR
+\( f_{xy} = \) \{ ans_rule(40) \} $BR
+\( f_{yx} = \) \{ ans_rule(40) \}
+\{ closeSpan() \}
 END_TEXT
 Context()->normalStrings;
 
@@ -84,15 +85,15 @@ ANS($fxy->cmp() );
 ANS($fyx->cmp() );
 
 Context()->texStrings;
-SOLUTION(EV3(<<'END_SOLUTION'));
-$PAR SOLUTION $PAR
+#SOLUTION(EV3(<<'END_SOLUTION'));
+#$PAR SOLUTION $PAR
 
-We have \( f_x = $fx\) and \(f_y = $fy\), so
-\[ f_{xx} = $fxx, f_{yy} = $fyy, \]
-and
-\[ f_{xy} = $fxy = f_{yx} = $fyx. \]
+#We have \( f_x = $fx\) and \(f_y = $fy\), so
+#\[ f_{xx} = $fxx, f_{yy} = $fyy, \]
+#and
+#\[ f_{xy} = $fxy = f_{yx} = $fyx. \]
 
-END_SOLUTION
+#END_SOLUTION
 Context()->normalStrings;
 
 
