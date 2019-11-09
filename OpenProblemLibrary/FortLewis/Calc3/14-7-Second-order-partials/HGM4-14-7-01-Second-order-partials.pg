@@ -33,7 +33,8 @@ loadMacros(
   "PGcourse.pl"
 );
 
-
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 TEXT(beginproblem());
 
 ##############################################
@@ -65,20 +66,20 @@ $fyy = $fy -> D('y') -> reduce;
 Context()->texStrings;
 Context()->flags->set(reduceConstants=>0);
 BEGIN_TEXT
-Calculate all four second-order partial derivatives
-of \( \displaystyle f(x,y) = $f \).
 $BR
+יש למצוא את הנגזרות החלקיות עבור הפונקציה
+\[ \displaystyle f(x,y) = $f \]
 $BR
-\( f_{xx} \, (x,y) = \) \{ans_rule(80)\}
+\{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
 $BR
+ \( \frac{{\partial^2}f}{\partial x^2} = f_x{}_x(x,y) = \) \{ ans_rule(40) \}
 $BR
-\( f_{xy} \, (x,y) = \) \{ans_rule(80)\}
+ \( \frac{{\partial^2}f}{\partial y^2} = f_y{}_y(x,y) = \) \{ ans_rule(40) \}
 $BR
+ \( \frac{{\partial^2}f}{\partial x \partial y} = f_y{}_x(x,y) = \) \{ ans_rule(40) \}
 $BR
-\( f_{yx} \, (x,y) = \) \{ans_rule(80)\}
-$BR
-$BR
-\( f_{yy} \, (x,y) = \) \{ans_rule(80)\}
+ \( \frac{{\partial^2}f}{\partial y \partial x} = f_x{}_y(x,y) = \) \{ ans_rule(40) \}
+\{ closeSpan() \}
 END_TEXT
 Context()->normalStrings;
 
