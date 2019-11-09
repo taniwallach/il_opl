@@ -30,7 +30,8 @@ loadMacros(
   "PGchoicemacros.pl",
   "PGcourse.pl"
 );
-
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
 
@@ -46,19 +47,22 @@ $d2fdydx = "-2*($a*sin(2*x+y)) + $b*cos(x-y)";
 
 BEGIN_TEXT
 $PAR
-Find all the first and second order partial derivatives of \( f(x, y) = $a\sin(2x+y) + $b\cos(x-y) \).
-$PAR
-A. \( \frac{\partial f}{\partial x} = f_x = \) \{ ans_rule(60) \}
-$PAR
-B. \( \frac{\partial f}{\partial y} = f_y = \) \{ ans_rule(60) \}
-$PAR
-C. \( \frac{{\partial^2}f}{\partial x^2} = f_x{}_x = \) \{ ans_rule(60) \}
-$PAR
-D. \( \frac{{\partial^2}f}{\partial y^2} = f_y{}_y = \) \{ ans_rule(60) \}
-$PAR
-E. \( \frac{{\partial^2}f}{\partial x \partial y} = f_y{}_x = \) \{ ans_rule(60) \}
-$PAR
-F. \( \frac{{\partial^2}f}{\partial y \partial x} = f_x{}_y = \) \{ ans_rule(60) \}
+יש למצוא את כל הנגזרות החלקיות עבור הפונקציה
+\[ f(x, y) = $a\sin(2x+y) + $b\cos(x-y) \]
+\{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
+$BR
+ \( \frac{\partial f}{\partial x} = f_x = \) \{ ans_rule(40) \}
+$BR
+ \( \frac{\partial f}{\partial y} = f_y = \) \{ ans_rule(40) \}
+$BR
+ \( \frac{{\partial^2}f}{\partial x^2} = f_x{}_x = \) \{ ans_rule(40) \}
+$BR
+ \( \frac{{\partial^2}f}{\partial y^2} = f_y{}_y = \) \{ ans_rule(40) \}
+$BR
+ \( \frac{{\partial^2}f}{\partial x \partial y} = f_y{}_x = \) \{ ans_rule(40) \}
+$BR
+ \( \frac{{\partial^2}f}{\partial y \partial x} = f_x{}_y = \) \{ ans_rule(40) \}
+\{ closeSpan() \}
 END_TEXT
 ANS(fun_cmp($dfdx, vars=>2));
 ANS(fun_cmp($dfdy, vars=>2));
