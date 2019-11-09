@@ -30,7 +30,8 @@ loadMacros(
 );
 
 ##############################################################
-
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 Context("Numeric");
 Context()->variables->add(y =>'Real', z =>'Real' );
 
@@ -49,12 +50,20 @@ $ans4 = Compute("20*x^($a)*y^3");
 
 Context()->texStrings;
 BEGIN_TEXT
-Find the second partial derivatives of the function \(\displaystyle f(x,y) = x^{$a}y^5+$b x^{$a1}y.\)
+$BR
+יש למצוא את הנגזרות החלקיות עבור הפונקציה
+\[\displaystyle f(x,y) = x^{$a}y^5+$b x^{$a1}y\]
 $PAR
-$BBOLD 1.$EBOLD \(\displaystyle \frac{\partial^2 f}{\partial x^2} =\) \{ans_rule(30)\} $PAR
-$BBOLD 2.$EBOLD \(\displaystyle \frac{\partial^2 f}{\partial y \partial x} =\) \{ans_rule(30)\} $PAR
-$BBOLD 3.$EBOLD \(\displaystyle \frac{\partial^2 f}{\partial x \partial y} =\) \{ans_rule(30)\} $PAR
-$BBOLD 4.$EBOLD \(\displaystyle \frac{\partial^2 f}{\partial y^2} =\) \{ans_rule(30)\} $PAR
+\{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
+$BR
+ \( \frac{{\partial^2}f}{\partial x^2} = f_x{}_x(x,y) = \) \{ ans_rule(40) \}
+$BR
+ \( \frac{{\partial^2}f}{\partial y^2} = f_y{}_y(x,y) = \) \{ ans_rule(40) \}
+$BR
+ \( \frac{{\partial^2}f}{\partial x \partial y} = f_y{}_x(x,y) = \) \{ ans_rule(40) \}
+$BR
+ \( \frac{{\partial^2}f}{\partial y \partial x} = f_x{}_y(x,y) = \) \{ ans_rule(40) \}
+\{ closeSpan() \}
 END_TEXT
 Context()->normalStrings;
 
