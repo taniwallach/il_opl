@@ -1,0 +1,109 @@
+## DESCRIPTION
+##   Identify Level Curves
+## ENDDESCRIPTION
+## DESCRIPTION
+## Multivariable Calculus
+## ENDDESCRIPTION
+#LevelSets/QuadricSurfaces/PictureRecognition
+## Tagged by cmd6a 3/12/06
+
+## DBsubject(Calculus - multivariable)
+## DBchapter(Concepts for multivariable functions)
+## DBsection(Quadratic surfaces)
+## Institution(ASU)
+## MLT(qs_graph_match)
+## Level(4)
+## TitleText1('Calculus')
+## AuthorText1('Stewart')
+## EditionText1('5')
+## Section1('16.6')
+## Problem1('')
+## TitleText2('Calculus: Early Transcendentals')
+## AuthorText2('Rogawski')
+## EditionText2('1')
+## Section2('16.4')
+## Problem2('1')
+## KEYWORDS('calculus','parametric,'surface')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+  "PGstandard.pl",
+  "PGunion.pl",
+  "MathObjects.pl",
+  "contextABCD.pl",
+  "imageChoice.pl",
+  "LiveGraphics3D.pl",
+  "PGcourse.pl"
+);
+
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
+TEXT(beginproblem());
+
+##############################################
+#  Setup
+
+Context("ABCD")->strings->add(E=>{}, F=>{}, G=>{},H=>{});
+
+$size = [250,250];   # the size of the images
+$tsize = 250;        # the tex size of the images
+
+#
+#  The Live3D files and their associated GIFs
+#
+@QA = (
+  "\(   x^2 + 4 y^2 + 9 z^2 =1\  \)",  "stewart12_6a.gif",
+              "\(  9 x^2 + 4 y^2 + z^2 = 1\  \)",  "stewart12_6b.gif",
+              "\(  x^2 - y^2 +z^2 = 1\  \)",  "stewart12_6c.gif",
+              "\( - x^2 + y^2 - z^2 = 1\  \)",  "stewart12_6d.gif",
+              "\(  y = 2 x^2  + z^2\   \)",  "stewart12_6e.gif",
+              "\(  y^2 = x^2 + 2 z^2\   \)",  "stewart12_6f.gif",
+              "\(  x^2 + 2  z^2  =1\  \)",  "stewart12_6g.gif",
+              "\( y =  x^2 - z^2\ \)",  "stewart12_6h.gif"
+);
+
+##############################################
+
+#
+#  use an image match list
+#
+$ml = new_image_match_list(
+  link => 0,                #  don't link to separate image
+  size => $size,            #  image size in pixels
+  tex_size => $tsize,       #  tex size in percent times 10
+  border => 0,              #  image already includes border
+  columns => 3,             #  number of columns
+);
+$ml->{separation} = 3;      # separation for questions in the list
+$ml->rf_print_q(~~&pop_up_list_print_q); # use pop-up-lists
+$ml->ra_pop_up_list([ No_answer=>"?", A=>"A", B=>"B", C=>"C", D=>"D",E=>"E",F=>"F"] );
+$ml->qa(@QA);               #  set the questions and answers
+$ml->choose(6);         #  select 4 of them, include k = 0
+
+##############################################
+#  Main text
+
+BEGIN_TEXT
+\{ openSpan( { "dir" => "rtl" } ) \}
+$BR
+יש להתאים את משוואת המשטח הריבועי לציור המתאים לה.
+\{$ml->print_q\}
+$PAR
+
+\{$ml->print_a\}
+$PAR
+\{ closeSpan() \}
+END_TEXT
+
+##################################################
+#  Answers
+
+ANS(string_cmp($ml->ra_correct_ans));
+
+$showPartialCorrectAnswers = 0;
+install_problem_grader(~~&std_problem_grader);
+
+##################################################
+
+ENDDOCUMENT();

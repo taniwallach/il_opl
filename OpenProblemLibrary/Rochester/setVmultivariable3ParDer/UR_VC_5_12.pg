@@ -1,0 +1,76 @@
+## DESCRIPTION
+## Calculus
+## ENDDESCRIPTION
+
+
+## Tagged by tda2d
+
+## DBsubject(Calculus - multivariable)
+## DBchapter(Differentiation of multivariable functions)
+## DBsection(Partial derivatives)
+## Date(6/3/2002)
+## Institution(Dartmouth)
+## MLT(2varfirstpt)
+## Level(2)
+## TitleText1('Calculus: Early Transcendentals')
+## AuthorText1('Stewart')
+## EditionText1('6')
+## Section1('14.3')
+## Problem1('40 41 42 43 44')
+## TitleText2('Calculus: Early Transcendentals')
+## AuthorText2('Rogawski')
+## EditionText2('1')
+## Section2('14.3')
+## Problem2('40 41 42 43 44')
+## TitleText3('Basic Multivariable Calculus')
+## AuthorText3('Marsden, Tromba, Weinstein')
+## EditionText3('3')
+## Section3('2.2')
+## Problem3('')
+## KEYWORDS('Multivariable','derivative' 'partial','vector', 'partial', 'derivative')
+
+DOCUMENT();
+
+loadMacros(
+  "PGstandard.pl",
+  "PGchoicemacros.pl",
+  "PGcourse.pl"
+);
+
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
+
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+$a = random(-10, 10);
+
+$dfdx = 1;
+$dfdy = -1;
+
+BEGIN_TEXT
+$BR
+נתונה הפונקציה:
+$BR
+\[ f(x, y) = \sin(x - y) \]
+$BR
+יש לחשב את נגזרותיה החלקיות מסדר ראשון בנקודה
+\(($a, $a)\).
+$BR
+א.
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(f_x($a, $a) = \)
+\{ ans_rule(30) \}
+\{ closeSpan() \}
+$BR
+ב.
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(f_y($a, $a) = \)
+\{ ans_rule(30) \}
+\{ closeSpan() \}
+
+END_TEXT
+ANS(num_cmp($dfdx));
+ANS(num_cmp($dfdy));
+
+ENDDOCUMENT();

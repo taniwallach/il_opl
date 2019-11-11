@@ -8,6 +8,8 @@
 ## DBchapter(Differentiation of multivariable functions)
 ## DBsection(Partial derivatives)
 ## Institution(ASU)
+## MLT(2varfirst)
+## MLTleader(1)
 ## Level(2)
 ## TitleText1('Calculus')
 ## AuthorText1('Stewart')
@@ -24,7 +26,7 @@
 ## EditionText3('6')
 ## Section3('14.3')
 ## Problem3('')
-## KEYWORDS('partial derivative' 'function','Multivariable', 'Partial Derivative')
+## KEYWORDS('partial' 'function','Multivariable', 'Partial Derivative')
 
 DOCUMENT();
 loadMacros(
@@ -35,13 +37,17 @@ loadMacros(
   "PGcourse.pl"
 );
  
-SET_PROBLEM_LANGUAGE("he-IL");
 SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 
 ## Do NOT show partial correct answers
 $showPartialCorrectAnswers = 1;
 
 $a = non_zero_random(-9,9);
+$b = non_zero_random(-9,9);
+$c = non_zero_random(-9,9);
+do {$d = non_zero_random(-9,9);} until ($a*$d+$b*$c != 0);
+
 
 ## Ok, we are ready to begin the problem...
 ##
@@ -53,29 +59,26 @@ $BR
 
 יש למצוא את הנגזרות החלקיות של הפונקציה:
 \[
-    f(x,y) = xye^{$a y}
+    f(x,y) = \frac{$a x - $b y}{$c x + $d y}
 \]
-
+$BR
 \{ openSpan( { "dir" => "ltr" } ) \}
-$BR
 \(f_x(x,y) = \)\{ans_rule(60)\}
+\{ closeSpan() \}
+
 $BR
+\{ openSpan( { "dir" => "ltr" } ) \}
+
 \(f_y(x,y) = \)\{ans_rule(60)\}
-$BR
-\(f_{xy}(x,y) = \)\{ans_rule(60)\}
-$BR
-\(f_{yx}(x,y) = \)\{ans_rule(60)\}
 \{ closeSpan() \}
 
 $PAR
 END_TEXT
-ANS(fun_cmp("y*exp($a*y)",vars=>["x","y"]));
+ANS(fun_cmp("(($c*x + $d*y)*$a - ($a*x - $b*y)*$c)/($c*x + $d*y)**2",
+vars=>["x","y"], limits=>[[1,2],[1,2]], zeroLevel=>(10**(-9))));
 
-ANS(fun_cmp("x*($a*y*exp($a*y) + exp($a*y))",vars=>["x","y"]));
-
-ANS(fun_cmp("$a*y*exp($a*y) + exp($a*y)",vars=>["x","y"]));
-
-ANS(fun_cmp("$a*y*exp($a*y) + exp($a*y)",vars=>["x","y"]));
+ANS(fun_cmp("(($c*x + $d*y)*(- $b) - ($a*x - $b*y)*$d)/($c*x + $d*y)**2",
+vars=>["x","y"], limits=>[[1,2],[1,2]], zeroLevel=>(10**(-9))));
 ENDDOCUMENT();
 
 
