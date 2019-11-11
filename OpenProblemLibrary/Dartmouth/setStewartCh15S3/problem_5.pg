@@ -7,8 +7,7 @@
 ## DBsubject(Calculus - multivariable)
 ## DBchapter(Differentiation of multivariable functions)
 ## DBsection(Partial derivatives)
-## Institution(ASU, Technion)
-## Translated to Hebrew by Julian Northey for the Technion
+## Institution(ASU)
 ## Level(2)
 ## TitleText1('Calculus')
 ## AuthorText1('Stewart')
@@ -52,13 +51,12 @@ TEXT(beginproblem());
 BEGIN_TEXT
 $BR
 
-
-מצאו את הנגזרות החלקיות של הפונקציה
-\{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
-        \[
+יש למצוא את הנגזרות החלקיות של הפונקציה:
+\[
     f(x,y) = xye^{$a y}
 \]
 
+\{ openSpan( { "dir" => "ltr" } ) \}
 $BR
 \(f_x(x,y) = \)\{ans_rule(60)\}
 $BR
@@ -68,7 +66,6 @@ $BR
 $BR
 \(f_{yx}(x,y) = \)\{ans_rule(60)\}
 \{ closeSpan() \}
-
 
 $PAR
 END_TEXT
