@@ -1,0 +1,84 @@
+#DESCRIPTION
+##  Calculus: Partial derivatives
+##ENDDESCRIPTION
+
+
+## DBsubject(Calculus - multivariable)
+## DBchapter(Differentiation of multivariable functions)
+## DBsection(Partial derivatives)
+## Date(03/31/2014)
+## Institution(Colby College)
+## Author(Justin Sukiennik)
+## MLT(2varfirst)
+## Level(2)
+## MO(1)
+## TitleText1('Multivariable Calculus')
+## AuthorText1('Stewart')
+## EditionText1('7')
+## Section1('14.3')
+## Problem1('22')
+## KEYWORDS('calculus', 'partial derivatives', 'three-dimensions')
+
+########################################################################
+
+DOCUMENT();      
+
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGcourse.pl"
+);
+
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
+
+##############################################################
+
+Context("Numeric");
+Context()->variables->add(y =>'Real', z =>'Real' );
+
+$a = random(2,5,1);
+$b = random(2,4,1);
+
+$x0 = random(1,9,1);
+$y0 = random(1,9,1);
+
+$f = Compute("($a x) / (( x+y )^($b))")->reduce;
+
+$dfdx = $f->D("x")->eval(x=>$x0 , y=>$y0);
+$dfdy = $f->D("y")->eval(x=>$x0 , y=>$y0);
+##############################################################
+
+Context()->texStrings;
+BEGIN_TEXT
+
+$BR
+נתונה הפונקציה:
+$BR
+\[f(x,y) = $f\]
+$BR
+יש לחשב את נגזרותיה החלקיות מסדר ראשון בנקודה
+\(($x0, $y0)\).
+$BR
+א.
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(f_x($x0, $y0) = \)
+\{ ans_rule(30) \}
+\{ closeSpan() \}
+$BR
+ב.
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(f_y($x0, $y0) = \)
+\{ ans_rule(30) \}
+\{ closeSpan() \}
+
+END_TEXT
+Context()->normalStrings;
+
+##############################################################
+
+Context("Numeric");
+ANS( $dfdx->cmp() );
+ANS( $dfdy->cmp() );
+
+ENDDOCUMENT(); 

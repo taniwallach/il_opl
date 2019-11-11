@@ -1,0 +1,100 @@
+## DESCRIPTION
+##   Calculate Partial Derivatives
+## ENDDESCRIPTION
+
+## Tagged by nhamblet
+
+## DBsubject(Calculus - multivariable)
+## DBchapter(Differentiation of multivariable functions)
+## DBsection(Partial derivatives)
+## Date(8/23/07)
+## Institution(Union College)
+## MLT(2varfirst2)
+## Level(2)
+## MO(1)
+## TitleText1('Calculus')
+## AuthorText1('Anton')
+## EditionText1('7')
+## Section1('14.3')
+## Problem1('12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39')
+## TitleText2('Calculus: Early Transcendentals')
+## AuthorText2('Rogawski')
+## EditionText2('1')
+## Section2('14.3')
+## Problem2('12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39')
+## KEYWORDS('Derivative', 'Partial')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+  "PGstandard.pl",
+  "PGunion.pl",
+  "MathObjects.pl",
+  "alignedChoice.pl",
+  "PGcourse.pl"
+);
+
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
+
+TEXT(beginproblem());
+
+##############################################
+#  Setup
+
+Context("Numeric")->variables->are(x=>'Real',y=>'Real');
+
+#
+#  The function
+#
+$a = random(2,6,1);
+$n = random(2,5,1);
+$m = random(2,4,1);
+
+$f = Formula("$a e^(x^$n y^$m)");
+
+($x0 , $y0 )  = (random(-5,5,1),random(-5,5,1));
+
+$dfdx = $f->D("x")->eval(x=>$x0 , y=>$y0);
+$dfdy = $f->D("y")->eval(x=>$x0 , y=>$y0);
+
+
+Context()->texStrings;
+BEGIN_TEXT
+
+$BR
+נתונה הפונקציה:
+$BR
+\[f(x,y) = $f\]
+$BR
+יש לחשב את נגזרותיה החלקיות מסדר ראשון בנקודה
+\(($x0, $y0)\).
+$BR
+א.
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(f_x($x0, $y0) = \)
+\{ ans_rule(30) \}
+\{ closeSpan() \}
+$BR
+ב.
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(f_y($x0, $y0) = \)
+\{ ans_rule(30) \}
+\{ closeSpan() \}
+
+END_TEXT
+Context()->normalStrings;
+
+##################################################
+#  Answers
+
+ANS($dfdx->cmp);
+ANS($dfdy->cmp);
+
+$showPartialCorrectAnswers = 1;
+
+##################################################
+
+
+;
+ENDDOCUMENT();
