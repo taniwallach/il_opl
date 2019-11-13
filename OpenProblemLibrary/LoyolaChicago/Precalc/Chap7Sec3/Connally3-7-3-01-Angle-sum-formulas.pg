@@ -18,6 +18,7 @@
 ## AuthorText1('Connally')
 ## AuthorText2('Connally')
 ## AuthorText3('Connally')
+## AuthorTranslation('Arkadi Piven')
 ## EditionText1('3')
 ## EditionText2('4')
 ## EditionText3('5')
@@ -44,6 +45,8 @@ loadMacros(
 
 TEXT(beginproblem());
 
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
 
 ####################################
 #  Setup
@@ -89,12 +92,13 @@ $answer = Compute("$c sin(t + arctan(-$b/$a))");
 
 Context()->texStrings;
 BEGIN_TEXT
-Write \( $a \sin(t) - $b \cos(t) \) in the form
-\( A \sin(Bt+\phi) \) using sum or difference
-formulas.
+תכתבו מחדש את הביטוי
+\( $a \sin(t) - $b \cos(t) \)
+ כך שתתקבל התבנית הבאה :
+\( A \sin(Bt+\phi) \).
+השתמשו בזהויות הסכום וההיפרש.
 $PAR
-\( $a \sin(t) - $b \cos(t) \) = \{ ans_rule(30) \}
-\{ AnswerFormatHelp("formulas") \}
+\{ ans_rule(30) \} = \( $a \sin(t) - $b \cos(t) \)
 END_TEXT
 Context()->normalStrings;
 
@@ -111,19 +115,19 @@ $csq = $c*$c;
 $p = ( $d == 1 ) ? $n : "\frac{$n}{$d}";
 
 Context()->texStrings;
-SOLUTION(EV3(<<'END_SOLUTION'));
-$PAR
-$BBOLD  SOLUTION $EBOLD
-$PAR
-We have \(A=\sqrt{$a^2+(-$b)^2}=\sqrt{$csq}=$c\).  Since
-\(\cos\phi=$a/$c\) and \(\sin\phi=-$b/$c\),  we know that \(\phi\)
-is in the fourth quadrant.  Thus,
-\[\tan\phi=-\frac{$b}{$a}\qquad\mbox{and}\qquad\phi=\tan^{-1}(-$p),\]
-so \($a\sin t-$b\cos t=$c\sin(t-\tan^{-1}($p)\).
+#SOLUTION(EV3(<<'END_SOLUTION'));
+#$PAR
+#$BBOLD  SOLUTION $EBOLD
+#$PAR
+#We have \(A=\sqrt{$a^2+(-$b)^2}=\sqrt{$csq}=$c\).  Since
+#\(\cos\phi=$a/$c\) and \(\sin\phi=-$b/$c\),  we know that \(\phi\)
+#is in the fourth quadrant.  Thus,
+#\[\tan\phi=-\frac{$b}{$a}\qquad\mbox{and}\qquad\phi=\tan^{-1}(-$p),\]
+#so \($a\sin t-$b\cos t=$c\sin(t-\tan^{-1}($p)\).
 
-END_SOLUTION
+#END_SOLUTION
 
-COMMENT("Prevents students from entering trivial identities (entering what they were given)");
+COMMENT("מונע מתלמידים להזין תשובות טריוויאליות");
 #COMMENT("Redefines 'sin(x)' internally as 'exp(x/pi)'.");
 
 

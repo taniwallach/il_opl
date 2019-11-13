@@ -5,6 +5,7 @@
 ## Level(3)
 ## Static(1)
 ## MO(1)
+## TranslationAuthor(Arkadi Piven)
 
 DOCUMENT();      
 
@@ -17,7 +18,8 @@ loadMacros(
 
 TEXT(beginproblem());
 
-
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
 $showPartialCorrectAnswers = 1;
 
 
@@ -79,8 +81,20 @@ $sTn[$i] = sprintf("%0.3f",$tn[$i]);
 
 Context()->texStrings;
 BEGIN_TEXT
-Consider the function \(f(x) = x \ln(x)\). 
-$BR Let \(T_n\) be the \(n^{th}\) degree Taylor approximation of \(f($x)\) about \(x = $a\).
+התבוננו בפונקציה
+\(f(x) = x \ln(x)\) 
+$BR 
+יהי
+\(T_n\)
+הקירוב ממעלה
+\(n\)
+של פולינום טיילור עבור
+\(f($x)\)
+סביב
+\(x = $a\)
+.
+
+Let \(T_n\) be the \(n^{th}\) degree Taylor approximation of \(f($x)\) about \(x = $a\).
 
 $BR
 Find:
@@ -100,7 +114,11 @@ Context()->normalStrings;
 
 Context()->texStrings;
 BEGIN_TEXT
-$BR $BBOLD Use 3 decimal places in your answer, but make sure you carry all decimals when performing calculations $EBOLD
+$BR $BBOLD
+השתמשו ש
+
+
+Use 3 decimal places in your answer, but make sure you carry all decimals when performing calculations $EBOLD
 $PAR
 
 \(T_{$n}\) is an \{ans_rule(10)\} (over/under) estimate of \(f($x)\).

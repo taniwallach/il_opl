@@ -22,6 +22,8 @@ loadMacros(
 
 TEXT(&beginproblem);
 
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
 ##   trig functions in TeX
 @givenTex=('\sin(\alpha)','\cos(\alpha)','\tan(\alpha)','\csc(\alpha)','\sec(\alpha)','\cot(\alpha)');
 
@@ -75,12 +77,17 @@ $quadtype=random(0,1,1);
            '\(\pi<2\alpha<3\pi/2\)','\(3\pi/2<2\alpha<2\pi\)']);
 
 BEGIN_TEXT
-
-
-
-Let \(\alpha\) be an angle, with \(0\leq \alpha < 2\pi\).  Given \(\cos(2\alpha)=\frac{$d}{$bs}\)   and    $quadrant[$quadtype][$quadind], find exact values of the six trigonometric functions. 
+תהא הזווית
+\(\alpha\)
+בתחום
+\(0\leq \alpha < 2\pi\).
+בהינתן
+\(\cos(2\alpha)=\frac{$d}{$bs}\)
+בתחום
+$quadrant[$quadtype][$quadind],
+מצא/י את הערכים המדויקים של ששת הפונקציות הטריגונומטריות הבאות:
 $BR
-Note: You are not allowed to use decimals in your answer.
+הערה: אין לתת את התשובה במספרים עשרוניים.
 
 $PAR
 

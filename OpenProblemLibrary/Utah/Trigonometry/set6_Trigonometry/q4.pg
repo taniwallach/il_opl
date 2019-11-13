@@ -22,52 +22,57 @@ loadMacros(
 
 install_problem_grader(~~&std_problem_grader);
 TEXT(beginproblem());
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
 $showPartialCorrectAnswers = 0;
 $showPartialCredit = 0;
 
 
 TEXT(EV2(<<EOT));
-
-
-For each function below enter the letter $BBOLD E$EBOLD if the function is
-even, the letter $BBOLD O$EBOLD if it's odd, and the
-letter $BBOLD N$EBOLD if it's neither even nor odd.
-
-
-$BR   \{ ans_rule(4) \} \(f(x) = \sin x.\)
+עבור כל פונקציה שמופיע בהמשך, יש לציין במשבצת את האות
+$BBOLD E$EBOLD
+אם הפונקציה זוגית, את האות
+$BBOLD O$EBOLD
+אם היא אי-זוגית ואת האות
+$BBOLD N$EBOLD
+אם היא לא זוגית ולא אי-זוגית.
+$BR   \{ ans_rule(4) \} \(f(x) = \sin x\).
 EOT
 ANS(str_cmp("O"));
 
 TEXT(EV2(<<EOT));
-$BR   \{ ans_rule(4) \} \(f(x) = \cos x. \)
+$BR   \{ ans_rule(4) \} \(f(x) = \cos x \).
 EOT
 ANS(str_cmp("E"));
 
 
 TEXT(EV2(<<EOT));
-$BR   \{ ans_rule(4) \}  \(f(x) = \tan x.\)
+$BR   \{ ans_rule(4) \}  \(f(x) = \tan x\).
 EOT
 ANS(str_cmp("O"));
 
 TEXT(EV2(<<EOT));
-$BR   \{ ans_rule(4) \}  \(f(x) = (\sin x) (\cos x).\)
+$BR   \{ ans_rule(4) \}  \(f(x) = (\sin x) (\cos x)\).
 EOT
 ANS(str_cmp("O"));
 
 TEXT(EV2(<<EOT));
 $BR   \{ ans_rule(4) \}  \(f(x) = \sin^2 x\).
-$BR Note: Remember that this notation means the square of \(\sin x\), i.e.,
-\[\sin^2 x = (\sin x)^2.\]
+$BR 
+הערה: יש לזכור כי פירושה של צורת רישום זו היא הריבוע של
+\(\sin x\)
+כלומר,
+\[\sin^2 x = (\sin x)^2\]
 EOT
 ANS(str_cmp("E"));
 
 TEXT(EV2(<<EOT));
-$BR   \{ ans_rule(4) \}  \(f(x) = \cos^2 x\)
+$BR   \{ ans_rule(4) \}  \(f(x) = \cos^2 x\).
 EOT
 ANS(str_cmp("E"));
 
 TEXT(EV2(<<EOT));
-$BR   \{ ans_rule(4) \}  \(f(x) = \sin x + \cos x\)
+$BR   \{ ans_rule(4) \}  \(f(x) = \sin x + \cos x\).
 EOT
 ANS(str_cmp("N"));
 

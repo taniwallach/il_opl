@@ -36,7 +36,7 @@
 ## Textbook tags
 ## HHChapter1('Approximating Functions Using Series')
 ## HHChapter2('Approximating Functions Using Series')
-
+## TranslationAuthorHE(Arkadi Piven)
 
 
 DOCUMENT();
@@ -47,7 +47,8 @@ loadMacros(
   "PGchoicemacros.pl",
   "PGcourse.pl"
 );
-
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
 Context("Numeric");
 $showPartialCorrectAnswers = 1;
 
@@ -63,17 +64,23 @@ $f2p0 = Compute( 2*$c );
 TEXT(beginproblem());
 Context()->texStrings;
 BEGIN_TEXT
-
-The function \( f(x) \) is approximated near \( x=0 \) by the second
-degree Taylor polynomial \( P_2(x) = $p\).
+ניתן לקבל את הקירוב של הפונקציה
+\( f(x) \)
+סביב
+\( x=0 \)
+על ידי פולינום טיילור ממעלה שניה
+\( P_2(x) = $p\)
+.
 $PAR
-Give values:
+תנו ערכים
+:
+
 $BR
-\( f(0) = \) \{ ans_rule(15) \}
+\{ ans_rule(15) \} \( f(0) = \)
 $BR
-\( f'(0) = \) \{ ans_rule(15) \}
+\{ ans_rule(15) \} \( f'(0) = \) 
 $BR
-\( f''(0) = \) \{ ans_rule(15) \}
+\{ ans_rule(15) \} \( f''(0) = \)
 
 END_TEXT
 Context()->normalStrings;
@@ -83,25 +90,25 @@ ANS($fp0->cmp() );
 ANS($f2p0->cmp() );
 
 Context()->texStrings;
-SOLUTION(EV3(<<'END_SOLUTION'));
-$PAR SOLUTION $PAR
+#SOLUTION(EV3(<<'END_SOLUTION'));
+#$PAR SOLUTION $PAR
 
-Using the fact that
-\[
-f(x)\approx
-P_2(x)=f(0)+f'(0)x+\frac{f''(0)}{2!}x^2
-\]
-and identifying coefficients with those given for \(P_2(x)\), we obtain:
-$PAR
-\(f(0)=\) the constant term, which equals \($a\), so \(f(0)=$a\).
-$BR
-\(f'(0)=\) the coefficient of \(x\), which equals \($b\), so
-\(f'(0)=$b\).
-$BR
-\(\frac{f''(0)}{2!}=\) the coefficient of \(x^2\), which equals \($c\),
-so \(f''(0)=$f2p0\).
+#Using the fact that
+#\[
+#f(x)\approx
+#P_2(x)=f(0)+f'(0)x+\frac{f''(0)}{2!}x^2
+#\]
+#and identifying coefficients with those given for \(P_2(x)\), we obtain:
+#$PAR
+#\(f(0)=\) the constant term, which equals \($a\), so \(f(0)=$a\).
+#$BR
+#\(f'(0)=\) the coefficient of \(x\), which equals \($b\), so
+#\(f'(0)=$b\).
+#$BR
+#\(\frac{f''(0)}{2!}=\) the coefficient of \(x^2\), which equals \($c\),
+#so \(f''(0)=$f2p0\).
 
-END_SOLUTION
+#END_SOLUTION
 Context()->normalStrings;
 
 

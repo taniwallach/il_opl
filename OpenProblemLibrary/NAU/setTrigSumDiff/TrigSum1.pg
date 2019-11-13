@@ -9,6 +9,7 @@
 ## DBsection(Addition & subtraction formulas)
 ## Institution(scheduling)
 ## Author(Monika Keindl)
+## TranslationAuthor('Arkadi Piven')
 ## MLT(addCS)
 ## MLTleader(1)
 ## Level(3)
@@ -25,6 +26,8 @@ loadMacros(
 
 TEXT(&beginproblem);
 
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
 ##   trig functions in TeX
 @givenTex=('\sin(\alpha)','\cos(\alpha)','\sin(\beta)','\cos(\beta)');
 
@@ -79,8 +82,8 @@ $l=$n*$n-$m*$m;
 ##   randomize quadrant and quadrant type for alpha (I or 0<alpha<pi/2)
 $quadind1=random(0,3,1);
 $quadtype1=random(0,1,1);
-@quadrant1=(['\(\alpha\) is in quadrant I','\(\alpha\) is in quadrant II',               
-           '\(\alpha\) is in quadrant III','\(\alpha\) is in quadrant IV'],
+@quadrant1=(['נמצאת ברביע הראשון \(\alpha\)','נמצאת ברביע השני \(\alpha\)',               
+           'נמצאת ברביע השלישי \(\alpha\)','נמצאת ברביע הרביעי \(\alpha\)'],
            ['\(0<\alpha<\pi/2\)','\(\pi/2<\alpha<\pi\)',
            '\(\pi<\alpha<3\pi/2\)','\(3\pi/2<\alpha<2\pi\)']);
 
@@ -88,8 +91,8 @@ $quadtype1=random(0,1,1);
 ##   randomize quadrant and quadrant type for beta (I or 0<alpha<pi/2)
 $quadind2=random(0,3,1);
 $quadtype2=random(0,1,1);
-@quadrant2=(['\(\beta\) is in quadrant I','\(\beta\) is in quadrant II',               
-           '\(\beta\) is in quadrant III','\(\beta\) is in quadrant IV'],
+@quadrant2=(['נמצאת ברביע הראשון \(\beta\)','נמצאת ברביע השני \(\beta\)',               
+           'נמצאת ברביע השלישי \(\beta\)','נמצאת ברביע הרביעי \(\beta\)'],
            ['\(0<\beta<\pi/2\)','\(\pi/2<\beta<\pi\)',
            '\(\pi<\beta<3\pi/2\)','\(3\pi/2<\beta<2\pi\)']);
 
@@ -103,18 +106,22 @@ $ans1 = $signval[0][$quadind1] * $values[0] * $signval[1][$quadind2] * $values[3
 
 
 BEGIN_TEXT
-
-Given \($givenTex[$givenind1]=$signs[$givenind1][$quadind1]$valuesTex[$givenind1]\)
-and  $quadrant1[$quadtype1][$quadind1] and  
+בהינתן
+\($givenTex[$givenind1]=$signs[$givenind1][$quadind1]$valuesTex[$givenind1]\)
+בתחום
+$quadrant1[$quadtype1][$quadind1]
+וגם
 \($givenTex[$givenind2]=$signs[$givenind2][$quadind2]$valuesTex[$givenind2]\)
-and  $quadrant2[$quadtype2][$quadind2]. Use sum and difference formulas to find the following: 
-
+כאשר מתקיים ש-
+$quadrant2[$quadtype2][$quadind2]
+.
+השתמש/י בזהויות טריגונומטריות של סכום והיפרש על מנת לחשב את הביטוי הבא:
 $BR
-Note: You are not allowed to use decimals in your answer.
+הערה: אין לתת תשובה עשרונית.
 
 $PAR
 
-\(\sin(\alpha + \beta)=\)\{ans_rule(20)\}
+\{ans_rule(20)\}\(\sin(\alpha + \beta)=\)
 
 END_TEXT
 

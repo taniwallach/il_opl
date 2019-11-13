@@ -30,6 +30,8 @@ loadMacros(
 
 
 TEXT(beginproblem());
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
 $showPartialCorrectAnswers = 0;
 install_problem_grader(~~&std_problem_grader);
 
@@ -39,11 +41,11 @@ $aa = $a**2;
 
 
 qa(~~@questions, ~~@answers,
-"\( \displaystyle \frac{x}{\sqrt{$aa - x^2}} \)"    , "A",
-"\( \displaystyle \frac{\sqrt{$aa - x^2}}{$a} \)"   , "B",
-"\( \displaystyle \frac{x}{$aa}\sqrt{$aa - x^2} \)" , "C",
-"\( \displaystyle \frac{x}{\sqrt{$aa + x^2}} \)"    , "D",
-"\( \displaystyle \frac{$a}{\sqrt{$aa + x^2}} \)"   , "E"
+"\( \displaystyle \frac{x}{\sqrt{$aa - x^2}} \)"    , "א",
+"\( \displaystyle \frac{\sqrt{$aa - x^2}}{$a} \)"   , "ב",
+"\( \displaystyle \frac{x}{$aa}\sqrt{$aa - x^2} \)" , "ג",
+"\( \displaystyle \frac{x}{\sqrt{$aa + x^2}} \)"    , "ד",
+"\( \displaystyle \frac{$a}{\sqrt{$aa + x^2}} \)"   , "ה"
       );
 
 # Now randomize the questions:
@@ -52,20 +54,21 @@ qa(~~@questions, ~~@answers,
 ($ans1, $ans2, $ans3, $ans4, $ans5) = @answers[@slice] ;
 
 TEXT(EV3(<<'EOT'));
-Match each of the trigonometric expressions below with the
-equivalent non-trigonometric function from the following list.
-Enter the appropriate letter (A,B,C,D, or E) in each blank.
+התאם כל אחד מהביטויים הטריגונומטריים עם הפונקציה הלא טריגונומטרית ששקולה לו.
+הזן את האות המתאימה
+(א,ב,ג,ד או ה)
+במשבצת המתאימה.
 $BR
 $BR
-A. \( \tan(\arcsin(x/$a)) \)
+א. \( \tan(\arcsin(x/$a)) \)
 $BR
-B. \( \cos(\arcsin(x/$a)) \)
+ב. \( \cos(\arcsin(x/$a)) \)
 $BR
-C. \( (1/2)\sin(2\arcsin(x/$a)) \)
+ג. \( (1/2)\sin(2\arcsin(x/$a)) \)
 $BR
-D. \( \sin(\arctan(x/$a)) \)
+ד. \( \sin(\arctan(x/$a)) \)
 $BR
-E. \( \cos(\arctan(x/$a)) \)
+ה. \( \cos(\arctan(x/$a)) \)
 $BR
 $BR
 $BR
