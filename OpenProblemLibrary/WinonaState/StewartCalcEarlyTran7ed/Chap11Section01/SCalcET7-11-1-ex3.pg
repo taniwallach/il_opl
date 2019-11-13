@@ -1,3 +1,18 @@
+# Local notes:
+# translated by Idan Kinderman, August 2019, for use in the Technion
+# Based on a Winona State University problem, Author Eric Errthum
+# WinonaState/StewartCalcEarlyTran7ed/Chap11Section01/SCalcET7-11-1-ex3.pg
+
+##DESCRIPTION
+##ENDDESCRIPTION
+
+## DBsubject(Infi)
+## DBchapter(Limit of a sequence)
+## Institution(Technion)
+## KEYWORDS()
+
+##########################################################
+## The original notes:
 ## DESCRIPTION
 ## Determining the behavior of a sequence
 ## ENDDESCRIPTION
@@ -30,22 +45,31 @@
 
 DOCUMENT();
 loadMacros("PG.pl",
-           "PGbasicmacros.pl",
-           "PGanswermacros.pl",
-           "parserPopUp.pl"
-            );
+  "PGbasicmacros.pl",
+  "PGanswermacros.pl",
+  "parserPopUp.pl",
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGcourse.pl",
+  "PGunion.pl",
+  );
+  SET_PROBLEM_LANGUAGE("he-IL");
+  SET_PROBLEM_TEXTDIRECTION("rtl");
 
+$showPartialCorrectAnswers = 1;
 
 ###################################
 # Setup
+Context("Numeric");
 
 $a=random(4,10,1);
 $answer=random(10,99,1);
 $b=2*$answer*$a;
 $c=random(25,99,1);
+$ans = Compute("$answer");
 
+$popup1 = PopUp(['מונוטונית יורדת החל ממקום מסוים', 'מונוטונית עולה החל ממקום מסוים', 'אין תשובה נכונה'], 'מונוטונית יורדת החל ממקום מסוים');
 
-$popupMono=PopUp(["Select","Monotone increasing for n greater than or equal to N","Monotone decreasing for n greater than or equal to N", "Neither"],"Monotone decreasing for n greater than or equal to N");
 
 ###################################
 # Main text
@@ -53,21 +77,19 @@ $popupMono=PopUp(["Select","Monotone increasing for n greater than or equal to N
 BEGIN_TEXT
 \{ beginproblem() \}
 $BR
-
-Consider the sequence
-\[a_n=\frac{1}{$a n^2 - $b n + $c}.\]
-
-This sequence is $BBOLD not $EBOLD monotone for all \(n\). Determine if the sequence is eventually monotone for \(n \ge N\) for some whole number \(N\). $PAR
-
-
+נתונה הסדרה
+\(a_n=\frac{1}{$a n^2 - $b n + $c}\)
 $PAR
-\{$popupMono->menu\} $BR
+ניתן להגיד שהיא
+\{$popup1->menu\} $BR
 $BR
-
-If it is eventually monotone, give the value least value of \(N\). If it is not eventually monotone, enter NA.
-
+אם הסדרה מונוטונית החל ממקום מסוים, רשום את המקום החל ממנו היא מונוטונית.
 $BR
-\{ans_rule(20)\}
+אם הסדרה מונוטונית החל מההתחלה, רשום 1.
+$BR
+אם כתבת שאין תשובה נכונה, רשום DNE.
+$BR
+\{ans_rule(10)\}
 $BR
 
 
@@ -76,13 +98,7 @@ END_TEXT
 ###################################
 ## Answer evaluation
 
-$showPartialCorrectAnswers = 1;
-
-$ans = "$answer";
-
-@answers = (num_cmp($ans, strings=>["NA"]));
-
-ANS($popupMono->cmp);
-ANS(@answers );
+ANS($popup1->cmp);
+ANS($ans->cmp);
 
 ENDDOCUMENT();

@@ -1,3 +1,19 @@
+# Local notes:
+# translated by Idan Kinderman, August 2019, for use in the Technion
+# Based on a W.H.Freeman problem, Author Keith Thompson
+#WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/10_Infinite_Series/10.1_Sequences/10.1.51.pg
+
+##DESCRIPTION
+##ENDDESCRIPTION
+
+## DBsubject(Infi)
+## DBchapter(Limit of a sequence)
+## Institution(Technion)
+## KEYWORDS()
+
+###################################################################
+
+## The original notes:
 ## DBsubject(Calculus - single variable)
 ## DBchapter(Infinite sequences and series)
 ## DBsection(Limit of a sequence)
@@ -12,45 +28,48 @@
 ## Problem1('51')
 ## KEYWORDS('calculus', 'derivatives', 'slope')
 
+#########################################################
+
 DOCUMENT();
 loadMacros(
   "PGstandard.pl",
   "Parser.pl",
   "freemanMacros.pl",
   "PGgraphmacros.pl",
-  "PGcourse.pl"
+  "PGcourse.pl",
+   "MathObjects.pl",
+  "PGunion.pl",
 );
 
+  SET_PROBLEM_LANGUAGE("he-IL");
+  SET_PROBLEM_TEXTDIRECTION("rtl");
+
 TEXT(beginproblem());
-#$showPartialCorrectAnswers=1;
+$showPartialCorrectAnswers=1;
 
 $num=random(2,9);
 $den=random(2,13);
-$ans=ln($num/$den);
+$a = random(2,44);
+$b = random(2,44);
+$ans=Compute("ln($num/$den)");
 Context()->texStrings;
+
 BEGIN_TEXT
 \{ textbook_ref_exact("Rogawski ET 2e", "10.1","51") \}
 $PAR
 
-Determine the limit of the sequence or show that the sequence diverges by using the appropriate Limit Laws or theorems.  If the sequence diverges, enter DIV as your answer.
-\[c_n=\ln\left(\frac{$num n-7}{$den n+4}\right)\]
-
-$PAR 
-\(\lim\limits_{n\to\infty}c_n = \)  \{ans_rule()\} 
+קבע האם הסדרה הנתונה מתכנסת או מתבדרת.
+$BR
+אם היא מתכנסת, רשום את גבולה. אם היא מתבדרת, רשום \( \verb+DNE+ \).
+$PAR
+\(c_n=\ln\left(\frac{$num n-$a}{$den n+$b}\right)\)
+$PAR
+ \{ans_rule(2)\}  \(\lim\limits_{n\to\infty}c_n = \)
 END_TEXT
 
 Context()->normalStrings;
 
 #ANS(Real($ans)->cmp);
-ANS(std_num_str_cmp($ans,['DIV']));
-Context()->texStrings;
-SOLUTION(EV3(<<'END_SOLUTION'));
-$PAR
-$SOL
-Because \(f(x)=\ln x\) is a continuous function, it follows that 
-
-
-\[\lim_{n\rightarrow \infty} c_n = \lim_{x\rightarrow \infty}\ln\left(\frac{$num x-7}{$den x+4}\right)=\ln\left(\lim_{x\rightarrow \infty}\frac{$num x-7}{$den x+4}\right)=\ln \left(\frac{$num}{$den}\right).\]
-END_SOLUTION
+ANS($ans->cmp);
 
 ENDDOCUMENT();
