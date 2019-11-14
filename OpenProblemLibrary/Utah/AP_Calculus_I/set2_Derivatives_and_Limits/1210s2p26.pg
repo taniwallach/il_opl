@@ -1,3 +1,13 @@
+# Local notes:
+# translated by Idan Kinderman, August 2019, for use in the Technion
+# Based on a Univeristy of Utah problem, Author Utah ww group
+# To find the problem: Library/Utah/AP_Calculus_I/set2_Derivatives_and_Limits/1210s2p26.pg
+
+##DESCRIPTION
+##ENDDESCRIPTION
+
+## The original notes:
+
 ## DBsubject(Calculus - single variable)
 ## DBchapter(Limits and continuity)
 ## DBsection(Evaluating limits - factoring)
@@ -23,20 +33,29 @@ DOCUMENT();        # This should be the first executable line in the problem.
 
 loadMacros(
   "PGstandard.pl",
+  "MathObjects.pl",
   "PGchoicemacros.pl",
   "PGcourse.pl"
 );
 
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
+
 TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
 
-TEXT(EV2(<<EOT));
+Context("Numeric");
+
+BEGIN_TEXT
+מצא את הגבול הבא, כביטוי לפי \( x \).
 $PAR
+\{ openSpan( { "dir" => "ltr" } ) \}
  \(\displaystyle{\lim_{h\longrightarrow 0}}  {(x+h)^3- x^3  \over h }=\)   \{ans_rule(30)\}.
-$BR (Your answer will be a mathematical expression in \(x\).)
-EOT
+\{ closeSpan() \}
+$BR
+END_TEXT
 
-$ans = "3x^2";
+$ans1 = Compute("3x^2");
 
-ANS(fun_cmp($ans));
+ANS( $ans1->cmp() );
 ENDDOCUMENT();        # This should be the last executable line in the problem.

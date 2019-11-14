@@ -1,9 +1,15 @@
+# Local notes:
+# translated by Idan Kinderman, August 2019, for use in the Technion
+# Based on a ASU problem, Authors Stewart and Rogawski
+# To find the problem: Library/ASU-topics/setLimitConcepts/s1_3_22.pg
+
+
+## The original notes:
 ## DESCRIPTION
 ## Calculus
 ## ENDDESCRIPTION
 
 ## Tagged by LD
-
 
 ## DBsubject(Calculus - single variable)
 ## DBchapter(Limits and continuity)
@@ -38,9 +44,13 @@ DOCUMENT();        # This should be the first executable line in the problem.
 
 loadMacros(
   "PGstandard.pl",
+  "MathObjects.pl",
   "PGchoicemacros.pl",
   "PGcourse.pl"
 );
+
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
 
 TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
@@ -49,16 +59,26 @@ $tag = random(0,5,1);
 @choose = ("x","y","a","b","s","t");
 $x = $choose[$tag];
 
-TEXT(EV3(<<'EOT'));
-Evaluate the limit
-\[ \lim_{ $x \rightarrow 1 } \frac { { $x }^3- 1 }  { { $x }^2- 1 } \]
-If the limit does not exist enter DNE.
-$PAR Limit =  \{ans_rule(25) \}
-$BR
-EOT
+Context("Numeric");
+Context()->variables->add( $x => "Real");
+$ans1 = Real(1.5);
 
-$ans = 1.5;
-ANS(num_cmp($ans, strings=>["DNE"]));
+BEGIN_TEXT
+חשב את הגבול הבא.
+$BR
+אם הגבול אינו קיים, או שאינו סופי, רשום DNE.
+$PAR
+\{ openSpan( { "dir" => "ltr" } ) \}
+\( \lim_{ $x \rightarrow 1 } \displaystyle
+   \frac { { $x }^3- 1 }  { { $x }^2- 1 } = \)
+\{ $ans1->ans_rule(5) \}
+$BR
+END_TEXT
+
+ANS( $ans1->cmp() );
+
+#$ans = 1.5;
+#ANS(num_cmp($ans, strings=>["DNE"]));
 
 ENDDOCUMENT();        # This should be the last executable line in the problem.
 

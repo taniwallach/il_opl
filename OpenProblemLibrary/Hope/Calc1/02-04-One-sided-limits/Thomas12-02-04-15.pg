@@ -1,3 +1,10 @@
+# Local notes:
+# translated by Idan Kinderman, August 2019, for use in the Technion
+# Based on a Hope College problem, Author Paul Pearson
+# To find the problem: Library/Hope/Calc1/02-04-One-sided-limits/Thomas12-02-04-15.pg
+
+
+## The original notes:
 # DESCRIPTION
 # Difference quotient
 # ENDDESCRIPTION
@@ -29,6 +36,9 @@ loadMacros(
   "PGcourse.pl"
 );
 
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
+
 TEXT(beginproblem());
 
 
@@ -56,10 +66,11 @@ $slope = Compute("$a / ( 2 sqrt($b) )");
 
 Context()->texStrings;
 BEGIN_TEXT
-Evaluate the limit below in two steps by using algebra to simplify the
-difference quotient and then evaluating the limit.
+חשבו את הגבול הבא בשני שלבים.
 $BR
+בשלב הראשון, פשטו את הביטוי בעזרת אלגברה. בשלב השני, חשבו את הגבול.
 $BR
+\{ openSpan( { "dir" => "ltr" } ) \}
 \( \displaystyle
 \lim_{h \to 0^+} \Bigg( $f \Bigg)
 =
@@ -69,6 +80,7 @@ $BR
 \{ ans_rule(40) \}
 \( \Bigg) = \)
 \{ ans_rule(20) \}.
+\{ closeSpan() \}
 END_TEXT
 Context()->normalStrings;
 
@@ -81,6 +93,6 @@ $showPartialCorrectAnswers = 1;
 ANS( $diffquot->cmp() );
 ANS( $slope->cmp() );
 
-COMMENT('Uses parserDifferenceQuotient.pl to require a simplified difference quotient.');
+COMMENT('MathObject version.  Uses parserDifferenceQuotient.pl to require a simplified difference quotient.');
 
 ENDDOCUMENT();
