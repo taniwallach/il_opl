@@ -1,0 +1,57 @@
+# Local notes:
+# translated by Idan Kinderman, August 2019, for use in the Technion
+# Based on a Univeristy of Utah problem, Author Utah ww group
+
+##DESCRIPTION
+##ENDDESCRIPTION
+
+## DBsubject(Infi)
+## DBchapter(Differentiation)
+## Institution(Technion)
+## KEYWORDS()
+
+## The original notes:
+
+## updated rac 12/2014
+
+## DBsubject(Calculus - single variable)
+## DBchapter(Differentiation)
+## DBsection(Chain rule (with trigonometric functions))
+## Institution(Univeristy of Utah)
+## Author(Utah ww group)
+## Level(3)
+## MO(1)
+## TitleText1('Calculus')
+## AuthorText1('Dale Varberg, Edwin J. Purcell, and Steven E. Rigdon')
+## EditionText1('9')
+## Section1('.')
+## Problem1('')
+## KEYWORDS('calculus')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGcourse.pl"
+);
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
+
+TEXT(beginproblem());
+
+$n = random(2,4,1);
+
+BEGIN_TEXT
+גזור את הפונקציה הנתונה.
+\[f(x) = \frac{x}{\cos x^$n}\]
+$BR
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(f'(x) = \) \{ans_rule(40)\}
+\{ closeSpan() \}
+END_TEXT
+
+$ans = Compute("(cos(x^$n) + $n*x^($n)*sin(x^$n))/(cos(x^$n))^2");
+ANS($ans->cmp);
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

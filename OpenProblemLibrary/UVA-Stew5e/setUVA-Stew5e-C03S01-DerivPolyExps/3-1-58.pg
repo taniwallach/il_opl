@@ -1,0 +1,91 @@
+# Local notes:
+# translated by Idan Kinderman, August 2019, for use in the Technion
+# Based on a UVA problem, Author Jeff Holt and Stewart
+
+##DESCRIPTION
+##ENDDESCRIPTION
+
+## DBsubject(Infi)
+## DBchapter(Differentiation)
+## Institution(Technion)
+## KEYWORDS()
+
+## The original notes:
+##DESCRIPTION
+##Calculus: Differentiation
+##ENDDESCRIPTION
+
+##Tagged by YJ
+
+
+## DBsubject(Calculus - single variable)
+## DBchapter(Differentiation)
+## DBsection(Conceptual understanding of derivatives)
+## Date(5/26/2005)
+## Institution(UVA)
+## Author(Jeff Holt)
+## MLT(diffblepoint)
+## MLTleader(1)
+## Level(4)
+## MO(1)
+## TitleText1('Calculus: Early Transcendentals')
+## AuthorText1('Stewart')
+## EditionText1('5')
+## Section1('3.1')
+## Problem1('')
+## TitleText2('Calculus: Early Transcendentals')
+## AuthorText2('Stewart')
+## EditionText2('6')
+## Section2('3.1')
+## Problem2('')
+## KEYWORDS('calculus', 'differentiation')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+  "PGstandard.pl",
+  "PGchoicemacros.pl",
+  "MathObjects.pl",
+  "PGcourse.pl"
+);
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
+
+
+$a1 = random(2,8,1);
+$b1 = random(2,8,1);
+$c1 = random(2,8,1);
+
+$a = 12*$a1 + 4*$b1;
+$b = 16*$a1 + 4*$b1 + $c1;
+
+TEXT(beginproblem());
+
+$showPartialCorrectAnswers = 1;
+
+BEGIN_TEXT
+מצא פרמטרים \(a\) ו \(b\) כך שהפונקציה הנתונה תהיה גזירה.
+\[ f(x) = \begin{cases}
+            $a1 x^3 - $b1 x^2 + $c1 & x < -2 \\
+            a x + b & x \geq -2
+            \end{cases}
+  \]
+$BR
+$PAR
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(a = \) \{ans_rule(10)\}
+\{ closeSpan() \}
+
+$PAR
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(b = \) \{ans_rule(10)\}
+\{ closeSpan() \}
+
+
+END_TEXT
+
+ANS(Compute("12*$a1 + 4*$b1")->cmp);
+ANS(Compute("16*$a1 + 4*$b1 + $c1")->cmp);
+
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

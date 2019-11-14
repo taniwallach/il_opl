@@ -1,0 +1,91 @@
+# Local notes:
+# translated by Idan Kinderman, August 2019, for use in the Technion
+# Based on a UVA problem, Author Jeff Holt
+
+##DESCRIPTION
+##ENDDESCRIPTION
+
+## DBsubject(Infi)
+## DBchapter(Differentiation)
+## Institution(Technion)
+## KEYWORDS()
+
+## The original notes:
+
+## DESCRIPTION
+## Calculus
+## ENDDESCRIPTION
+
+## Tagged by tda2d
+
+## DBsubject(Calculus - single variable)
+## DBchapter(Differentiation)
+## DBsection(Product rule (without trigonometric functions))
+## Date(5/26/2005)
+## Institution(UVA)
+## Author(Jeff Holt)
+## MLT(prodruleNoTrigFuncConceptual)
+## MLTleader(1)
+## Level(3)
+## MO(1)
+## TitleText1('Calculus: Early Transcendentals')
+## AuthorText1('Stewart')
+## EditionText1('5')
+## Section1('3.2')
+## Problem1('')
+## TitleText2('Calculus: Early Transcendentals')
+## AuthorText2('Stewart')
+## EditionText2('6')
+## Section2('3.2')
+## Problem2('')
+## KEYWORDS('derivative' 'product' 'quotient','calculus', 'differentiation')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGcourse.pl"
+);
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
+
+TEXT(beginproblem());
+
+###################################
+# Setup
+
+Context('Numeric');
+$a = non_zero_random(-12, 13, 1);
+$c = random(2,7,1);
+
+###################################
+# Main text
+
+BEGIN_TEXT
+תהי פונקציה המקיימת
+\(f(1)=$c \quad \)
+,
+\(\quad f'(1)=$a\)
+$BR
+$PAR
+נתון כי \( h(x) = f(x)f(x) \). חשב את:
+$PAR
+\{ openSpan( { "dir" => "ltr" } ) \}
+\( h'(1) = \) \{ans_rule(30) \}
+\{ closeSpan() \}
+END_TEXT
+
+###################################
+# Answers
+
+$showPartialCorrectAnswers = 1;
+
+$ans = Compute("2*$c*$a");
+
+ANS($ans->cmp);
+
+###################################
+
+;
+ENDDOCUMENT();
