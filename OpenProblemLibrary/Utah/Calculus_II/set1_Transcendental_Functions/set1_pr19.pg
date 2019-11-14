@@ -1,3 +1,12 @@
+# Local notes:
+# translated by Idan Kinderman, August 2019, for use in the Technion
+# Based on a Univeristy of Utah problem, Author Utah ww group
+# To find the problem: Library/Utah/Calculus_II/set1_Transcendental_Functions/set1_pr19.pg
+
+##DESCRIPTION
+##ENDDESCRIPTION
+
+## The original notes:   
 ##DESCRIPTION
 ##DIFFICULTY('easy')
 ##  Evaluate simple expressions involving logs
@@ -21,33 +30,43 @@ DOCUMENT();        # This should be the first executable line in the problem.
 
 loadMacros(
   "PGstandard.pl",
+  "MathObjects.pl",
   "PGchoicemacros.pl",
   "PGcourse.pl"
 );
+
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
 
 TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
 $pi = 3.141592654;
 
-TEXT(EV2(<<EOT));
+$ans1 = Real(0);
+$ans2 = Real(0);
 
-Let \( f(x) = \dfrac{\ln x}{1 + (\ln x)^{2}} \) for \(x\) in \((0,\infty)\).
-Find
+BEGIN_TEXT
+נתונה הפונקציה \( f(x) = \dfrac{\ln x}{1 + (\ln x)^{2}} \)
+המוגדרת ב- \((0,\infty)\).
+$BR
+מצא את הגבולות הבאים:
+$PAR
+
+א)
+\{ openSpan( { "dir" => "ltr" } ) \}
+\( \lim_{x \rightarrow 0^{+}}  f(x) = \) \{$ans1->ans_rule(5)\}
+\{ closeSpan() \}
 
 $PAR
 
-a) \( \lim_{x \rightarrow 0^{+}}  f(x) = \) \{ans_rule(20)\}
+ב)
+\{ openSpan( { "dir" => "ltr" } ) \}
+\( \lim_{x \rightarrow \infty} f(x) = \) \{$ans2->ans_rule(5)\}
+\{ closeSpan() \}
 
-$PAR
+END_TEXT
 
-b) \( \lim_{x \rightarrow \infty} f(x) = \) \{ans_rule(20)\}
-
-EOT
-
-$ans1 = 0;
-$ans2 = 0;
-
-ANS(num_cmp($ans1));
-ANS(num_cmp($ans2));
+ANS( $ans1->cmp() );
+ANS( $ans2->cmp() );
 
 ENDDOCUMENT();        # This should be the last executable line in the problem.;
