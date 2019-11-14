@@ -43,7 +43,7 @@ loadMacros(
 
   SET_PROBLEM_LANGUAGE("he-IL");
   SET_PROBLEM_TEXTDIRECTION("rtl");
-  
+
 TEXT(beginproblem());
 $showPartialCorrectAnswers=1;
 
@@ -58,13 +58,16 @@ BEGIN_TEXT
 \{ textbook_ref_exact("Rogawski ET 2e", "10.1","51") \}
 $PAR
 
-קבע האם הסדרה הנתונה מתכנסת או מתבדרת. 
+קבע האם הסדרה הנתונה מתכנסת או מתבדרת.
 $BR
 אם היא מתכנסת, רשום את גבולה. אם היא מתבדרת, רשום \( \verb+DNE+ \).
-$PAR    
+$PAR
 \(c_n=\ln\left(\frac{$num n-$a}{$den n+$b}\right)\)
-$PAR 
- \{ans_rule(2)\}  \(\lim\limits_{n\to\infty}c_n = \) 
+$PAR
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(\lim\limits_{n\to\infty}c_n = \) \{ans_rule(2)\}
+\{ closeSpan() \}
+
 END_TEXT
 
 Context()->normalStrings;

@@ -1,0 +1,113 @@
+# Local notes:
+# translated by Idan Kinderman, August 2019, for use in the Technion
+# Based on a Winona State University problem, Author Eric Errthum
+# To find the problem:
+# WinonaState/StewartCalcEarlyTran7ed/Chap11Section01/SCalcET7-11-1-037.pg
+
+##DESCRIPTION
+##ENDDESCRIPTION
+
+## DBsubject(Infi)
+## DBchapter(Infinite sequences and series)
+## Institution(Technion)
+## KEYWORDS()
+
+#####################################################################
+
+## The original notes:
+## DESCRIPTION
+## Determining the behavior of a sequence
+## ENDDESCRIPTION
+
+
+## DBsubject(Calculus - single variable)
+## DBchapter(Infinite sequences and series)
+## DBsection(Limit of a sequence)
+## Date(02/01/2018)
+## Institution(Winona State University)
+## Author(Eric Errthum)
+## Level(2)
+## MO(1)
+## TitleText1('Calculus: Early Transcendentals')
+## AuthorText1('Stewart')
+## EditionText1('7')
+## Section1('11.1')
+## Problem1('37')
+## KEYWORDS('calculus', 'sequences', 'monotone', 'bounded')
+
+############################################################################
+## Copyright (C) 2018 Eric Errthum, Ph.D.
+##
+## This work is licensed under the Creative Commons
+## Attribution-NonCommercial-ShareAlike 3.0 Unported License
+## <https://creativecommons.org/licenses/by-nc-sa/3.0/>
+##
+
+#######################
+## Initialization
+
+DOCUMENT();
+loadMacros(
+"PG.pl",
+"PGbasicmacros.pl",
+"PGanswermacros.pl",
+"parserPopUp.pl",
+"PGstandard.pl",
+"MathObjects.pl",
+"PGcourse.pl",
+"PGunion.pl",
+);
+
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
+
+$showPartialCorrectAnswers = 1;
+
+###################################
+# Setup
+
+$ans = Compute("0");
+$a=random(3,10,1);
+
+$popup1 = PopUp(['מונוטונית יורדת החל ממקום מסוים', 'מונוטונית עולה החל ממקום מסוים', 'אין תשובה נכונה'], 'מונוטונית יורדת החל ממקום מסוים');
+$popup2 = PopUp(['חסומה מלמטה', 'חסומה מלמעלה', 'חסומה', 'לא חסומה'], 'חסומה');
+
+$popupMono=PopUp(["בחר","מונוטונית עולה",
+"מונוטונית יורדת","מונוטונית עולה החל ממקום מסוים","מונוטונית יורדת החל ממקום מסוים", "אף תשובה אינה נכונה"],"מונוטונית יורדת");
+$popupBound=PopUp(["בחר","חסומה","חסומה מלמעלה", "חסומה מלמטה", "לא חסומה"],"חסומה");
+
+###################################
+# Main text
+
+BEGIN_TEXT
+\{ beginproblem() \}
+$BR
+
+נתונה הסדרה
+\(a_n=\frac{($a n-1)!}{($a n+1)!}\)
+$PAR
+האם היא מונוטונית?
+\{$popup1->menu\} $BR
+$PAR
+האם היא חסומה?
+\{$popup2->menu\} $BR
+$PAR
+אם הסדרה מתכנסת, רשום את גבולה. אם היא מתבדרת, רשום DNE.
+$PAR
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(\lim\limits_{n\to\infty}a_n = \) \{ans_rule(30)\}
+\{ closeSpan() \}
+$BR
+
+END_TEXT
+
+###################################
+## Answer evaluation
+
+@answers = (num_cmp($ans, strings=>["DIV"]));
+
+ANS($popup1->cmp);
+ANS($popup2->cmp);
+ANS($ans->cmp);
+
+ENDDOCUMENT();

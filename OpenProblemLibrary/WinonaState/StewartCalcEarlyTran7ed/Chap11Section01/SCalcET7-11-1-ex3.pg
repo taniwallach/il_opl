@@ -1,0 +1,104 @@
+# Local notes:
+# translated by Idan Kinderman, August 2019, for use in the Technion
+# Based on a Winona State University problem, Author Eric Errthum
+# WinonaState/StewartCalcEarlyTran7ed/Chap11Section01/SCalcET7-11-1-ex3.pg
+
+##DESCRIPTION
+##ENDDESCRIPTION
+
+## DBsubject(Infi)
+## DBchapter(Limit of a sequence)
+## Institution(Technion)
+## KEYWORDS()
+
+##########################################################
+## The original notes:
+## DESCRIPTION
+## Determining the behavior of a sequence
+## ENDDESCRIPTION
+
+
+## DBsubject(Calculus - single variable)
+## DBchapter(Infinite sequences and series)
+## DBsection(Limit of a sequence)
+## Date(02/01/2018)
+## Institution(Winona State University)
+## Author(Eric Errthum)
+## Level(3)
+## TitleText1('Calculus: Early Transcendentals')
+## AuthorText1('Stewart')
+## EditionText1('7')
+## Section1('11.1')
+## Problem1('')
+## KEYWORDS('calculus', 'sequences', 'monotone', 'bounded')
+
+############################################################################
+## Copyright (C) 2018 Eric Errthum, Ph.D.
+##
+## This work is licensed under the Creative Commons
+## Attribution-NonCommercial-ShareAlike 3.0 Unported License
+## <https://creativecommons.org/licenses/by-nc-sa/3.0/>
+##
+
+#######################
+## Initialization
+
+DOCUMENT();
+loadMacros("PG.pl",
+  "PGbasicmacros.pl",
+  "PGanswermacros.pl",
+  "parserPopUp.pl",
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGcourse.pl",
+  "PGunion.pl",
+  );
+  SET_PROBLEM_LANGUAGE("he-IL");
+  SET_PROBLEM_TEXTDIRECTION("rtl");
+
+$showPartialCorrectAnswers = 1;
+
+###################################
+# Setup
+Context("Numeric");
+
+$a=random(4,10,1);
+$answer=random(10,99,1);
+$b=2*$answer*$a;
+$c=random(25,99,1);
+$ans = Compute("$answer");
+
+$popup1 = PopUp(['מונוטונית יורדת החל ממקום מסוים', 'מונוטונית עולה החל ממקום מסוים', 'אין תשובה נכונה'], 'מונוטונית יורדת החל ממקום מסוים');
+
+
+###################################
+# Main text
+
+BEGIN_TEXT
+\{ beginproblem() \}
+$BR
+נתונה הסדרה
+\(a_n=\frac{1}{$a n^2 - $b n + $c}\)
+$PAR
+ניתן להגיד שהיא
+\{$popup1->menu\} $BR
+$BR
+אם הסדרה מונוטונית החל ממקום מסוים, רשום את המקום החל ממנו היא מונוטונית.
+$BR
+אם הסדרה מונוטונית החל מההתחלה, רשום 1.
+$BR
+אם כתבת שאין תשובה נכונה, רשום DNE.
+$BR
+\{ans_rule(10)\}
+$BR
+
+
+END_TEXT
+
+###################################
+## Answer evaluation
+
+ANS($popup1->cmp);
+ANS($ans->cmp);
+
+ENDDOCUMENT();
