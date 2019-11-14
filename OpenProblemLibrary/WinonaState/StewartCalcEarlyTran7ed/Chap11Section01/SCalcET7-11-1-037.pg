@@ -94,7 +94,9 @@ $PAR
 $PAR
 אם הסדרה מתכנסת, רשום את גבולה. אם היא מתבדרת, רשום DNE.
 $PAR
- \{ans_rule(30)\}  \(\lim\limits_{n\to\infty}a_n = \)
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(\lim\limits_{n\to\infty}a_n = \) \{ans_rule(30)\}
+\{ closeSpan() \}
 $BR
 
 END_TEXT

@@ -64,7 +64,10 @@ $BR
 $PAR
 \(c_n=\ln\left(\frac{$num n-$a}{$den n+$b}\right)\)
 $PAR
- \{ans_rule(2)\}  \(\lim\limits_{n\to\infty}c_n = \)
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(\lim\limits_{n\to\infty}c_n = \) \{ans_rule(2)\}
+\{ closeSpan() \}
+
 END_TEXT
 
 Context()->normalStrings;
