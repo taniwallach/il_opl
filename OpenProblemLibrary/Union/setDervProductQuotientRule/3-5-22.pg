@@ -1,3 +1,17 @@
+# Local notes:
+# translated by Idan Kinderman, August 2019, for use in the Technion
+# Based on a UVA problem, Author Jeff Holt
+
+##DESCRIPTION
+##ENDDESCRIPTION
+
+## DBsubject(Infi)
+## DBchapter(Differentiation)
+## Institution(Technion)
+## KEYWORDS()
+
+## The original notes:
+
 ## DESCRIPTION
 ## Calculus
 ## ENDDESCRIPTION
@@ -33,6 +47,8 @@ loadMacros(
   "MathObjects.pl",
   "PGcourse.pl"
 );
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
 
 TEXT(beginproblem());
 
@@ -47,12 +63,17 @@ $c = random(2,7,1);
 # Main text
 
 BEGIN_TEXT
-Let \(f\)  be function such that
-\[f(1)=$c \quad \text{and} \quad f'(1)=$a.\]
-
-Find \( h'(1) \) for the function \( h(x) = f(x)f(x) \).
-$BR $BR
-\( h'(1) \) = \{ans_rule(30) \}
+תהי פונקציה המקיימת
+\(f(1)=$c \quad \)
+,
+\(\quad f'(1)=$a\)
+$BR
+$PAR
+נתון כי \( h(x) = f(x)f(x) \). חשב את:
+$PAR
+\{ openSpan( { "dir" => "ltr" } ) \}
+\( h'(1) = \) \{ans_rule(30) \}
+\{ closeSpan() \}
 END_TEXT
 
 ###################################

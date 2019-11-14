@@ -1,3 +1,16 @@
+# Local notes:
+# translated by Idan Kinderman, August 2019, for use in the Technion
+# Based on a UVA problem, Author Jeff Holt and Stewart
+
+##DESCRIPTION
+##ENDDESCRIPTION
+
+## DBsubject(Infi)
+## DBchapter(Differentiation)
+## Institution(Technion)
+## KEYWORDS()
+
+## The original notes:
 ##DESCRIPTION
 ##Calculus: Differentiation
 ##ENDDESCRIPTION
@@ -35,6 +48,8 @@ loadMacros(
   "MathObjects.pl",
   "PGcourse.pl"
 );
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
 
 
 $a1 = random(2,8,1);
@@ -49,18 +64,22 @@ TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
 
 BEGIN_TEXT
-Find \(a\) and \(b\) so that the function
+מצא פרמטרים \(a\) ו \(b\) כך שהפונקציה הנתונה תהיה גזירה.
 \[ f(x) = \begin{cases}
-            $a1 x^3 - $b1 x^2 + $c1, & x < -2, \\
-            a x + b, & x \geq -2
+            $a1 x^3 - $b1 x^2 + $c1 & x < -2 \\
+            a x + b & x \geq -2
             \end{cases}
   \]
-is both continuous and differentiable.
 $BR
 $PAR
-\(a\) = \{ans_rule(20)\}
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(a = \) \{ans_rule(10)\}
+\{ closeSpan() \}
+
 $PAR
-\(b\) = \{ans_rule(20)\}
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(b = \) \{ans_rule(10)\}
+\{ closeSpan() \}
 
 
 END_TEXT

@@ -1,3 +1,6 @@
+# Local notes:
+# translated by Idan Kinderman, August 2019, for use in the Technion
+
 ##DESCRIPTION
 ##  Evaluate some limits
 ##ENDDESCRIPTION
@@ -27,6 +30,9 @@ loadMacros(
   "MathObjects.pl",
   "PGcourse.pl"
 );
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
+
 
 TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
@@ -35,34 +41,41 @@ Context("Numeric");
 $a1 = random(2,10,1);
 
 BEGIN_TEXT
-Let \( f(x) =  |x-$a1| \). Evaluate the following limits.
+נתונה הפונקציה \( f(x) =  |x-$a1| \).
+חשב את הנגזרות החד צדדיות שלה בנקודה \( x = $a1 \).
 $BR$BR
-\(\displaystyle \lim_{x\to $a1^-} \frac{f(x)-f($a1)}{x-$a1}= \) \{ans_rule(10) \}
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(\displaystyle \lim_{x\to $a1^-} \frac{f(x)-f($a1)}{x-$a1}= \)
+\{ans_rule(10) \}.
+\{ closeSpan() \}
 $BR$BR
-\(\displaystyle \lim_{x\to $a1^+} \frac{f(x)-f($a1)}{x-$a1}= \) \{ans_rule(10) \}
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(\displaystyle \lim_{x\to $a1^+} \frac{f(x)-f($a1)}{x-$a1}= \)
+\{ans_rule(10) \}.
+\{ closeSpan() \}
 $BR$BR
-Thus the function \(f(x)\) is not differentiable at $a1.
+
 END_TEXT
 
 ANS(Real(-1)->cmp);
 ANS(Real(1)->cmp);
 
-BEGIN_SOLUTION
-$PAR SOLUTION $PAR 
-Recall that  \( |x - $a1| =
-            \begin{cases}
-              -(x-$a1), &\text{if}\ x \lt $a1 \\
-              x-$a1 &\text{if}\  x \geq $a1 \\
-              \end{cases}
-\)
-$BR
-Hence
-\[\displaystyle \lim_{x\to $a1^-} \frac{f(x)-f($a1)}{x-$a1} 
-= \lim_{x\to $a1^-} \frac{-(x-$a1)-0}{x-$a1}
-= \lim_{x\to $a1^-} (-1)= -1 \]  
-\[\displaystyle \lim_{x\to $a1^+} \frac{f(x)-f($a1)}{x-$a1} 
-= \lim_{x\to $a1^+} \frac{(x-$a1)-0}{x-$a1}  
-= \lim_{x\to $a1^-} (1)= 1 \]  
-END_SOLUTION
+#BEGIN_SOLUTION
+#$PAR SOLUTION $PAR
+#Recall that  \( |x - $a1| =
+#            \begin{cases}
+#              -(x-$a1), &\text{if}\ x \lt $a1 \\
+#              x-$a1 &\text{if}\  x \geq $a1 \\
+#              \end{cases}
+#\)
+#$BR
+#Hence
+#\[\displaystyle \lim_{x\to $a1^-} \frac{f(x)-f($a1)}{x-$a1}
+#= \lim_{x\to $a1^-} \frac{-(x-$a1)-0}{x-$a1}
+#= \lim_{x\to $a1^-} (-1)= -1 \]
+#\[\displaystyle \lim_{x\to $a1^+} \frac{f(x)-f($a1)}{x-$a1}
+#= \lim_{x\to $a1^+} \frac{(x-$a1)-0}{x-$a1}
+#= \lim_{x\to $a1^-} (1)= 1 \]
+#END_SOLUTION
 
 ENDDOCUMENT();        # This should be the last executable line in the problen{cases}

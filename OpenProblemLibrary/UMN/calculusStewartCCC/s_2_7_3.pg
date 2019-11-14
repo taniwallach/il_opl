@@ -1,3 +1,17 @@
+# Local notes:
+# translated by Idan Kinderman, August 2019, for use in the Technion
+# Based on a UCSB problem, Author Justin Sukiennik
+
+##DESCRIPTION
+##ENDDESCRIPTION
+
+## DBsubject(Infi)
+## DBchapter(Differentiation)
+## Institution(Technion)
+## KEYWORDS()
+
+## The original notes:
+
 #DESCRIPTION
 ##  Calculus: Derivatives
 ##ENDDESCRIPTION
@@ -34,6 +48,8 @@ loadMacros(
   "contextABCD.pl",
   "PGcourse.pl"
 );
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
 #####################################################################
 
 TEXT(beginproblem());
@@ -128,16 +144,17 @@ $imageTable2 =
 
 #####################################################################
 BEGIN_TEXT
-Match the graph of each function in $BBOLD A $EBOLD through $BBOLD D $EBOLD with the graph of its derivative $BBOLD 1 $EBOLD through $BBOLD 4 $EBOLD below.
+התאם בין הגרפים של הפונקציות (המסומנים באותיות A עד D) לבין הגרפים של הנגזרות שלהם (המסומנים במספרים 1 עד 4).
 $PAR $imageTable1 $PAR
 $HR
 $PAR $imageTable2 $PAR
 $HR
 $BBOLD 1. $EBOLD\{ans_rule(3)\} $BBOLD 2. $EBOLD\{ans_rule(3)\}  $BBOLD 3. $EBOLD\{ans_rule(3)\} $BBOLD 4. $EBOLD\{ans_rule(3)\}
-$HR
-$BBOLD Note: $EBOLD $BITALIC You can click on the graphs to enlarge the images.$EITALIC
-$HR
 END_TEXT
+#$HR
+#$BBOLD Note: $EBOLD $BITALIC You can click on the graphs to enlarge the images.$EITALIC
+#$HR
+#END_TEXT
 
 #####################################################################
 
