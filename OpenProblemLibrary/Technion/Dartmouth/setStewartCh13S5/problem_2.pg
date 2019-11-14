@@ -39,32 +39,46 @@ Context("Numeric");
 @p = (random(-5,5),random(-5,5),non_zero_random(-5,5));
 @v = (random(-5,5),random(-5,5),non_zero_random(-5,5));
 @v_str = ();
-if($v[0] == 1){$v_str[0]="\mathbf i";}
-elsif($v[0] == -1){$v_str[0]="-\mathbf i";}
-elsif($v[0] == 0){$v_str[0]="";}
-else{$v_str[0] = "$v[0]\mathbf i";}
-
-if($v[1] == 1){$v_str[1]="+\mathbf j";}
-elsif($v[1] == -1){$v_str[1]="-\mathbf j";}
-elsif($v[1] == 0){$v_str[1]="";}
-else{
-    if($v[1]<0){
-        $v_str[1] = "$v[1]\mathbf j";
-     }
-     else{
-         $v_str[1] = "+$v[1]\mathbf j";
-     }
+if( $v[0] == 1 ) {
+  $v_str[0]="\mathbf i";
+} elsif( $v[0] == -1 ) {
+  $v_str[0]="-\mathbf i";
+} elsif ( $v[0] == 0 ) {
+  $v_str[0]="";
+} else {
+  $v_str[0] = "$v[0]\mathbf i";
 }
 
-if($v[2] == 1){$v_str[2]="+\mathbf k";}
-elsif($v[2] == -1){$v_str[2]="-\mathbf k";}
-else{
-    if($v[2]<0){
-        $v_str[2] = "$v[2]\mathbf k";
-     }
-     else{
-         $v_str[2] = "+$v[2]\mathbf k";
-     }
+if( $v[1] == 1 ) {
+  $v_str[1] = "+\mathbf j";
+  if ( $v[0] == 0 ) { # Hide + as nothing before it
+    $v_str[1] = "\mathbf j";
+  }
+} elsif( $v[1] == -1 ) {
+  $v_str[1]="-\mathbf j";
+} elsif ( $v[1] == 0 ) {
+  $v_str[1]="";
+} else {
+  if( $v[1]<0 ) {
+    $v_str[1] = "$v[1]\mathbf j";
+  } else {
+    $v_str[1] = "+$v[1]\mathbf j";
+    if ( $v[0] == 0 ) { # Hide + as nothing before it
+      $v_str[1] = "$v[1]\mathbf j";
+    }
+  }
+}
+
+if ( $v[2] == 1 ) {
+  $v_str[2]="+\mathbf k";
+} elsif ( $v[2] == -1 ) {
+  $v_str[2]="-\mathbf k";
+} else {
+  if ( $v[2]<0 ) {
+    $v_str[2] = "$v[2]\mathbf k";
+  } else {
+    $v_str[2] = "+$v[2]\mathbf k";
+  }
 }
 
 
