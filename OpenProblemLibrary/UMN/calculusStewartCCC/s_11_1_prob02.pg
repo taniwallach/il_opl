@@ -92,7 +92,7 @@ $BBOLD 1. $EBOLD  \(\displaystyle a_n = $b (-1)^{$n}\)  \(\\)  \{$popup1->menu\}
 $PAR
 $BBOLD 2. $EBOLD  \(\displaystyle a_n = \left(\frac{$c}{$d}\right)^n\) \(\\) \{$popup2->menu\}
 $PAR
-$BBOLD 3. $EBOLD   \(\displaystyle a_n = \frac{2^n}{$e^{n+1}}\) \(\\) \{$popup3->menu\} 
+$BBOLD 3. $EBOLD   \(\displaystyle a_n = \frac{2^n}{$e^{n+1}}\) \(\\) \{$popup3->menu\}
 END_TEXT
 Context()->normalStrings;
 
