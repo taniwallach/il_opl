@@ -31,7 +31,6 @@ SET_PROBLEM_TEXTDIRECTION("rtl");
 SET_PROBLEM_LANGUAGE("he-IL");
 
 ## Do show partial correct answers
-$showPartialCorrectAnswers = 1;
 
 $x0 = non_zero_random(-10,10);
 $y0 = non_zero_random(-10,10);
@@ -50,13 +49,16 @@ TEXT(beginproblem());
 
 BEGIN_TEXT
 $BR
-יש למצוא את משוואת המישור המשיק למשטח
+יש למצוא את משוואת המישור המשיק, והנורמל למשטח
 \( x = $a y^2 + $b z^2 + $f \) בנקודה \(($x0, $y0, $z0)\):
 $BR
-משוואת המישור: (כך שהמקדמים של x הם 1)
+משוואת המישור (כך שהמקדם של x הוא 1):
 $BR
 \{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
-\{ans_rule(60)\} \( = 0 \).
+\{ans_rule(60)\} \( = 0 \) 
+\(\ \ \ \ \ \ \ \ \ \ \ \ \)
+\(\ \ \ \ \ \ \ \ \ \ \ \ \)
+\(\ \ \ \ \ \ \ \ \ \ \ \ \)
 \{ closeSpan() \}
 $BR
 הנורמל:
@@ -74,6 +76,9 @@ ANS(num_cmp($y0));
 ANS(num_cmp($z0));
 ANS(num_cmp(-2*$a*$y0));
 ANS(num_cmp(-2*$b*$z0));
+
+$showPartialCorrectAnswers = 0;
+$showPartialCredit = 1;
 ENDDOCUMENT();
 
 
