@@ -51,21 +51,15 @@ $PAR
 \[ f(x, y) = $a\sin(2x+y) + $b\cos(x-y) \]
 \{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
 $BR
- \( \frac{\partial f}{\partial x} = f_x = \) \{ ans_rule(40) \}
+ \( \frac{{\partial^2}f}{\partial x^2} = f_x{}_x(x,y) = \) \{ ans_rule(40) \}
 $BR
- \( \frac{\partial f}{\partial y} = f_y = \) \{ ans_rule(40) \}
+ \( \frac{{\partial^2}f}{\partial y^2} = f_y{}_y(x,y) = \) \{ ans_rule(40) \}
 $BR
- \( \frac{{\partial^2}f}{\partial x^2} = f_x{}_x = \) \{ ans_rule(40) \}
+ \( \frac{{\partial^2}f}{\partial x \partial y} = f_y{}_x(x,y) = \) \{ ans_rule(40) \}
 $BR
- \( \frac{{\partial^2}f}{\partial y^2} = f_y{}_y = \) \{ ans_rule(40) \}
-$BR
- \( \frac{{\partial^2}f}{\partial x \partial y} = f_y{}_x = \) \{ ans_rule(40) \}
-$BR
- \( \frac{{\partial^2}f}{\partial y \partial x} = f_x{}_y = \) \{ ans_rule(40) \}
+ \( \frac{{\partial^2}f}{\partial y \partial x} = f_x{}_y(x,y) = \) \{ ans_rule(40) \}
 \{ closeSpan() \}
 END_TEXT
-ANS(fun_cmp($dfdx, vars=>2));
-ANS(fun_cmp($dfdy, vars=>2));
 ANS(fun_cmp($d2fdx2, vars=>2));
 ANS(fun_cmp($d2fdy2, vars=>2));
 ANS(fun_cmp($d2fdxdy, vars=>2));

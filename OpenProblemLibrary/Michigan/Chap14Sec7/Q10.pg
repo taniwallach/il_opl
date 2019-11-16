@@ -70,11 +70,14 @@ $BR
 \[ f(x,y) = $func \]
 $PAR
 \{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
-
-\( f_{xx} = \) \{ ans_rule(40) \} $BR
-\( f_{yy} = \) \{ ans_rule(40) \} $BR
-\( f_{xy} = \) \{ ans_rule(40) \} $BR
-\( f_{yx} = \) \{ ans_rule(40) \}
+$BR
+ \( \frac{{\partial^2}f}{\partial x^2} = f_x{}_x(x,y) = \) \{ ans_rule(40) \}
+$BR
+ \( \frac{{\partial^2}f}{\partial y^2} = f_y{}_y(x,y) = \) \{ ans_rule(40) \}
+$BR
+ \( \frac{{\partial^2}f}{\partial x \partial y} = f_y{}_x(x,y) = \) \{ ans_rule(40) \}
+$BR
+ \( \frac{{\partial^2}f}{\partial y \partial x} = f_x{}_y(x,y) = \) \{ ans_rule(40) \}
 \{ closeSpan() \}
 END_TEXT
 Context()->normalStrings;

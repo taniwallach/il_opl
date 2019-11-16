@@ -56,13 +56,13 @@ $BR
 \]
 \{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
 $BR
-\(f_x(x,y) = \)\{ans_rule(40)\}
+ \( \frac{{\partial^2}f}{\partial x^2} = f_x{}_x(x,y) = \) \{ ans_rule(40) \}
 $BR
-\(f_y(x,y) = \)\{ans_rule(40)\}
+ \( \frac{{\partial^2}f}{\partial y^2} = f_y{}_y(x,y) = \) \{ ans_rule(40) \}
 $BR
-\(f_{xy}(x,y) = \)\{ans_rule(40)\}
+ \( \frac{{\partial^2}f}{\partial x \partial y} = f_y{}_x(x,y) = \) \{ ans_rule(40) \}
 $BR
-\(f_{yx}(x,y) = \)\{ans_rule(40)\}
+ \( \frac{{\partial^2}f}{\partial y \partial x} = f_x{}_y(x,y) = \) \{ ans_rule(40) \}
 \{ closeSpan() \}
 $PAR
 END_TEXT
