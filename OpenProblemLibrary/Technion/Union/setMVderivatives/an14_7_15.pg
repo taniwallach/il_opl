@@ -20,6 +20,9 @@
 ## Problem1('15')
 ## KEYWORDS('Tangent', 'Plane', 'Multivariable', 'Implicit', 'Parametric')
 
+##Formatted to Technion use by Shani Barzel 
+
+
 DOCUMENT();        # This should be the first executable line in the problem.
 
 loadMacros(
@@ -56,13 +59,14 @@ SET_PROBLEM_LANGUAGE("he-IL");
 
 $P = Point($x,$y,$z);
 $P_vec = Vector($x,$y,$z);
+$P_vec_min = Vector(-$x,-$y,-$z);
 
 $d = $a + 4*$b + $c*$z**2;
 
 #
 #  The function
 #
-$f = Formula("$a x^2 + $b y^2 + $c z^2")->reduce;
+$f = "$a x^2 + $b y^2 + $c z^2";
 
 #
 #  The Normal Vector
@@ -76,15 +80,21 @@ $N_vec = Vector($a*$x,$b*$y,$c*$z);
 $x_coef = $N[0];
 $y_coef = $N[1];
 $z_coef = $N[2];
-$const = $N_vec->dot($P_vec); 
+$const = $N_vec->dot($P_vec_min); 
 
-$multians = MultiAnswer($N_vec)->with(
+$multians = MultiAnswer($x_coef,$y_coef,$z_coef)->with(
   singleResult => 1,
   allowBlankAnswers => 1,
   checker => sub {
 		my ( $correct, $student, $self ) = @_;
-		my $s = @{$student};
-        if($s == $N){
+		my ($n1s,$n2s,$n3s) = @{$student};
+  
+        if($n1s eq "" ||$n2s eq "" ||$n3s eq ""){
+           $self->setMessage(1,"אין להשאיר שדות ריקים."); 
+			return 0;
+        }
+       $s=Vector($n1s,$n2s,$n3s);
+        if($s->cross($N_vec) == Vector(0,0,0)){
             return 1;
         }
         return 0;
@@ -96,28 +106,32 @@ $multians2 = MultiAnswer($x_coef,$y_coef,$z_coef,$const)->with(
   checker => sub {
 		my ( $correct, $student, $self ) = @_;
 		my ($sx_coef,$sy_coef,$sz_coef,$sconst) = @{$student};
-        if($x_coef==$sx_coef && $y_coef == $sy_coef && $z_coef==$sz_coef 
-        && $const == $sconst){
+        if($sx_coef eq "" ||$sy_coef eq "" ||$sz_coef eq "" ||$sconst eq ""){
+           $self->setMessage(1,"אין להשאיר שדות ריקים."); 
+			return 0;
+        }
+        $S_vec = Vector($sx_coef,$sy_coef,$sz_coef);
+        if($S_vec->cross($N_vec)== Vector(0,0,0) && $S_vec->dot($P_vec_min) == $sconst){
             return 1;
         }
         return 0;
-});    
+}); 
 
-##############################################
-#  Main text
+## Ok, we are ready to begin the problem...
+##
+TEXT(beginproblem());
 
-Context()->texStrings;
+
 BEGIN_TEXT
 $BR
-נתון המשטח \($f = $d\).
-$BR
+נתון המשטח \( $f = $d \).$BR
 יש למצוא את משוואת המישור המשיק ואת הוקטור הנורמל למשטח בנקודה
 \($P\).
 $BR
 א. וקטור הנורמל:
 \{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
 
-\(\vec{N}\) = \{$multians->ans_array(8)\}
+\(\vec{N}\) = (\{$multians->ans_rule(8)\},\{$multians->ans_rule(8)\},\{$multians->ans_rule(8)\})
 \{ closeSpan() \}
 $PAR
 ב. משוואת המישור המשיק:
@@ -136,7 +150,7 @@ Context()->normalStrings;
 ANS($multians->cmp());
 ANS($multians2->cmp());
 
-$showPartialCorrectAnswers = 0;
+$showPartialCorrectAnswers = 1;
 $showPartialCredit = 1;
 
 ##################################################
