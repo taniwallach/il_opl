@@ -39,7 +39,8 @@ TEXT(beginproblem());
 #  Setup
 
 Context("Vector");
-
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 #
 #  Ceofficients for function
 #
@@ -83,16 +84,19 @@ $L = ParametricLine($P,$N);
 
 Context()->texStrings;
 BEGIN_TEXT
-
-Consider the ellipsoid \($f = $d\).
+$BR
+בהנתן האליפסואיד \($f = $d\).
+$BR
+משוואת המישור המשיק לאליפסואיד בנקודה
+\($P\) היא: 
+\{ans_rule(40)\}.
 $PAR
 
-The implicit form of the tangent plane to this ellipsoid at
-\($P\) is \{ans_rule(40)\}.
-$PAR
+ההצגה הפרמטרית של הישר העובר דרך הנקודה ומאונך לישר המשיק הנ"ל היא:
 
-The parametric form of the line through this point that is
-perpendicular to that tangent plane is \(L(t)\) = \{ans_rule(30)\}.
+\{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
+\(L(t)\) = \{ans_rule(30)\}
+\{ closeSpan() \}
 
 END_TEXT
 Context()->normalStrings;
@@ -103,7 +107,9 @@ Context()->normalStrings;
 ANS($T->cmp);
 ANS($L->cmp);
 
-$showPartialCorrectAnswers = 1;
+
+$showPartialCorrectAnswers = 0;
+$showPartialCredit = 1;
 
 ##################################################
 
