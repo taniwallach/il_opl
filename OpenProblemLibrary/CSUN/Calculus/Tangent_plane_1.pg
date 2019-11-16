@@ -20,20 +20,26 @@ loadMacros(
   "PGcourse.pl"
 );
 
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
+
 Context("Numeric");
 TEXT(beginproblem());
-$showPartialCorrectAnswers = 1;
               
 $c = random(-9, 9);
 $d = 8 + 3*$c*$c;
 
 Context()->texStrings;
 BEGIN_TEXT
-Find the equation of the plane that passes through the point \((2,1,$c)\) and is tangent to the surface 
+$BR
+יש למצוא את משוואת המישור העובר בנקודה
+\((2,1,$c)\) ומשיק למשטח 
 \[x^2 + 4y^3 + 3z^2 = $d\] 
-at  \((2,1,$c)\). Write it in the form indicated below.
+בנקודה  \((2,1,$c)\):
 $BR $BR
-Equation: \(4(x- 2) + \)\{ ans_rule(3) \}\((y - \)\{ ans_rule(2) \})\( + \)\{ ans_rule(3) \}\((z - \)\{ ans_rule(2) \})\( = 0\)
+\{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
+\(4(x- 2) + \)\{ ans_rule(3) \}\((y - \)\{ ans_rule(2) \})\( + \)\{ ans_rule(3) \}\((z - \)\{ ans_rule(2) \})\( = 0\)
+\{ closeSpan() \}
 END_TEXT
 
 Context()->normalStrings;
@@ -42,4 +48,6 @@ ANS(Compute(1)->cmp);
 ANS(Compute(6*$c)->cmp);
 ANS(Compute($c)->cmp);
 
+$showPartialCorrectAnswers = 0;
+$showPartialCredit = 1;
 ENDDOCUMENT();	# This should be the last executable line in the problem.
