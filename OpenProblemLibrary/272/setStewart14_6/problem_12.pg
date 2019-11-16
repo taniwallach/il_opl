@@ -27,6 +27,8 @@ loadMacros(
   "PGcourse.pl"
 );
  
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 
 ## Do show partial correct answers
 $showPartialCorrectAnswers = 1;
@@ -48,15 +50,21 @@ TEXT(beginproblem());
 
 BEGIN_TEXT
 $BR
-
-Find equations of the tangent plane and normal line to the surface
-\( x = $a y^2 + $b z^2 + $f \) at the point ($x0, $y0, $z0).
+יש למצוא את משוואת המישור המשיק למשטח
+\( x = $a y^2 + $b z^2 + $f \) בנקודה \(($x0, $y0, $z0)\):
 $BR
-Tangent Plane: (make the coefficient of x equal to 1).$BR
+משוואת המישור: (כך שהמקדמים של x הם 1)
+$BR
+\{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
 \{ans_rule(60)\} \( = 0 \).
+\{ closeSpan() \}
 $BR
-Normal line: \(\langle $x0,\)\{ans_rule()\}, \{ans_rule()\} \(\rangle\)$BR
+הנורמל:
+$BR
+\{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
+\(\langle $x0,\)\{ans_rule()\}, \{ans_rule()\} \(\rangle\)
 \( + t\langle 1,\) \{ans_rule()\}, \{ans_rule()\} \(\rangle\).
+\{ closeSpan() \}
 $PAR
 END_TEXT
 
