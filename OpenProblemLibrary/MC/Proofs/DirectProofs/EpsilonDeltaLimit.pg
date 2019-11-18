@@ -74,35 +74,33 @@ $PAR
 
 END_TEXT
 
-BEGIN_TEXT
-\{ ans_rule(3) \}
-END_TEXT
-ANS(num_cmp(6, mode=>"arith"));
-BEGIN_TEXT
-\{ ans_rule(3) \}
-END_TEXT
-ANS(num_cmp(3, mode=>"arith"));
-BEGIN_TEXT
-\{ ans_rule(3) \}
-END_TEXT
-ANS(num_cmp(9, mode=>"arith"));
-BEGIN_TEXT
-\{ ans_rule(3) \}
-END_TEXT
-ANS(num_cmp(1, mode=>"arith"));
-BEGIN_TEXT
-\{ ans_rule(3) \}
-END_TEXT
-ANS(num_cmp(7, mode=>"arith"));
-BEGIN_TEXT
-\{ ans_rule(3) \}
-END_TEXT
-ANS(num_cmp(4, mode=>"arith"));
-BEGIN_TEXT
-\{ ans_rule(3) \}
-END_TEXT
-ANS(num_cmp(5, mode=>"arith"));
+$ans1 = Real(6);
+$ans2 = Real(3);
+$ans3 = Real(9);
+$ans4 = Real(1);
+$ans5 = Real(7);
+$ans6 = Real(4);
+$ans7 = Real(5);
 
+BEGIN_TEXT
+\{ $ans1->ans_rule(3) \}
+\{ $ans2->ans_rule(3) \}
+\{ $ans3->ans_rule(3) \}
+\{ $ans4->ans_rule(3) \}
+\{ $ans5->ans_rule(3) \}
+\{ $ans6->ans_rule(3) \}
+\{ $ans7->ans_rule(3) \}
+$PAR
+התשובות יופיעו בטבלה לפי הסדר העברי, כלומר התיבה הימנית ראשונה בטבלת התשובות.
+END_TEXT
+
+ANS( $ans1->cmp() );
+ANS( $ans2->cmp() );
+ANS( $ans3->cmp() );
+ANS( $ans4->cmp() );
+ANS( $ans5->cmp() );
+ANS( $ans6->cmp() );
+ANS( $ans7->cmp() );
 
 #$showHint=2;
 #BEGIN_HINT
