@@ -55,13 +55,13 @@ $multians = MultiAnswer($x_coef,$y_coef,$z_coef)->with(
   checker => sub {
 		my ( $correct, $student, $self ) = @_;
 		my ($n1s,$n2s,$n3s) = @{$student};
-  
-        if($n1s eq "" ||$n2s eq "" ||$n3s eq ""){
+  $zzz = Real(0);
+        if(!$zzz->typeMatch($n1s) ||!$zzz->typeMatch($n2s) ||!$zzz->typeMatch($n3_s)){
            $self->setMessage(1,"אין להשאיר שדות ריקים."); 
 			return 0;
         }
        $s=Vector($n1s,$n2s,$n3s);
-        if($s->cross($N_vec) == Vector(0,0,0)){
+        if($s->cross($N_vec) == Vector(0,0,0) && $s != Vector(0,0,0)){
             return 1;
         }
         return 0;
@@ -73,12 +73,13 @@ $multians2 = MultiAnswer($x_coef,$y_coef,$z_coef,$const)->with(
   checker => sub {
 		my ( $correct, $student, $self ) = @_;
 		my ($sx_coef,$sy_coef,$sz_coef,$sconst) = @{$student};
-        if($sx_coef eq "" ||$sy_coef eq "" ||$sz_coef eq "" ||$sconst eq ""){
+        $zzz = Real(0);
+        if(!$zzz->typeMatch($sx_coef) ||!$zzz->typeMatch($sy_coef) ||!$zzz->typeMatch($sz_coef)){
            $self->setMessage(1,"אין להשאיר שדות ריקים."); 
 			return 0;
         }
         $S_vec = Vector($sx_coef,$sy_coef,$sz_coef);
-        if($S_vec->cross($N_vec)== Vector(0,0,0) && $S_vec->dot($P_vec_min) == $sconst){
+        if($S_vec->cross($N_vec)== Vector(0,0,0) && $S_vec != Vector(0,0,0) && $S_vec->dot($P_vec_min) == $sconst){
             return 1;
         }
         return 0;
@@ -92,16 +93,16 @@ TEXT(beginproblem());
 BEGIN_TEXT
 $BR
 נתון המשטח \( $f = $d \).$BR
-יש למצוא את משוואת המישור המשיק ואת הוקטור הנורמל למשטח בנקודה
+יש למצוא משוואת מישור משיק ו-ווקטור נורמל למשטח זה בנקודה
 \($P\).
 $BR
-א. וקטור הנורמל:
+א. וקטור נורמל:
 \{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
 
 \(\vec{N}\) = (\{$multians->ans_rule(8)\},\{$multians->ans_rule(8)\},\{$multians->ans_rule(8)\})
 \{ closeSpan() \}
 $PAR
-ב. משוואת המישור המשיק:
+ב. משוואת מישור משיק:
 \{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
 \{$multians2->ans_rule(8)\}\(x\ \)+
 \{$multians2->ans_rule(8)\}\(y\ \)+

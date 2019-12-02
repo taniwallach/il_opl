@@ -88,9 +88,9 @@ Context()->normalStrings;
 #  Answers
 
 ANS($fxx->cmp);
-ANS($fxy->cmp);
-ANS($fyx->cmp);
 ANS($fyy->cmp);
+ANS($fyx->cmp);
+ANS($fxy->cmp);
 
 
 $showPartialCorrectAnswers = 1;

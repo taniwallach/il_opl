@@ -66,13 +66,13 @@ $BR
 \{ closeSpan() \}
 $PAR
 END_TEXT
-ANS(fun_cmp("y*exp($a*y)",vars=>["x","y"]));
+ANS(fun_cmp("0",vars=>["x","y"]));
 
-ANS(fun_cmp("x*($a*y*exp($a*y) + exp($a*y))",vars=>["x","y"]));
+ANS(fun_cmp("x*(2*$a+($a**2)*y)*e^{$a*y}",vars=>["x","y"]));
 
-ANS(fun_cmp("$a*y*exp($a*y) + exp($a*y)",vars=>["x","y"]));
+ANS(fun_cmp("$a*y*e^{$a*y} + e^{$a*y}",vars=>["x","y"]));
 
-ANS(fun_cmp("$a*y*exp($a*y) + exp($a*y)",vars=>["x","y"]));
+ANS(fun_cmp("$a*y*e^{$a*y} + e^{$a*y}",vars=>["x","y"]));
 ENDDOCUMENT();
 
 
