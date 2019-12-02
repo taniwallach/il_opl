@@ -29,7 +29,6 @@ SET_PROBLEM_TEXTDIRECTION("rtl");
 SET_PROBLEM_LANGUAGE("he-IL");
 
 Context("Numeric");
-TEXT(beginproblem());
               
 $c = random(-9, 9);
 $d = 8 + 3*$c*$c;

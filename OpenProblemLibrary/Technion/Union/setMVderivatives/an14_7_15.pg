@@ -37,8 +37,6 @@ loadMacros(
 );
 
 
-TEXT(beginproblem());
-
 ##############################################
 #  Setup
 
