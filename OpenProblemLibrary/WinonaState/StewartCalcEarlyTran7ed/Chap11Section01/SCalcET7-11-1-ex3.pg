@@ -68,6 +68,14 @@ $b=2*$answer*$a;
 $c=random(25,99,1);
 $ans = Compute("$answer");
 
+# This problem had a bug (in the OPL) as the free coefficient was too small,
+# so the early terms of the sequence were negative with a sign flip after the
+# expected answer...
+
+$c += ( $answer * $answer * $a ); # Forces the discriminant to be negative, so no
+# real roots, so as $a > 0 will always be positive.
+
+
 $popup1 = PopUp(['מונוטונית יורדת החל ממקום מסוים', 'מונוטונית עולה החל ממקום מסוים', 'אין תשובה נכונה'], 'מונוטונית יורדת החל ממקום מסוים');
 
 
