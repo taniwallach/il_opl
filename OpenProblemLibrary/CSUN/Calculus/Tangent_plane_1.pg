@@ -1,0 +1,53 @@
+# DESCRIPTION
+# Tangent Plane
+# ENDDESCRIPTION   
+
+## DBsubject(Calculus - multivariable)
+## DBchapter(Differentiation of multivariable functions)
+## DBsection(Differentiability, linearization and tangent planes)
+## MLT(ImplicitTangentPlane)
+## MLTleader(1)
+## Institution(CSUN)
+## Author(David Protas)
+## Level(2)
+## KEYWORDS('Multivariable','Geometry','Vector')
+
+DOCUMENT();	# This should be the first executable line in the problem.
+
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGcourse.pl"
+);
+
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
+
+Context("Numeric");
+TEXT(beginproblem());
+              
+$c = random(-9, 9);
+$d = 8 + 3*$c*$c;
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR
+יש למצוא את משוואת המישור
+המשיק למשטח 
+\[x^2 + 4y^3 + 3z^2 = $d\] 
+בנקודה  \((2,1,$c)\):
+$BR $BR
+\{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
+\(4(x- 2) + \)\{ ans_rule(3) \}\((y - \)\{ ans_rule(2) \})\( + \)\{ ans_rule(3) \}\((z - \)\{ ans_rule(2) \})\( = 0\)
+\{ closeSpan() \}
+END_TEXT
+
+Context()->normalStrings;
+ANS(Compute(12)->cmp);
+ANS(Compute(1)->cmp);
+ANS(Compute(6*$c)->cmp);
+ANS(Compute($c)->cmp);
+
+$showPartialCorrectAnswers = 0;
+$showPartialCredit = 1;
+ENDDOCUMENT();	# This should be the last executable line in the problem.

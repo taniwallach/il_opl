@@ -1,0 +1,169 @@
+## DESCRIPTION
+##   Tangent Plane to a Multivariate Function
+## ENDDESCRIPTION
+
+## Tagged by nhamblet
+
+## DBsubject(Calculus - multivariable)
+## DBchapter(Differentiation of multivariable functions)
+## DBsection(Differentiability, linearization and tangent planes)
+## Date(8/23/07)
+## Institution(Union College)
+## MLT(imptan)
+## MLTleader(1)
+## Level(2)
+## MO(1)
+## TitleText1('Calculus')
+## AuthorText1('Anton')
+## EditionText1('7')
+## Section1('14.7')
+## Problem1('15')
+## KEYWORDS('Tangent', 'Plane', 'Multivariable', 'Implicit', 'Parametric')
+
+##Formatted to Technion use by Shani Barzel 
+
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+  "PGstandard.pl",
+  "PGunion.pl",
+  "parserParametricLine.pl",
+  "parserImplicitPlane.pl",
+  "parserVectorUtils.pl",
+  "PGchoicemacros.pl",
+  "PGcourse.pl",
+  "parserMultiAnswer.pl",
+);
+
+
+##############################################
+#  Setup
+
+Context("Vector");
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
+#
+#  Ceofficients for function
+#
+($a,$b,$c) = (random(3,5,1),random(1,2,1),1)[shuffle(3)];
+
+#
+#  The point
+#
+($x,$y,$z) = (non_zero_random(-1,1,1),
+	      2*non_zero_random(-1,1,1),
+              non_zero_random(-3,3,1));
+
+$P = Point($x,$y,$z);
+$P_vec = Vector($x,$y,$z);
+$P_vec_min = Vector(-$x,-$y,-$z);
+
+$a_str = "$a";
+if ($a == 1){$a_str = "";}
+if ($a == -1){$a_str = "-";}
+$b_str = "$b";
+if($b > 0){$b_str = "+ $b";}
+if ($b == 1){$b_str = "+";}
+if ($b == -1){$b_str = "-";}
+$c_str = "$c";
+if($c > 0){$c_str = "+ $c";}
+if ($c == 1){$c_str = "+";}
+if ($c == -1){$c_str = "-";}
+
+$d = $a+$b+$c*$z**2;
+
+#
+#  The function
+#
+$f = "$a_str x^2 $b_str y^2 $c_str z^2";
+
+#
+#  The Normal Vector
+#
+@N = ($a*$x,$b*$y,$c*$z);
+$N_vec = Vector($a*$x,$b*$y,$c*$z);
+
+#
+#  The tangent plane
+#
+$x_coef = $N[0];
+$y_coef = $N[1];
+$z_coef = $N[2];
+$const = $N_vec->dot($P_vec_min); 
+
+$multians = MultiAnswer($x_coef,$y_coef,$z_coef)->with(
+  singleResult => 1,
+  allowBlankAnswers => 1,
+  checker => sub {
+		my ( $correct, $student, $self ) = @_;
+		my ($n1s,$n2s,$n3s) = @{$student};
+        $zzz = Real(0);
+        if(!$zzz->typeMatch($n1s) ||!$zzz->typeMatch($n2s) ||!$zzz->typeMatch($n3_s)){
+           $self->setMessage(1,"אין להשאיר שדות ריקים."); 
+			return 0;
+        }
+       $s=Vector($n1s,$n2s,$n3s);
+        if($s->cross($N_vec) == Vector(0,0,0) && $s != Vector(0,0,0)){
+            return 1;
+        }
+        return 0;
+});
+	
+$multians2 = MultiAnswer($x_coef,$y_coef,$z_coef,$const)->with(
+  singleResult => 1,
+  allowBlankAnswers => 1,
+  checker => sub {
+		my ( $correct, $student, $self ) = @_;
+		my ($sx_coef,$sy_coef,$sz_coef,$sconst) = @{$student};
+        $zzz =Real(0);
+        if(!$zzz->typeMatch($sx_coef) ||!$zzz->typeMatch($sy_coef) ||!$zzz->typeMatch($sz_coef)){
+           $self->setMessage(1,"אין להשאיר שדות ריקים."); 
+			return 0;
+        }
+        $S_vec = Vector($sx_coef,$sy_coef,$sz_coef);
+        if($S_vec != Vector(0,0,0) && $S_vec->cross($N_vec)== Vector(0,0,0) && $S_vec->dot($P_vec_min) == $sconst){
+            return 1;
+        }
+        return 0;
+}); 
+
+## Ok, we are ready to begin the problem...
+##
+TEXT(beginproblem());
+
+
+BEGIN_TEXT
+$BR
+נתון המשטח \( $f = $d \).$BR
+יש למצוא משוואת מישור משיק ו-ווקטור נורמל למשטח זה בנקודה
+\($P\).
+$BR
+א. וקטור נורמל:
+\{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
+
+\(\vec{N}\) = (\{$multians->ans_rule(8)\},\{$multians->ans_rule(8)\},\{$multians->ans_rule(8)\})
+\{ closeSpan() \}
+$PAR
+ב. משוואת מישור משיק:
+\{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
+\{$multians2->ans_rule(8)\}\(x\ \)+
+\{$multians2->ans_rule(8)\}\(y\ \)+
+\{$multians2->ans_rule(8)\}\(z\ \)+
+\{$multians2->ans_rule(8)\}\(=0\)
+\{ closeSpan() \}
+
+END_TEXT
+Context()->normalStrings;
+
+##################################################
+#  Answers
+ANS($multians->cmp());
+ANS($multians2->cmp());
+
+$showPartialCorrectAnswers = 1;
+$showPartialCredit = 1;
+
+##################################################
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.
