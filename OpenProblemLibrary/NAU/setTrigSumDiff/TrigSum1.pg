@@ -1,0 +1,133 @@
+##DESCRIPTION
+##ENDDESCRIPTION
+
+# File Created: 6/23/05
+# Location: Northern Arizona University
+# Course: MAT 125
+## DBsubject(Trigonometry)
+## DBchapter(Analytic trigonometry)
+## DBsection(Addition & subtraction formulas)
+## Institution(scheduling)
+## Author(Monika Keindl)
+## TranslationAuthor('Arkadi Piven')
+## MLT(addCS)
+## MLTleader(1)
+## Level(3)
+
+DOCUMENT();      
+
+loadMacros(
+  "PGstandard.pl",
+  "PGchoicemacros.pl",
+  "PGgraphmacros.pl",
+  "PGasu.pl",
+  "PGcourse.pl"
+);
+
+TEXT(&beginproblem);
+
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
+##   trig functions in TeX
+@givenTex=('\sin(\alpha)','\cos(\alpha)','\sin(\beta)','\cos(\beta)');
+
+##   generate rational sine value for alpha              a/b
+
+do {
+  $a=random(2,8,1);
+  $b=random($a+1,9,1);
+   } until (gcd($a,$b)==1);
+
+$c=$b*$b-$a*$a;
+
+##   generate rational sine value for beta               m/n
+
+do {
+  $m=random(2,8,1);
+  $n=random($m+1,9,1);
+   } until (gcd($m,$n)==1);
+
+$l=$n*$n-$m*$m;
+
+
+##   values of sine/cosine 
+@values=($a/$b,                  #sin(alpha) 
+         sqrt($c)/$b,            #cos(alpha) 
+         $m/$n,                  #sin(beta)
+	 sqrt($l)/$n             #cos(beta)
+	 );
+
+##   values in TeX
+@valuesTex=("\frac{$a}{$b}",           #sin(alpha)
+            "\frac{\sqrt{$c}}{$b}",    #cos(alpha) 
+            "\frac{$m}{$n}",           #sin(beta)
+	    "\frac{\sqrt{$l}}{$n}"     #cos(beta)
+	    );   
+
+
+##   signs of sine/cosine in 1,2,3,4 quadrants
+@signs=(['','','-','-'],            #sin 
+        ['','-','-',''],            #cos
+	['','','-','-'],            #sin 
+        ['','-','-','']             #cos
+	);    
+	
+##   sign values of sine/cosine in 1,2,3,4 quadrants
+@signval=([1,1,-1,-1],            #sin 
+          [1,-1,-1,1],            #cos
+	  [1,1,-1,-1],            #sin 
+          [1,-1,-1,1]             #cos
+	 );    
+	
+##   randomize quadrant and quadrant type for alpha (I or 0<alpha<pi/2)
+$quadind1=random(0,3,1);
+$quadtype1=random(0,1,1);
+@quadrant1=(['נמצאת ברביע הראשון \(\alpha\)','נמצאת ברביע השני \(\alpha\)',               
+           'נמצאת ברביע השלישי \(\alpha\)','נמצאת ברביע הרביעי \(\alpha\)'],
+           ['\(0<\alpha<\pi/2\)','\(\pi/2<\alpha<\pi\)',
+           '\(\pi<\alpha<3\pi/2\)','\(3\pi/2<\alpha<2\pi\)']);
+
+
+##   randomize quadrant and quadrant type for beta (I or 0<alpha<pi/2)
+$quadind2=random(0,3,1);
+$quadtype2=random(0,1,1);
+@quadrant2=(['נמצאת ברביע הראשון \(\beta\)','נמצאת ברביע השני \(\beta\)',               
+           'נמצאת ברביע השלישי \(\beta\)','נמצאת ברביע הרביעי \(\beta\)'],
+           ['\(0<\beta<\pi/2\)','\(\pi/2<\beta<\pi\)',
+           '\(\pi<\beta<3\pi/2\)','\(3\pi/2<\beta<2\pi\)']);
+
+
+##   randomize given trig functions
+$givenind1=random(0,1,1);
+$givenind2=random(2,3,1);
+
+$ans1 = $signval[0][$quadind1] * $values[0] * $signval[1][$quadind2] * $values[3] + 
+        $signval[1][$quadind1] * $values[1] * $signval[0][$quadind2] * $values[2] ;
+
+
+BEGIN_TEXT
+בהינתן
+\($givenTex[$givenind1]=$signs[$givenind1][$quadind1]$valuesTex[$givenind1]\)
+בתחום
+$quadrant1[$quadtype1][$quadind1]
+וגם
+\($givenTex[$givenind2]=$signs[$givenind2][$quadind2]$valuesTex[$givenind2]\)
+כאשר מתקיים ש-
+$quadrant2[$quadtype2][$quadind2]
+.
+השתמש/י בזהויות טריגונומטריות של סכום והיפרש על מנת לחשב את הביטוי הבא:
+$BR
+הערה: אין לתת תשובה עשרונית.
+
+$PAR
+
+\{ans_rule(20)\}\(\sin(\alpha + \beta)=\)
+
+END_TEXT
+
+
+
+ANS(exact_no_trig("$ans1") );
+
+
+ENDDOCUMENT(); 

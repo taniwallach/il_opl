@@ -1,0 +1,66 @@
+## DESCRIPTION
+##   Transform a Trig Functions
+## ENDDESCRIPTION
+
+## Tagged by nhamblet
+
+## DBsubject(Trigonometry)
+## DBchapter(Trigonometric functions)
+## DBsection(Sine & cosine functions - definitions, graphs, & properties)
+## Date(8/23/07)
+## Institution(Union)
+## Author(K. Lesh)
+## Level(3)
+## MO(1)
+## KEYWORDS('Trig', 'Transform','trigonometry','transformation','precalculus','trigonometric graphs')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+  "PGstandard.pl",
+  "PGunion.pl",
+  "MathObjects.pl",
+  "PGcourse.pl"
+);
+
+TEXT(beginproblem());
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
+###################################
+# Setup
+
+$a = random(1,9);
+$b = random(2,9);
+$c = random(2,9);
+
+###################################
+# Main text
+
+BEGIN_TEXT
+מצא את המשוואה של גל הסינוס שמתקבלת ע״י הזזה של
+\( y=\sin(x) \), 
+$a 
+יחידות ימינה,
+$b
+יחידות למטה,
+וגם מתוחה אנכית ע״י גורם בגודל
+$c
+ביחס
+ל- \( y=\sin(x) \)
+
+$PAR
+\{ ans_rule(30) \}
+\( y = \)
+END_TEXT
+
+###################################
+# Answers
+
+$ans="${c}sin(x-$a)-$b";
+ANS(Formula($ans)->cmp);
+
+###################################
+
+
+;
+ENDDOCUMENT();
