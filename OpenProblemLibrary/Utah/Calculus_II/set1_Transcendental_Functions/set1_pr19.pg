@@ -1,0 +1,72 @@
+# Local notes:
+# translated by Idan Kinderman, August 2019, for use in the Technion
+# Based on a Univeristy of Utah problem, Author Utah ww group
+# To find the problem: Library/Utah/Calculus_II/set1_Transcendental_Functions/set1_pr19.pg
+
+##DESCRIPTION
+##ENDDESCRIPTION
+
+## The original notes:   
+##DESCRIPTION
+##DIFFICULTY('easy')
+##  Evaluate simple expressions involving logs
+##ENDDESCRIPTION
+## DBsubject(Calculus - single variable)
+## DBchapter(Applications of differentiation)
+## DBsection(Indeterminate forms and L'Hopital's rule)
+## Institution(Univeristy of Utah)
+## Author(Utah ww group)
+## MLT(Indeterminate-Logs)
+## Level(3)
+## Static(1)
+## TitleText1('Calculus')
+## AuthorText1('Dale Varberg, Edwin J. Purcell, and Steve E. Rigdon')
+## EditionText1('9')
+## Section1('.')
+## Problem1('')
+## KEYWORDS('calculus')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGchoicemacros.pl",
+  "PGcourse.pl"
+);
+
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
+
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+$pi = 3.141592654;
+
+$ans1 = Real(0);
+$ans2 = Real(0);
+
+BEGIN_TEXT
+נתונה הפונקציה \( f(x) = \dfrac{\ln x}{1 + (\ln x)^{2}} \)
+המוגדרת ב- \((0,\infty)\).
+$BR
+מצא את הגבולות הבאים:
+$PAR
+
+א)
+\{ openSpan( { "dir" => "ltr" } ) \}
+\( \lim_{x \rightarrow 0^{+}}  f(x) = \) \{$ans1->ans_rule(5)\}
+\{ closeSpan() \}
+
+$PAR
+
+ב)
+\{ openSpan( { "dir" => "ltr" } ) \}
+\( \lim_{x \rightarrow \infty} f(x) = \) \{$ans2->ans_rule(5)\}
+\{ closeSpan() \}
+
+END_TEXT
+
+ANS( $ans1->cmp() );
+ANS( $ans2->cmp() );
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.;
