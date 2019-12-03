@@ -35,9 +35,8 @@ loadMacros(
   "PGcourse.pl"
 );
  
-SET_PROBLEM_LANGUAGE("he-IL");
 SET_PROBLEM_TEXTDIRECTION("rtl");
-
+SET_PROBLEM_LANGUAGE("he-IL");
 ## Do NOT show partial correct answers
 $showPartialCorrectAnswers = 1;
 
@@ -51,31 +50,29 @@ TEXT(beginproblem());
 BEGIN_TEXT
 $BR
 
-יש למצוא את הנגזרות החלקיות של הפונקציה:
+יש למצוא את הנגזרות החלקיות עבור הפונקציה
 \[
     f(x,y) = xye^{$a y}
 \]
-
-\{ openSpan( { "dir" => "ltr" } ) \}
+\{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
 $BR
-\(f_x(x,y) = \)\{ans_rule(60)\}
+ \( \frac{{\partial^2}f}{\partial x^2} = f_x{}_x(x,y) = \) \{ ans_rule(40) \}
 $BR
-\(f_y(x,y) = \)\{ans_rule(60)\}
+ \( \frac{{\partial^2}f}{\partial y^2} = f_y{}_y(x,y) = \) \{ ans_rule(40) \}
 $BR
-\(f_{xy}(x,y) = \)\{ans_rule(60)\}
+ \( \frac{{\partial^2}f}{\partial x \partial y} = f_y{}_x(x,y) = \) \{ ans_rule(40) \}
 $BR
-\(f_{yx}(x,y) = \)\{ans_rule(60)\}
+ \( \frac{{\partial^2}f}{\partial y \partial x} = f_x{}_y(x,y) = \) \{ ans_rule(40) \}
 \{ closeSpan() \}
-
 $PAR
 END_TEXT
-ANS(fun_cmp("y*exp($a*y)",vars=>["x","y"]));
+ANS(fun_cmp("0",vars=>["x","y"]));
 
-ANS(fun_cmp("x*($a*y*exp($a*y) + exp($a*y))",vars=>["x","y"]));
+ANS(fun_cmp("x*(2*$a+($a**2)*y)*e^{$a*y}",vars=>["x","y"]));
 
-ANS(fun_cmp("$a*y*exp($a*y) + exp($a*y)",vars=>["x","y"]));
+ANS(fun_cmp("$a*y*e^{$a*y} + e^{$a*y}",vars=>["x","y"]));
 
-ANS(fun_cmp("$a*y*exp($a*y) + exp($a*y)",vars=>["x","y"]));
+ANS(fun_cmp("$a*y*e^{$a*y} + e^{$a*y}",vars=>["x","y"]));
 ENDDOCUMENT();
 
 
