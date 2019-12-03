@@ -50,7 +50,7 @@ Context("Numeric")->variables->are(x=>'Real',y=>'Real');
 $p1 = random(1,5,1);
 $p2 = random(1,5,1);
 
-$f = Formula("sqrt($p2_1 x + $p2_2 y)")->reduce;
+$f = Formula("sqrt($p1 x + $p2 y)")->reduce;
 
 #
 #  The point

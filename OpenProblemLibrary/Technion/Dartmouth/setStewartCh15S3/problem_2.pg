@@ -66,10 +66,15 @@ if($counter > 20)
 $counter = 0;
 $x0 = non_zero_random(-10,10,1);
 
+# There was a bug here. It was avoiding $c * $x0 == $d * $y0
+# but should have been avoiding $c * $x0 + $d * $y0 == 0 (sign error)
+# do NOT change this code to avoid changing parameters for
+# cases which were fine.
 do { $y0 = non_zero_random(-10,10,1); $counter++} until ( $c * $x0 != $d * $y0  || $counter > 20);
 
 if($counter > 20)
 {
+    #warn "In fix y0 loop";
     $y0 = (($c*$x0)/$d) + 1;
     if( $y0 == 0 )
     {
@@ -77,7 +82,26 @@ if($counter > 20)
     }
 }
 
+# Bug fix:
+if ( ( $c * $x0 + $d * $y0 ) == 0 ) {
+  # Should be able to fix it by flipping the sign of $y0,
+  # as neither $y0 nor $d should be 0
+  $y0 *= -1;
+  if ( ( $c * $x0 + $d * $y0 ) == 0 ) {
+    $counter = 0;
+    $y0 *= -1 if ( $y0 < 0 );
+    while ( ( ($counter++) < 20 ) && ( ( $c * $x0 + $d * $y0 ) == 0 ) ) {
+      $y0++;
+    }
+  }
+}
 $f = Compute("($a x - $b y) / ($c x + $d y)") -> reduce;
+
+$tmp = $f->D("x");
+#warn "f = $f";
+#warn "dfdx = $tmp";
+#warn "c = $c   d = $d   x0 =$x0 y0 = $y0";
+
 
 $dfdx = $f->D("x")->eval(x=>$x0 , y=>$y0);
 $dfdy = $f->D("y")->eval(x=>$x0 , y=>$y0);
