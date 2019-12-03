@@ -1,0 +1,113 @@
+# Local notes:
+# translated by Idan Kinderman, August 2019, for use in the Technion
+# Based on a Mississippi College problem, Author John Travis
+# To find the original problem: Library/MC/Proofs/DirectProofs/EpsilonDeltaLimit.pg
+#
+# The original problem used DraggableProof which we could not get to work.
+#
+#
+## DESCRIPTION
+##   Arrange statements for a proof in proper order
+## ENDDESCRIPTION
+
+
+## DBsubject(Calculus - single variable)
+## DBchapter(Limits and continuity)
+## DBsection(Definitions and existence (conceptual))
+## Date(Spring 2012)
+## Institution(Mississippi College)
+## Author(John Travis)
+## Level(6)
+## MO(1)
+## KEYWORDS('Foundations', 'Proof', 'Proposition')
+
+DOCUMENT();
+
+loadMacros(
+  "PGstandard.pl",
+  "PGchoicemacros.pl",
+#  "draggableProof.pl",
+  "MathObjects.pl",
+  "PGcourse.pl"
+);
+
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
+
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+$var = list_random('m','n','p','q','r');
+
+$f = Compute("x**2");
+$a = random(2,5,1);
+$a2 = Compute("2*$a");
+$ad2 = Compute("$a/2");
+$ad2p2a = $ad2 + $a2;
+
+$L = $f->eval(x=>$a);
+
+BEGIN_TEXT
+סדרו חלק מהמשפטים הבאים כך שהם יהוו הוכחה לטענה הבאה:
+$BR
+\[ \displaystyle{\lim_{x \rightarrow $a} $f = $L}.\]
+
+$BR
+
+$PAR
+$BR ${BBOLD}1. ${EBOLD} \( $a2 - \delta < x + $a < $a2 + \delta \)
+$BR ${BBOLD}2. ${EBOLD} אזי \(| x - $a | < \delta\).
+$BR ${BBOLD}3. ${EBOLD} נבחר \(\delta>0\) \(\) כך ש-
+    \(\delta < \displaystyle \frac{\epsilon}{$ad2p2a} \) וכן \( \delta < $ad2 \).
+$BR ${BBOLD}4. ${EBOLD} \( | x - $a | | x + $a | <
+   \displaystyle \frac{\epsilon}{$ad2p2a}($ad2p2a) = \epsilon\)
+$BR ${BBOLD}5. ${EBOLD} לכן, \( \displaystyle{\lim_{x \rightarrow $a} $f = $L} \).
+$BR ${BBOLD}6. ${EBOLD} יהי \(\displaystyle\epsilon > 0 \).
+$BR ${BBOLD}7. ${EBOLD} \( \delta < $ad2 \) ולכן  \( 0  < x + $a < $a2 + \delta < $a2 + $ad2 \)
+$BR ${BBOLD}8. ${EBOLD} נניח כי \( | $f - $L | \leq \epsilon \)
+$BR ${BBOLD}9. ${EBOLD} נבחר \( x \) כך ש- \( 0 < | x - $a | < \delta \).
+$BR ${BBOLD}10.${EBOLD} נניח כי \( | x- $a | < \delta \) וכן ש- \( | $f - $L | \leq \epsilon \).
+$PAR
+
+הכנס את מספרי הטענות בסדר הנכון, מימין לשמאל.
+$PAR
+
+END_TEXT
+
+$ans1 = Real(6);
+$ans2 = Real(3);
+$ans3 = Real(9);
+$ans4 = Real(1);
+$ans5 = Real(7);
+$ans6 = Real(4);
+$ans7 = Real(5);
+
+BEGIN_TEXT
+\{ $ans1->ans_rule(3) \}
+\{ $ans2->ans_rule(3) \}
+\{ $ans3->ans_rule(3) \}
+\{ $ans4->ans_rule(3) \}
+\{ $ans5->ans_rule(3) \}
+\{ $ans6->ans_rule(3) \}
+\{ $ans7->ans_rule(3) \}
+$PAR
+התשובות יופיעו בטבלה לפי הסדר העברי, כלומר התיבה הימנית ראשונה בטבלת התשובות.
+END_TEXT
+
+ANS( $ans1->cmp() );
+ANS( $ans2->cmp() );
+ANS( $ans3->cmp() );
+ANS( $ans4->cmp() );
+ANS( $ans5->cmp() );
+ANS( $ans6->cmp() );
+ANS( $ans7->cmp() );
+
+#$showHint=2;
+#BEGIN_HINT
+#To show \(P \implies Q\) by contradiction, start by assuming \(P\) and \( \sim Q\).
+#END_HINT
+
+
+ENDDOCUMENT();
+# Appennding this line to an 8-bit file, will force it into UTF-8,
+# as the following Hebrew letters are encoded in UTF-8: אבגד.

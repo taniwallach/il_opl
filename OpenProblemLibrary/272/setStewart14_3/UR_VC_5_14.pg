@@ -1,59 +1,54 @@
 ## DESCRIPTION
-## Calculus
+##   Find Partial Derivatives
 ## ENDDESCRIPTION
 
-## Tagged by tda2d
+## Tagged by nhamblet
 
 ## DBsubject(Calculus - multivariable)
 ## DBchapter(Differentiation of multivariable functions)
 ## DBsection(Partial derivatives)
-## Institution(ASU)
+## Date(6/3/2002)
+## Institution(Rochester)
+## Author(Joseph Neisendorfer)
 ## Level(2)
-## TitleText1('Calculus')
+## TitleText1('Calculus: Early Transcendentals')
 ## AuthorText1('Stewart')
-## EditionText1('5')
-## Section1('15.3')
+## EditionText1('6')
+## Section1('14.3')
 ## Problem1('')
 ## TitleText2('Calculus: Early Transcendentals')
 ## AuthorText2('Rogawski')
 ## EditionText2('1')
 ## Section2('14.3')
-## Problem2('12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39')
-## TitleText3('Calculus: Early Transcendentals')
-## AuthorText3('Stewart')
-## EditionText3('6')
-## Section3('14.3')
-## Problem3('')
-## KEYWORDS('partial derivative' 'function','Multivariable', 'Partial Derivative')
+## Problem2('40 41 42 43 44')
+## KEYWORDS('Multivariable', 'Partial Derivative','vector', 'partial', 'derivative','derivative' 'partial')
 
 DOCUMENT();
+
 loadMacros(
   "PGstandard.pl",
   "PGchoicemacros.pl",
-  "PGgraphmacros.pl",
-  "Dartmouthmacros.pl",
   "PGcourse.pl"
 );
- 
 SET_PROBLEM_TEXTDIRECTION("rtl");
 SET_PROBLEM_LANGUAGE("he-IL");
-## Do NOT show partial correct answers
+TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
 
-$a = non_zero_random(-9,9);
+$a = non_zero_random(-10, 10);
+$b = non_zero_random(-10, 10);
 
-## Ok, we are ready to begin the problem...
-##
-TEXT(beginproblem());
-
+$dfdx = "2*$a*cos(2*x+y) - $b*sin(x-y)";
+$dfdy = "$a*cos(2*x+y) + $b*sin(x-y)";
+$d2fdx2 = "-4*($a * sin(2*x + y)) - $b*cos(x-y)";
+$d2fdy2 = "- $a*sin(2*x+y) - $b*cos(x-y)";
+$d2fdxdy = "-2*($a*sin(2*x+y)) + $b*cos(x-y)";
+$d2fdydx = "-2*($a*sin(2*x+y)) + $b*cos(x-y)";
 
 BEGIN_TEXT
-$BR
-
-יש למצוא את הנגזרות החלקיות עבור הפונקציה
-\[
-    f(x,y) = xye^{$a y}
-\]
+$PAR
+יש למצוא את כל הנגזרות החלקיות עבור הפונקציה
+\[ f(x, y) = $a\sin(2x+y) + $b\cos(x-y) \]
 \{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
 $BR
  \( \frac{{\partial^2}f}{\partial x^2} = f_x{}_x(x,y) = \) \{ ans_rule(40) \}
@@ -64,17 +59,10 @@ $BR
 $BR
  \( \frac{{\partial^2}f}{\partial y \partial x} = f_x{}_y(x,y) = \) \{ ans_rule(40) \}
 \{ closeSpan() \}
-$PAR
 END_TEXT
-ANS(fun_cmp("0",vars=>["x","y"]));
+ANS(fun_cmp($d2fdx2, vars=>2));
+ANS(fun_cmp($d2fdy2, vars=>2));
+ANS(fun_cmp($d2fdxdy, vars=>2));
+ANS(fun_cmp($d2fdydx, vars=>2));
 
-ANS(fun_cmp("x*(2*$a+($a**2)*y)*e^{$a*y}",vars=>["x","y"]));
-
-ANS(fun_cmp("$a*y*e^{$a*y} + e^{$a*y}",vars=>["x","y"]));
-
-ANS(fun_cmp("$a*y*e^{$a*y} + e^{$a*y}",vars=>["x","y"]));
 ENDDOCUMENT();
-
-
-
-

@@ -1,0 +1,100 @@
+## DESCRIPTION
+##   Second order partial derivatives
+## ENDDESCRIPTION
+
+
+## DBsubject(Calculus - multivariable)
+## DBchapter(Differentiation of multivariable functions)
+## DBsection(Partial derivatives)
+## Date(10/15/09)
+## Institution(Fort Lewis College)
+## Author(Paul Pearson)
+## MLT(2varFindSecondPartials)
+## MLTleader(1)
+## Level(2)
+## MO(1)
+## TitleText1('Calculus')
+## AuthorText1('Hughes-Hallett')
+## EditionText1('4')
+## Section1('14.7')
+## Problem1('')
+## TitleText2('Calculus')
+## AuthorText2('Hughes-Hallett')
+## EditionText2('5')
+## Section2('14.7')
+## Problem2('')
+## KEYWORDS('Second-order partial derivatives')
+
+DOCUMENT();        
+
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGcourse.pl"
+);
+
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
+TEXT(beginproblem());
+
+##############################################
+#  Setup
+
+Context("Numeric")->variables->are(x=>"Real",y=>"Real");
+
+#
+#  The functions
+#
+
+$a = random(2,5,1);
+$b = random(3,9,1);
+
+$f = Formula("$a * x**2 * y + $b * x * y**3");
+
+$fx = $f -> D('x') -> reduce;
+$fy = $f -> D('y') -> reduce;
+
+$fxx = $fx -> D('x') -> reduce;
+$fxy = $fx -> D('y') -> reduce;
+$fyx = $fy -> D('x') -> reduce;
+$fyy = $fy -> D('y') -> reduce;
+
+
+##############################################
+#  Main text
+
+Context()->texStrings;
+Context()->flags->set(reduceConstants=>0);
+BEGIN_TEXT
+$BR
+יש למצוא את הנגזרות החלקיות עבור הפונקציה
+\[ \displaystyle f(x,y) = $f \]
+$BR
+\{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
+$BR
+ \( \frac{{\partial^2}f}{\partial x^2} = f_x{}_x(x,y) = \) \{ ans_rule(40) \}
+$BR
+ \( \frac{{\partial^2}f}{\partial y^2} = f_y{}_y(x,y) = \) \{ ans_rule(40) \}
+$BR
+ \( \frac{{\partial^2}f}{\partial x \partial y} = f_y{}_x(x,y) = \) \{ ans_rule(40) \}
+$BR
+ \( \frac{{\partial^2}f}{\partial y \partial x} = f_x{}_y(x,y) = \) \{ ans_rule(40) \}
+\{ closeSpan() \}
+END_TEXT
+Context()->normalStrings;
+
+
+##################################################
+#  Answers
+
+ANS($fxx->cmp);
+ANS($fyy->cmp);
+ANS($fyx->cmp);
+ANS($fxy->cmp);
+
+
+$showPartialCorrectAnswers = 1;
+
+
+;
+ENDDOCUMENT();

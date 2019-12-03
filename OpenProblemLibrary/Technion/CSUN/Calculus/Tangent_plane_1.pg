@@ -1,0 +1,125 @@
+# DESCRIPTION
+# Tangent Plane
+# ENDDESCRIPTION   
+
+## DBsubject(Calculus - multivariable)
+## DBchapter(Differentiation of multivariable functions)
+## DBsection(Differentiability, linearization and tangent planes)
+## MLT(ImplicitTangentPlane)
+## MLTleader(1)
+## Institution(CSUN)
+## Author(David Protas)
+## Level(2)
+## KEYWORDS('Multivariable','Geometry','Vector')
+
+DOCUMENT();	# This should be the first executable line in the problem.
+
+loadMacros(
+   "PGstandard.pl",
+  "PGunion.pl",
+  "parserParametricLine.pl",
+  "parserImplicitPlane.pl",
+  "parserVectorUtils.pl",
+  "PGchoicemacros.pl",
+  "PGcourse.pl",
+  "parserMultiAnswer.pl",
+);
+
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
+
+Context("Numeric");
+              
+$c = random(-9, 9);
+$d = 8 + 3*$c*$c;
+$f = "x^2 + 4y^3 + 3z^2 ";
+$P=Point(2,1,$c);
+$P_vec= Vector(2,1,$c);
+$P_vec_min= Vector(-2,-1,-$c);
+@N = (4,12,6*$c); 
+$N_vec=Vector(4,12,6*$c);
+
+
+#
+#  The tangent plane
+#
+$x_coef = $N[0];
+$y_coef = $N[1];
+$z_coef = $N[2];
+$const = $N_vec->dot($P_vec_min); 
+
+$multians = MultiAnswer($x_coef,$y_coef,$z_coef)->with(
+  singleResult => 1,
+  allowBlankAnswers => 1,
+  checker => sub {
+		my ( $correct, $student, $self ) = @_;
+		my ($n1s,$n2s,$n3s) = @{$student};
+  $zzz = Real(0);
+        if(!$zzz->typeMatch($n1s) ||!$zzz->typeMatch($n2s) ||!$zzz->typeMatch($n3_s)){
+           $self->setMessage(1,"אין להשאיר שדות ריקים."); 
+			return 0;
+        }
+       $s=Vector($n1s,$n2s,$n3s);
+        if($s->cross($N_vec) == Vector(0,0,0) && $s != Vector(0,0,0)){
+            return 1;
+        }
+        return 0;
+});
+	
+$multians2 = MultiAnswer($x_coef,$y_coef,$z_coef,$const)->with(
+  singleResult => 1,
+  allowBlankAnswers => 1,
+  checker => sub {
+		my ( $correct, $student, $self ) = @_;
+		my ($sx_coef,$sy_coef,$sz_coef,$sconst) = @{$student};
+        $zzz = Real(0);
+        if(!$zzz->typeMatch($sx_coef) ||!$zzz->typeMatch($sy_coef) ||!$zzz->typeMatch($sz_coef)){
+           $self->setMessage(1,"אין להשאיר שדות ריקים."); 
+			return 0;
+        }
+        $S_vec = Vector($sx_coef,$sy_coef,$sz_coef);
+        if($S_vec->cross($N_vec)== Vector(0,0,0) && $S_vec != Vector(0,0,0) && $S_vec->dot($P_vec_min) == $sconst){
+            return 1;
+        }
+        return 0;
+}); 
+
+## Ok, we are ready to begin the problem...
+##
+TEXT(beginproblem());
+
+
+BEGIN_TEXT
+$BR
+נתון המשטח \( $f = $d \).$BR
+יש למצוא משוואת מישור משיק ו-ווקטור נורמל למשטח זה בנקודה
+\($P\).
+$BR
+א. וקטור נורמל:
+\{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
+
+\(\vec{N}\) = (\{$multians->ans_rule(8)\},\{$multians->ans_rule(8)\},\{$multians->ans_rule(8)\})
+\{ closeSpan() \}
+$PAR
+ב. משוואת מישור משיק:
+\{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
+\{$multians2->ans_rule(8)\}\(x\ \)+
+\{$multians2->ans_rule(8)\}\(y\ \)+
+\{$multians2->ans_rule(8)\}\(z\ \)+
+\{$multians2->ans_rule(8)\}\(=0\)
+\{ closeSpan() \}
+
+END_TEXT
+Context()->normalStrings;
+
+##################################################
+#  Answers
+ANS($multians->cmp());
+ANS($multians2->cmp());
+
+$showPartialCorrectAnswers = 1;
+$showPartialCredit = 1;
+
+##################################################
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

@@ -9,8 +9,7 @@
 ## DBsubject(Calculus - multivariable)
 ## DBchapter(Differentiation of multivariable functions)
 ## DBsection(Partial derivatives)
-## Institution(ASU, Technion)
-## Translated to Hebrew by Julian Northey for the Technion
+## Institution(University of Michigan)
 ## Author(Gavin LaRose)
 ## Level(2)
 ## MO(1)
@@ -43,8 +42,8 @@ loadMacros(
   "PGcourse.pl"
 );
 
-SET_PROBLEM_LANGUAGE("he-IL");
 SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 
 Context("Numeric");
 Context()->variables->add( y=>'Real' );
@@ -66,26 +65,20 @@ $fyx = Compute( "-$abc*cos($b*x)*sin($c*y)" );
 Context()->texStrings;
 TEXT(beginproblem());
 BEGIN_TEXT
-
-חשבו את כל ארבעת הנגזרות החלקיות מסדר שני וודאו כי
-\( f_{xy}=f_{yx} \)
-.
-ניתן להניח כי כל המשתנים נמצאים בתחום ההגדרה של הפונקציה.
-
-\{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
+$BR
+יש למצוא את הנגזרות החלקיות עבור הפונקציה
 \[ f(x,y) = $func \]
-
-
+$PAR
+\{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
 $BR
-\( f_{xx} = \)  \{ ans_rule(55) \}
+ \( \frac{{\partial^2}f}{\partial x^2} = f_x{}_x(x,y) = \) \{ ans_rule(40) \}
 $BR
-\( f_{yy} = \)  \{ ans_rule(55) \}
+ \( \frac{{\partial^2}f}{\partial y^2} = f_y{}_y(x,y) = \) \{ ans_rule(40) \}
 $BR
-\( f_{xy} = \)  \{ ans_rule(55) \}
+ \( \frac{{\partial^2}f}{\partial x \partial y} = f_y{}_x(x,y) = \) \{ ans_rule(40) \}
 $BR
-\( f_{yx} = \)  \{ ans_rule(55) \}
+ \( \frac{{\partial^2}f}{\partial y \partial x} = f_x{}_y(x,y) = \) \{ ans_rule(40) \}
 \{ closeSpan() \}
-
 END_TEXT
 Context()->normalStrings;
 
@@ -95,15 +88,15 @@ ANS($fxy->cmp() );
 ANS($fyx->cmp() );
 
 Context()->texStrings;
-SOLUTION(EV3(<<'END_SOLUTION'));
-$PAR SOLUTION $PAR
+#SOLUTION(EV3(<<'END_SOLUTION'));
+#$PAR SOLUTION $PAR
 
-We have \( f_x = $fx\) and \(f_y = $fy\), so
-\[ f_{xx} = $fxx, f_{yy} = $fyy, \]
-and
-\[ f_{xy} = $fxy = f_{yx} = $fyx. \]
+#We have \( f_x = $fx\) and \(f_y = $fy\), so
+#\[ f_{xx} = $fxx, f_{yy} = $fyy, \]
+#and
+#\[ f_{xy} = $fxy = f_{yx} = $fyx. \]
 
-END_SOLUTION
+#END_SOLUTION
 Context()->normalStrings;
 
 

@@ -48,12 +48,57 @@ Context("Numeric")->variables->are(x=>'Real',y=>'Real');
 #  The function
 #
 $a = random(2,6,1);
-$n = random(2,5,1);
-$m = random(2,4,1);
+
+# revised to be between 3 and 6 and different
+$n = random(3,6,1);
+$m = random(3,6,1);
+if ( $n == $m ) {
+  $n++;
+  if ( $n == 7 ) {
+    $n = 3;
+  }
+}
+
+# The original choice of the evaluation point made problems.
+# ($x0 , $y0 )  = (random(-5,5,1),random(-5,5,1));
+
+# We need to avoid f(x0,y0) being too big or small.
+# Otherwise the grading code (due to evaluation at that point)
+# will not behave.
+
+# We also want to avoid cases where either of x0 or y0 is 0, as
+# that makes both partial derivatives 0.
+
+$tmp = random(1,16,1);
+if ( $tmp % 2 == 0 ) {
+  $x0 = 1;
+  $y0 = 2;
+  if ( $n % 2 == 0 ) {
+    if ( random(1,10,1) % 2 == 0 ) {
+      $x0 *= -1; # flip sign
+    }
+  }
+  if ( $m % 2 == 0 ) {
+    if ( random(1,10,1) % 2 == 0 ) {
+      $y0 *= -1; # flip sign
+    }
+  }
+} else {
+  $x0 = 2;
+  $y0 = 1;
+  if ( $n % 2 == 0 ) {
+    if ( random(1,10,1) % 2 == 0 ) {
+      $x0 *= -1; # flip sign
+    }
+  }
+  if ( $m % 2 == 0 ) {
+    if ( random(1,10,1) % 2 == 0 ) {
+      $y0 *= -1; # flip sign
+    }
+  }
+}
 
 $f = Formula("$a e^(x^$n y^$m)");
-
-($x0 , $y0 )  = (random(-5,5,1),random(-5,5,1));
 
 $dfdx = $f->D("x")->eval(x=>$x0 , y=>$y0);
 $dfdy = $f->D("y")->eval(x=>$x0 , y=>$y0);

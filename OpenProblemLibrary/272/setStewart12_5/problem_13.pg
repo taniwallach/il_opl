@@ -43,6 +43,23 @@ $showPartialCorrectAnswers = 1;
 ## Normal to plane containing @p, @q, @r
 @n = cross_product(@v1, @v2);
 
+# The original problem assumed that $n[0] would not be zero, and this is
+# not always true. To keep the fixed answer expected, we adjust the condition
+# to force the first entry to the normal vector @n to set the condition.
+
+$condition = "\(x\) הוא \($n[0]\)";
+$condVar = "\(x\)";
+if ( $n[0] == 0 ) {
+  if      ( $n[1] != 0 ) {
+    $condition = "\(y\) הוא \($n[1]\)";
+    $condVar = "\(y\)";
+  } elsif ( $n[2] != 0 ) {
+    $condition = "\(z\) הוא \($n[2]\)";
+    $condVar = "\(z\)";
+  } else {
+    $condition = "${BLTR}{ERROR}${ELTR}";
+  }
+}
 
 ## Ok, we are ready to begin the problem...
 ##
@@ -56,10 +73,10 @@ BEGIN_TEXT
 $BR
 
 יש למצוא את משוואת המישור שעובר דרך הנקודות
-\(($p[0], $p[1], $p[2]), ($q[0], $q[1], $q[2]), ($r[0], $r[1], $r[2])\) כך שהמקדם של  \(x\) הוא \($n[0]\).
+\(($p[0], $p[1], $p[2]), ($q[0], $q[1], $q[2]), ($r[0], $r[1], $r[2])\) כך שהמקדם של ${condition}.
 $BR
 יש להקפיד שהמקדם של
-\(x\)
+$condVar
 יהיה המקדם שנדרש בשאלה.
 $BR
 \{ openSpan( { "dir" => "ltr" } ) \}

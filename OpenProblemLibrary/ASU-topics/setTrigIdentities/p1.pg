@@ -1,0 +1,87 @@
+##DESCRIPTION
+## Precalculus, Trigonometric Identities
+##ENDDESCRIPTION
+
+## Tagged by skm9b
+## Author : Arkadi Piven
+## DBsubject(Trigonometry)
+## DBchapter(Analytic trigonometry)
+## DBsection(Double-angle & half-angle formulas)
+## Institution(Rochester)
+## MLT(SimpleDoubleHalf)
+## MLTleader(1)
+## Level(3)
+## KEYWORDS('precalculus','trigonometry','identities','double-angle','half-angle')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+  "PGstandard.pl",
+  "PGchoicemacros.pl",
+  "PGgraphmacros.pl",
+  "PGasu.pl",
+  "PGcourse.pl"
+);
+
+TEXT(beginproblem());
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
+$showPartialCorrectAnswers = 1;
+
+$pi = 4*atan2(1,1);
+$a=random(3,9,2);
+$b=random($a+1,$a+2,1);
+
+$cst=-$a/$b;
+
+#evaluate answers
+
+$bb=$b**2;
+$d = $bb-$a**2;
+$e = 2*$a**2-$bb;
+
+$snt="-sqrt($d)/$b";
+$sn2t="2*$a*sqrt($d)/$bb";
+$cs2t="$e/$bb";
+$snthalf=sqrt((1-$cst)/2);
+$csthalf=-sqrt((1+$cst)/2);
+
+TEXT(EV2(<<EOT));
+אם בתחום 
+\( \pi < t < \frac{3\pi}{2} \)
+מתקיים
+\( \cos(t)=-\frac{$a}{$b} \),
+מצא את הערכים של הפונקציות הטרגונומטריות הבאות
+
+$BR
+$BBOLD הערה: $EBOLD 
+נא לספק את התשובה המדויקת, אין להשתמש במספרים עשרוניים. התשובה צריכה להיות שבר, או ביטוי אריתמטי. במידה והתשובה מורכבת משורש, יש להשתמש ב
+()sqrt. 
+לדוגמה:
+השורש הריבועי של 2 אמור להירשם כ-sqrt(2)
+$BR
+$BR
+
+\{ans_rule(20) \} =
+ \( \cos(2t) \)
+EOT
+
+ANS(exact_no_trig($cs2t));
+TEXT(EV2(<<EOT));
+$BR
+\{ans_rule(20) \} = \( \sin(2t) \)
+EOT
+ANS(exact_no_trig($sn2t));
+TEXT(EV2(<<EOT));
+$BR
+\{ans_rule(20) \}=\( \cos(\frac{t}{2}) \)   
+EOT
+ANS(exact_no_trig($csthalf));
+
+TEXT(EV2(<<EOT));
+$BR
+\{ans_rule(20) \}= \( \sin(\frac{t}{2}) \) 
+EOT
+
+ANS(exact_no_trig($snthalf));
+ENDDOCUMENT();        # This should be the last executable line in the problem.
