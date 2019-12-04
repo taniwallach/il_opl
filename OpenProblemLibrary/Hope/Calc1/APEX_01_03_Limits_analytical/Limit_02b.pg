@@ -23,8 +23,8 @@ loadMacros(
   "PGcourse.pl"
 );
 
-#SET_PROBLEM_LANGUAGE("he-IL");
-#SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
 
 TEXT(beginproblem());
 
@@ -55,17 +55,13 @@ Scaffold::Begin(hardcopy_is_open  => "first_incorrect");
 
 Section::Begin('חלק ראשון: הערכת גבול');
 BEGIN_TEXT
-\{ openSpan({"dir" => "rtl", "align" => "right"}) \}
-
-
 העריכו את הגבול הבא. התחילו מהפיכת הביטוי לפשוט יותר (תיבת התשובה הראשונה) ולאחר מכן העריכו את הגבול (תיבת התשובה השניה).
-\{ closeSpan() \}
-
-
 END_TEXT
 
 BEGIN_PGML
+[@ openSpan( { "dir" => "ltr" } ) @]*
 [`` \lim_{x\to [$z]} [$f] = \lim_{x\to [$z]} ``] [_______]{$d} [``= ``] [______]{$L}.
+[@ closeSpan() @]*
 END_PGML
 
 
@@ -75,9 +71,9 @@ Section::End();
 
 Section::Begin('חלק שני: שאלת המשך');
 BEGIN_PGML
-
+[@ openSpan( { "dir" => "ltr" } ) @]*
 [`` \lim_{x\to [$z2] } [$f2] = \lim_{x\to [$z2] } ``] [_________________]{$d2} [``= ``] [___________]{$L2}.
-
+[@ closeSpan() @]*
 END_PGML
 Section::End();
 
