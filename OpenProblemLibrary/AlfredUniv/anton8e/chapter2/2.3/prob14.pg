@@ -61,7 +61,7 @@ BEGIN_TEXT
 מצאו את הגבול הבא:
 $PAR
 $BCENTER
-\(\> \lim_{x \rightarrow +\infty} [$f ]\)
+\(\> \displaystyle \lim_{x \rightarrow +\infty} [$f ]\)
 $ECENTER
 $BR
 הזינו $BBOLD inf $EBOLD עבור \(\infty\),\{ openSpan({"dir" => "ltr"}) \}
