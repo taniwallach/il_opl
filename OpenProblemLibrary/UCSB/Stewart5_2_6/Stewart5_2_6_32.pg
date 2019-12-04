@@ -18,7 +18,8 @@ loadMacros(
   "PGchoicemacros.pl",
   "PGcourse.pl"
 );
-
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 TEXT(&beginproblem);
 $showPartialCorrectAnswers = 1;
 
@@ -28,15 +29,15 @@ $b=random(1,10,1);
 BEGIN_TEXT
 
 $PAR
-Evaluate the following limit. If the answer is positive infinite, type "I"; if negative infinite, type "N"; and if it does not exist, type "D". $PAR
+העריכו את הגבול הבא. במידת הצורך, הזינו INF עבור \( \infty \), MINF עבור \( -\infty \) או DNE במידה והגבול לא קיים.$PAR
 
 \[\displaystyle\lim_{x \to \infty} \tan^{-1}(x^2-x^4)\]
 $PAR
 
-\{ans_rule(10)\}
+הגבול = \{ans_rule(10)\}
 
 END_TEXT
 
-ANS(fun_cmp("-pi/2", var=>["I","N","D"]));
+ANS(fun_cmp("-pi/2", var=>["INF","MINF","DNE"]));
 
 ENDDOCUMENT();

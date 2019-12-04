@@ -19,6 +19,9 @@ loadMacros(
   "PGcourse.pl"
 );
 
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
+
 TEXT(&beginproblem);
 $showPartialCorrectAnswers = 1;
 $a=random(1,10,1)*random(-1,1,2);
@@ -29,15 +32,15 @@ BEGIN_TEXT
 
 $PAR
 
-If \(f(x)=\lfloor x\rfloor + \lfloor -x \rfloor\), find $PAR
+עבור הפונקציה \(f(x)=\lfloor x\rfloor + \lfloor -x \rfloor\), מצאו: $PAR
 
-(a) \(\displaystyle \lim_{x \to 2} f(x)\) $BR
-(b) \(f(2)\)
+(א) \(\displaystyle \lim_{x \to 2} f(x)\) $BR
+(ב) \(f(2)\)
 
 $PAR
 
-(a) \{ans_rule(10)\} $BR
-(b) \{ans_rule(10)\}
+(א) \{ans_rule(10)\} $BR
+(ב) \{ans_rule(10)\}
 
 END_TEXT
 

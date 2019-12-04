@@ -29,6 +29,9 @@ loadMacros(
   "PGcourse.pl"
 );
 
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
+
 TEXT(beginproblem());
 
 install_problem_grader(~~&std_problem_grader);
@@ -43,10 +46,7 @@ $refreshCachedImages = 1;
 
 if (!defined($essay_instructions)) {
 $essay_instructions = 
-"Use complete sentences and correct grammar, 
-spelling, and punctuation. Be specific and 
-detailed. Write as if you were explaining the 
-answer to someone else in class.";
+"כתבו בפירוט כאילו אתם מסבירים את התשובה לאדם אחר בכיתה.";
 }
 
 ######################################
@@ -61,18 +61,16 @@ SRAND(2); # fix the ordering in the multiple choice
 
 $mc = new_multiple_choice();
 $mc->qa(
-"If \(\displaystyle{\lim_{x\rightarrow a} f(x)=0}\) and 
-\(\displaystyle{\lim_{x\rightarrow a} g(x)=0}\), then 
-\(\displaystyle{\lim_{x\rightarrow a} \frac{f(x)}{g(x)}}\)", 
-"cannot be determined because there is not enough information. $BR",
+"אם \(\displaystyle{\lim_{x\rightarrow a} f(x)=0}\) וכן \(\displaystyle{\lim_{x\rightarrow a} g(x)=0}\), אזי \(\displaystyle{\lim_{x\rightarrow a} \frac{f(x)}{g(x)}}\):", 
+"לא ניתן לקבוע בצורה חד משמעית כיוון שאין מספיק נתונים. $BR",
 );
 #$mc->extra();
 $mc->makeLast(
-"is equal to one. $BR",
-"is equal to \( \infty \). $BR",
-"must exist. $BR",
-"does not exist. $BR",
-"cannot be determined because there is not enough information. $BR",
+"שווה ל-1. $BR",
+"שווה ל-\( \infty \). $BR",
+"חייב להיות קיים. $BR",
+"לא קיים. $BR",
+"לא ניתן לקבוע בצורה חד משמעית כיוון שאין מספיק נתונים. $BR",
 );
 
 
@@ -85,7 +83,7 @@ BEGIN_TEXT
 $BR
 \{ $mc->print_a() \}
 
-In the answer box below, explain your reasoning for the choice you made above. 
+הסבירו את בחירתכם בתיבה הנתונה למטה.
 
 $essay_instructions 
 
@@ -107,21 +105,19 @@ ANS( essay_cmp() );
 
 Context()->texStrings;
 BEGIN_SOLUTION
-The correct answer is ${BBOLD}E${EBOLD}.
-\(\frac{0}{0}\) is not necessarily equal to \(1\), and division by zero
-does not always make a quantity infinite.  
+התשובה הנכונה היא ${BBOLD}E${EBOLD}. $BR
+\(\frac{0}{0}\) אינו בהכרח שווה ל- \(1\), וחלוקה ב-0 לא גוררת שהגבול הוא אין-סוף.  
 $PAR
-The limit does not need to exist.  For example, if \( f(x)=0 \) and
-\( g(x) = 0 \) for all \( x \), then for any \( a \) the limit
-\( \displaystyle \lim_{x \to a} \frac{f(x)}{g(x)} \) does not exist.
+הגבול לא חייב להיות קיים.  לדוגמא, אם \( f(x)=0 \) וכן
+\( g(x) = 0 \) לכל \( x \), אזי לכל \( a \) הגבול
+\( \displaystyle \lim_{x \to a} \frac{f(x)}{g(x)} \) לא קיים.
 $PAR
-Also, the limit can exist.  For example, if \( f(x) = 2 x \) and \( g(x) = x \), then taking \( a = 0 \) we have
- \(\displaystyle{\lim_{x\rightarrow a} f(x)=0}\) and 
+בנוסף, הגבול יכול להיות קיים.  לדוגמא, אם \( f(x) = 2 x \) וכן \( g(x) = x \), אזי עבור \( a = 0 \) נקבל
+ \(\displaystyle{\lim_{x\rightarrow a} f(x)=0}\) וכן 
 \(\displaystyle{\lim_{x\rightarrow a} g(x)=0}\)
-and the limit \( \displaystyle \lim_{x \to a} \frac{f(x)}{g(x)} \) does exist and is equal to \( 2 \).  In fact, if \( 2 \) is replaced by \( k \), then \( \displaystyle \lim_{x \to a} \frac{f(x)}{g(x)} = k \), which shows that the limit could have any value \( k \).
+והגבול \( \displaystyle \lim_{x \to a} \frac{f(x)}{g(x)} \) לא קיים ושווה ל- \( 2 \).  למעשה, אם \( 2 \) מוחלף ב- \( k \), אזי \( \displaystyle \lim_{x \to a} \frac{f(x)}{g(x)} = k \), המראה כי לגבול יכול להיות כל ערך \( k \).
 $PAR
- Thus, there
-is not enough information given to answer the question.
+לכן, אין מספיק מידע כדי לענות על השאלה.
 END_SOLUTION
 Context()->normalStrings;
 

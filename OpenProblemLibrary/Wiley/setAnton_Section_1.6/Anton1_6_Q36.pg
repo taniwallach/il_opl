@@ -32,6 +32,8 @@ loadMacros(
   "PGcourse.pl"
 );
 # allow the student to change the seed for this problem.
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 
 rand_button();
 TEXT(beginproblem());
@@ -61,13 +63,17 @@ $extra="Since the left and right limits are different";
 
 ###################################
 # Main text
+
 Context()->texStrings;
 BEGIN_TEXT
-Find the limit.
-$PAR
-Notes: Enter "DNE" if limit Does Not Exist.$PAR
+מצאו את הגבול הבא.
+הזינו "DNE" במידה והגבול אינו קיים.
+
+$BCENTER
 \(\displaystyle \lim_{h\to 0} $f\)
- = \{ans_rule(20) \} 
+$ECENTER
+$PAR
+הגבול = \{ans_rule(20) \} 
 $PAR
 END_TEXT
 
@@ -82,7 +88,7 @@ ANS($ans->cmp);
 ###################################
 Context()->texStrings;
 SOLUTION(EV3(<<'END_SOLUTION'));
-$PAR SOLUTION $PAR
+$PAR פתרון $PAR
 \(\displaystyle \lim_{h\to 0}  $f=-\lim_{h\to  0}  $F=$ansp\cdot\frac{1}{2}\lim_{h\to  0}  $G1 =$ans\)
 $PAR
 END_SOLUTION

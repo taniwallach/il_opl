@@ -34,7 +34,8 @@ loadMacros(
   "MathObjects.pl",
   "PGcourse.pl"
 );
- 
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 ## Show partial correct answers
 $showPartialCorrectAnswers = 1;
 ## Display the problem information
@@ -49,7 +50,7 @@ $a = random(1,9);
 
 
 
-$ans1 = "I";
+$ans1 = "inf";
 
 
 
@@ -57,21 +58,24 @@ $f = Formula("ln(x**2-$a**2)-ln(x+$a)")->reduce;
 
 Context()->texStrings;
 BEGIN_TEXT
-Find the limit \(\> \lim_{x \rightarrow +\infty} [$f ]\)
+מצאו את הגבול הבא:
+$PAR
+$BCENTER
+\(\> \lim_{x \rightarrow +\infty} [$f ]\)
+$ECENTER
+$BR
+הזינו $BBOLD inf $EBOLD עבור \(\infty\),\{ openSpan({"dir" => "ltr"}) \}
+ $BBOLD -inf $EBOLD\{ closeSpan() \}
+ עבור \{ openSpan({"dir" => "ltr"}) \}\(-\infty\)\{ closeSpan() \}, וכן $BBOLD DNE $EBOLD במידה והגבול לא קיים.
 $BR
 $BR
-Enter $BBOLD I $EBOLD for \(\infty\), $BBOLD -I $EBOLD for \(-\infty\),
-and $BBOLD DNE $EBOLD if the limit does not exist.
-$BR
-$BR
-Answer: \{ans_rule(20)\}
+הגבול = \{ans_rule(20)\}
 $BR
 $BR
 
 END_TEXT
 Context()->normalStrings;
-ANS(num_cmp($ans1, strings=>["I", "-I", "DNE"]));
+ANS(num_cmp($ans1, strings=>["inf", "-inf", "DNE"]));
 
 
 ENDDOCUMENT();
-

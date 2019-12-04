@@ -31,6 +31,9 @@ loadMacros(
   "PGchoicemacros.pl",
   "PGcourse.pl"
 );
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
+
 
 TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
@@ -39,9 +42,9 @@ $a = random(2,6,1);
 $b = random(2,5,1);
 
 TEXT(EV2(<<EOT));
-Evaluate
+חשבו את הגבול הבא:
 \[ \lim_{ x \to {\pi}/4 } \frac{ $a( \sin x - \cos x) }{ $b \cos 2x } . \]
-Limit = \{ ans_rule(20) \}
+הגבול = \{ ans_rule(20) \}
 $BR
 EOT
 

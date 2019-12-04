@@ -9,6 +9,8 @@ loadMacros(
   "MathObjects.pl",
   "PGcourse.pl"
 );
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 
 ## DBsubject(Calculus - single variable)
 ## DBchapter(Limits and continuity)
@@ -34,18 +36,24 @@ $ans4 = 0;
 TEXT(beginproblem());
 
 BEGIN_TEXT
-Evaluate the limits.
+עבור הפונקציה:
 \[ 
    f(x) = \begin{cases}
 	\frac{|$a x|}{x}  & x \neq 0 \\
 	0  & x = 0
 	\end{cases}
 \]
-Enter $BBOLD DNE $EBOLD if the limit does not exist.
-$PAR a) \(\displaystyle \lim_{x \to 0^-} f(x) \) = \{ans_rule(10) \}
-$PAR b) \(\displaystyle \lim_{x \to 0^+} f(x) \) = \{ans_rule(10) \}
-$PAR c) \(\displaystyle \lim_{x \to 0} f(x) \) = \{ans_rule(10) \}
-$PAR d) \(\displaystyle f(0) \) = \{ans_rule(10) \}
+העריכו את הגבולות (הזינו "DNE" במידה והגבול לא קיים):
+$BCENTER
+\{ openSpan({"dir" => "ltr"}) \}
+
+$PAR 1) \(\displaystyle \lim_{x \to 0^-} f(x) \) = \{ans_rule(10) \}
+$PAR 2) \(\displaystyle \lim_{x \to 0^+} f(x) \) = \{ans_rule(10) \}
+$PAR 3) \(\displaystyle \lim_{x \to 0} f(x) \) = \{ans_rule(10) \}
+$PAR 4) \(\displaystyle f(0) \) = \{ans_rule(10) \}
+\{ closeSpan() \}
+
+$ECENTER
 END_TEXT
 
 ANS(fun_cmp($ans1, vars=>["c", "DNE"]));
@@ -55,5 +63,3 @@ ANS(fun_cmp($ans4, vars=>["c", "DNE"]));
 
 
 ENDDOCUMENT();    
-
-

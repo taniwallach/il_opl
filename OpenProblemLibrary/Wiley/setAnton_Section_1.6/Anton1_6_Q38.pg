@@ -31,6 +31,8 @@ loadMacros(
   "PGcourse.pl"
 );
 # allow the student to change the seed for this problem.
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 
 rand_button();
 TEXT(beginproblem());
@@ -56,11 +58,14 @@ else{$d="-$a"}
 # Main text
 Context()->texStrings;
 BEGIN_TEXT
-Find the limit.
-$PAR
-Notes: Enter "DNE" if limit Does Not Exist.$PAR
+מצאו את הגבול הבא.
+הזינו "DNE" במידה והגבול אינו קיים.
+
+$BCENTER
 \(\displaystyle \lim_{x\to 0} $f\)
- = \{ans_rule(20) \} 
+$ECENTER
+$PAR
+הגבול = \{ans_rule(20) \} 
 $PAR
 END_TEXT
 
@@ -75,7 +80,7 @@ ANS($ans->cmp);
 ###################################
 Context()->texStrings;
 SOLUTION(EV3(<<'END_SOLUTION'));
-$PAR SOLUTION $PAR
+$PAR פתרון $PAR
 \(\displaystyle \lim_{x\to 0}  $f=$ansd\lim_{x\to  0} \left[ $F\right]=0 $d=$ans\)
 $PAR
 $extra

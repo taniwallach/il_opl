@@ -42,6 +42,9 @@ loadMacros(
   "PGcourse.pl"
 );
 
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
+
 TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
 
@@ -50,15 +53,14 @@ $tag = random(0,5,1);
 $x = $choose[$tag];
 
 TEXT(EV3(<<'EOT'));
-Evaluate the limit
+העריכו את הגבול: 
 \[ \lim_{ $x \rightarrow 1 } \frac { { $x }^3- 1 }  { { $x }^2- 1 } \]
-If the limit does not exist enter DNE.
-$PAR Limit =  \{ans_rule(25) \}
+אם הגבול אינו קיים, הזינו DNE.
+$PAR הגבול: \{ans_rule(25) \}
 $BR
 EOT
 
 $ans = 1.5;
 ANS(num_cmp($ans, strings=>["DNE"]));
 
-ENDDOCUMENT();        # This should be the last executable line in the problem.
-
+ENDDOCUMENT();

@@ -22,6 +22,8 @@ loadMacros(
   "PGasu.pl",
   "PGcourse.pl"
 );
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 
 TEXT(beginproblem());
 $showPartialCorrectAnswers = 0;
@@ -31,23 +33,28 @@ $f = random(0,1);
 $g = 1-$f;
 $lo = $f ? 'g' : 'f';
 $sq = $f ? 'f' : 'g';
+@main::ALPHABET = ('א','ב','ג','ד','ה','ו');
 
 $m = new_multiple_choice();
-$m->qa('Which function has larger values than the other as \(x\) goes to infinity?',
+$m->qa('למי מהפונקציות יש ערך גדול יותר עבור \(x \to \infty\)?',
 "\($sq(x)\)");
 $m->extra("\($lo(x)\)");
 $m->makeLast("\(g(x)\)");
 
 $m2 = new_multiple_choice();
-$m2->qa('Which function is less steep (has a lower rate of change) as \(x\) goes to infinity?',
+$m2->qa('למי מהפונקציות שיפוע קטן יותר (קצב שינוי קטן יותר) עבור \(x \to \infty\)?',
 "\($lo(x)\)");
 $m2->extra("\($sq(x)\)");
 $m2->makeLast("\(g(x)\)");
 
 
 BEGIN_TEXT
-Graph the functions \( f(x) = $ff[$f]\) and \(g(x) = $ff[$g]\) on a common
-screen using the viewing rectangle [-1, 30] by [-1, 6].
+שרטטו (אפשר להעזר בתוכנת מחשב) גרף של הפונקציות הבאות:$PAR
+$BCENTER
+\( f(x) = $ff[$f]\)
+$PAR
+\(g(x) = $ff[$g]\)
+$ECENTER
 $BR$BR
 \{ $m->print_q() \}
 \{ $m->print_a() \}

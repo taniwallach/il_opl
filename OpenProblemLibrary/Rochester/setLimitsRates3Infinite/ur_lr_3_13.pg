@@ -30,6 +30,8 @@ loadMacros(
   "PGchoicemacros.pl",
   "PGcourse.pl"
 );
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 
 TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
@@ -38,16 +40,20 @@ $a=non_zero_random(-10, 10);
 
 TEXT(EV2(<<EOT));
 $PAR
-Evaluate the following limits.  If needed, enter INF for \( \infty \) and MINF for \( -\infty \).
+העריכו את הגבולות הבאים. במידת הצורך, הזינו INF עבור \( \infty \), MINF עבור \( -\infty \) או DNE במידה והגבול לא קיים.
 $PAR
-(a)
+\{ openDiv({"dir" => "ltr"}) \}
+(1)
 \[ \lim_{x \rightarrow \infty} \left( \sqrt{x^2  + $a x + 1} -x \right) = \]
 \{ ans_rule(10) \}
+\{ closeDiv() \}
 
 $PAR
-(b)
+\{ openDiv({"dir" => "ltr"}) \}
+(2)
 \[ \lim_{x \rightarrow -\infty} \left( \sqrt{x^2  + $a x + 1} -x \right) = \]
 \{ ans_rule(10) \}
+\{ closeDiv() \}
 EOT
 
 $ans1=$a/2;

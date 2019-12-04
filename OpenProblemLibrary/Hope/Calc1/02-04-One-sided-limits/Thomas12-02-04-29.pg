@@ -28,6 +28,8 @@ loadMacros(
   "MathObjects.pl",
   "PGcourse.pl"
 );
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 
 TEXT(beginproblem());
 
@@ -49,13 +51,15 @@ $answer = Compute("2 / $b");
 
 Context()->texStrings;
 BEGIN_TEXT
-Evaluate the following limit without using a calculator.  Enter ${BITALIC}DNE${EITALIC} if the limit does not exist.
+העריכו את הגבול הבא. הזינו "DNE" במידה והגבול אינו קיים.
 $BR
-$BR
+$BCENTER
 \( \displaystyle
-\lim_{\theta \to 0} \frac{\theta + \theta \cos($a \theta)}{\sin($b \theta)\cos($c \theta)} = 
+\lim_{\theta \to 0} \frac{\theta + \theta \cos($a \theta)}{\sin($b \theta)\cos($c \theta)}
 \)
-\{ ans_rule(20) \}.
+$ECENTER
+$BR
+הגבול = \{ ans_rule(20) \}.
 END_TEXT
 Context()->normalStrings;
 

@@ -31,6 +31,8 @@ loadMacros(
   "PGchoicemacros.pl",
   "PGcourse.pl"
 );
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 
 TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
@@ -41,9 +43,9 @@ $c = $b-$a;
 $d = $a*$b;
 
 TEXT(EV2(<<EOT));
-Evaluate
+העריכו את הגבול הבא:
 \[ \lim_{ x \to $a } \frac{ \sin (x-$a) }{ x^2 + $c x - $d } . \]
-Limit = \{ ans_rule(20) \}
+הגבול = \{ ans_rule(20) \}
 $BR
 EOT
 

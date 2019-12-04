@@ -22,6 +22,8 @@ loadMacros(
   "scaffold.pl",
   "PGcourse.pl"
 );
+#SET_PROBLEM_TEXTDIRECTION("rtl");
+#SET_PROBLEM_LANGUAGE("he-IL");
 TEXT(beginproblem());
 
 Context("Numeric");
@@ -46,17 +48,21 @@ $L2 = $fs2->eval(x=>$z);
 
 Scaffold::Begin(hardcopy_is_open  => "first_incorrect");
 
-Section::Begin('Part 1: Evaluate the limit');
+Section::Begin('חלק ראשון: הערכת הגבול');
+BEGIN_TEXT
+\{ openSpan({"dir" => "rtl", "align" => "right"}) \}
+העריכו את הגבול הבא. התחילו מהפיכת הביטוי לפשוט יותר (תיבת התשובה הראשונה) ולאחר מכן העריכו את הגבול (תיבת התשובה השניה).
+\{ closeSpan() \}
+END_TEXT
+
 BEGIN_PGML
-Evaluate the following limit by simplifying the expression (first answer box) and then evaluating the limit (second answer box).
 
 [`` \lim_{x\to [$z]} [$f] = \lim_{x\to [$z]} ``] [_________________]{$d} [``= ``] [___________]{$L}.
 
-Hint: Note: In your written solution, you should write the limit statement [``\lim_{x \to [$z]}``] in every step except the last one, where the limit is finally evaluated.
 END_PGML
 Section::End();
 
-Section::Begin('Part 2: Follow-up question');
+Section::Begin('חלק שני: שאלת המשך');
 BEGIN_PGML
 [`` \lim_{x\to [$z]} [$f2] = \lim_{x\to [$z]} ``] [_________________]{$d2} [``= ``] [___________]{$L2}.
 END_PGML

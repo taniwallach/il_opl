@@ -32,6 +32,9 @@ loadMacros(
   "PGcourse.pl"
 );
 
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
+
 TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
 
@@ -44,12 +47,12 @@ while ($c == -$b)
 }
 
 TEXT(EV2(<<EOT));
-Evaluate
-\[ \lim_{ h \rightarrow 0 } \frac{f($c + h) - f($c)}{h}, \]
-where \(f(x) = |x ? {$b}| - $a \).
+עבור הפונקציה \(f(x) = |x ? {$b}| - $a \), העריכו את הגבול:
+\[ \lim_{ h \rightarrow 0 } \frac{f($c + h) - f($c)}{h} \]
+$BR
 
-If the limit does not exist enter -1000.
-$PAR Limit = \{ans_rule(25) \}
+אם הגבול אינו קיים, הזינו DNE.
+$PAR הגבול: \{ans_rule(25) \}
 $BR
 EOT
 
@@ -64,4 +67,4 @@ $ans = -1;
 
 ANS(num_cmp($ans));
 
-ENDDOCUMENT();        # This should be the last executable line in the problem.
+ENDDOCUMENT();    

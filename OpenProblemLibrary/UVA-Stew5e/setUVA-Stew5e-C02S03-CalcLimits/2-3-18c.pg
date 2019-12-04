@@ -32,6 +32,9 @@ loadMacros(
   "PGcourse.pl"
 );
 
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
+
 TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
 
@@ -39,10 +42,10 @@ $b = random(2,8,1);
 $c = random(2,8,1);
 
 TEXT(EV2(<<EOT));
-Find (in terms of the constant \(a\))
+חשבו את הגבול הבא (ניתן להשתמש בתשובתכם בקבוע \(a\))
 \[ \lim_{h\rightarrow 0} \frac{\sqrt{$b(a+h)} - \sqrt{$b a}}{h}. \]
 $PAR
-Limit = \{ans_rule(20) \}
+הגבול = \{ans_rule(20) \}
 
 EOT
 

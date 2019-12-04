@@ -35,6 +35,8 @@ loadMacros(
   "MathObjects.pl",
   "PGcourse.pl"
 );
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
  
 ## Show partial correct answers
 $showPartialCorrectAnswers = 1;
@@ -53,18 +55,23 @@ $ans1 = Formula("1")->reduce;
 $f = Formula("(e**x+e**(-x))/(e**x-e**(-x))")->reduce;
 
 Context()->texStrings;
+
 BEGIN_TEXT
-Find the limit \(\> \displaystyle \lim_{x \rightarrow +\infty} $f \)
+מצאו את הגבול הבא:
+$PAR
+$BCENTER
+\(\> \displaystyle \lim_{x \rightarrow +\infty} $f \)
+$ECENTER
+$BR
+הזינו $BBOLD inf $EBOLD עבור \(\infty\),\{ openSpan({"dir" => "ltr"}) \}
+ $BBOLD -inf $EBOLD\{ closeSpan() \}
+ עבור \{ openSpan({"dir" => "ltr"}) \}\(-\infty\)\{ closeSpan() \}, וכן $BBOLD DNE $EBOLD במידה והגבול לא קיים.
 $BR
 $BR
-Enter $BBOLD inf $EBOLD for \(\infty\), $BBOLD -inf $EBOLD for \(-\infty\),
-and $BBOLD DNE $EBOLD if the limit does not exist.
+הגבול = \{ans_rule(20)\}
 $BR
 $BR
-Answer: \{ans_rule(20)\}
-$BR
-$BR
-HINT:  Factor \( e^x \) out of the numerator and denominator.
+רמז: הוציאו גורם \( e^x \) מתוך המונה והמכנה.
 
 END_TEXT
 Context()->normalStrings;
@@ -72,4 +79,3 @@ ANS($ans1->cmp);
 
 
 ENDDOCUMENT();
-

@@ -27,6 +27,8 @@ loadMacros(
   "PGgraphmacros.pl",
   "PGcourse.pl"
 );
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 #####################################################################
 
 TEXT(beginproblem());
@@ -45,9 +47,15 @@ $ans = Compute("($a*$b)");
 #####################################################################
 Context()->texStrings;
 BEGIN_TEXT
-Evaluate \(\displaystyle \lim_{\theta \to 0} \frac{\sin $a \theta \sin $b \theta}{\theta^2}.\)
+העריכו את הביטוי: 
+$BR
+$BCENTER
+
+\(\displaystyle \lim_{\theta \to 0} \frac{\sin $a \theta \sin $b \theta}{\theta^2}\)
+$ECENTER
+
 $PAR
-Limit: \{ans_rule(20)\} $PAR
+הגבול = \{ans_rule(20)\} $PAR
 END_TEXT
 Context()->normalStrings;
 

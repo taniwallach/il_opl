@@ -20,6 +20,11 @@ loadMacros(
   "PGchoicemacros.pl",
   "PGcourse.pl"
 );
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
+
+@main::ALPHABET = ('א','ב','ג','ד','ה','ו');
+
 TEXT(beginproblem());
 
 Context("Numeric");
@@ -27,30 +32,28 @@ Context("Numeric");
 $a = random(2,9,1);
 do { $c = random(1,9,1); } until ($c != $a);
 
-$mc1 = new_checkbox_multiple_choice();
+$mc1 = new_checkbox_multiple_choice(displayLabels => 0);
 $mc1 -> qa (
-"What can be said about the relative sizes of \( f(x) \) and \( g(x) \) as \( x \) approaches \( $c \)?  Select all that apply.", 
-"Values of \( f(x) \) are about $a times as large as values of \( g(x) \) as \( x \) approaches \( $c \).",
-"\( f(x) \approx $a g(x) \) for \( x \) near \( $c \).",
+"מה ניתן לומר על הגודל היחסי של \( f(x) \) ו-\( g(x) \) כאשר \( x \) שואף ל- \( $c \)? בחר את כל האפשרויות הנכונות:",
+"הערכים של \( f(x) \) הם כ-$a פעמים יותר גדולים מהערכים של \( g(x) \) כאשר \( x \) שואף ל- \( $c \).", "\( f(x) \approx $a g(x) \) עבור ערכי \( x \) הקרובים ל- \( $c \).",
 );
 $mc1 -> extra(
-"Values of \( g(x) \) are about $a times as large as values of \( f(x) \) as \( x \) approaches \( $c \).",
-"\( g(x) \approx $a f(x) \) for \( x \) near \( $c \).",
+"הערכים של \( g(x) \) הם כ-$a פעמים יותר גדולים מהערכים של \( f(x) \) כאשר \( x \) שואף ל- \( $c \).",
+"\( g(x) \approx $a f(x) \) עבור ערכי \( x \) הקרובים ל- \( $c \).",
 );
 $mc1 -> makeLast(
-"Nothing definitive can be said.",
+"לא ניתן לומר דבר באופן חד משמעי.",
 );
 
 
 BEGIN_PGML
 
-Suppose [`f`] and [`g`] are functions satisfying
+נניח כי [`f`] ו-[`g`] פונקציות המקיימות:
+- [``\lim_{x \to [$c]} f(x) = 0``]
 
-- [``\lim_{x \to [$c]} f(x) = 0``],
+- [``\lim_{x \to [$c]} g(x) = 0``]
 
-- [``\lim_{x \to [$c]} g(x) = 0``], and
-
-- [``\lim_{x \to [$c]} \frac{f(x)}{g(x)} = [$a] ``].
+- [``\lim_{x \to [$c]} \frac{f(x)}{g(x)} = [$a] ``]
 
 [@ $mc1 -> print_q() @]***  
 [@ ANS( checkbox_cmp( $mc1->correct_ans() ) ); $mc1 -> print_a() @]***
