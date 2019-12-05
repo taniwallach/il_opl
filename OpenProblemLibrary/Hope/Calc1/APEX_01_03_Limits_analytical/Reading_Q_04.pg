@@ -23,7 +23,7 @@ loadMacros(
 SET_PROBLEM_LANGUAGE("he-IL");
 SET_PROBLEM_TEXTDIRECTION("rtl");
 
-@main::ALPHABET = ('א','ב','ג','ד','ה','ו');
+#@main::ALPHABET = ('א','ב','ג','ד','ה','ו');
 
 TEXT(beginproblem());
 
@@ -49,11 +49,13 @@ $mc1 -> makeLast(
 BEGIN_PGML
 
 נניח כי [`f`] ו-[`g`] פונקציות המקיימות:
-- [``\lim_{x \to [$c]} f(x) = 0``]
+- [``\lim_{x \to [$c]} f(x) = 0``],
 
-- [``\lim_{x \to [$c]} g(x) = 0``]
+- [``\lim_{x \to [$c]} g(x) = 0``],
 
-- [``\lim_{x \to [$c]} \frac{f(x)}{g(x)} = [$a] ``]
+- [``\lim_{x \to [$c]} \frac{f(x)}{g(x)} = [$a] ``],
+
+- הפונקציות [``f(x), g(x)``] שונות מאפס בסביבה נקובה של [`` x = [$c] ``].
 
 [@ $mc1 -> print_q() @]***  
 [@ ANS( checkbox_cmp( $mc1->correct_ans() ) ); $mc1 -> print_a() @]***
