@@ -25,7 +25,6 @@ loadMacros(
   "PGstandard.pl",
   "MathObjects.pl",
   "PGchoicemacros.pl",
-  "PGessaymacros.pl",
   "PGcourse.pl"
 );
 
@@ -39,15 +38,7 @@ install_problem_grader(~~&std_problem_grader);
 $showPartialCorrectAnswers = 0;
 $refreshCachedImages = 1;
 
-# $essay_instructions can be redefined globally by
-# creating a string $essay_instructions in a macro
-# file "PGcourse.pl" in the course templates/macros/
-# directory.
-
-if (!defined($essay_instructions)) {
-$essay_instructions = 
-"כתבו בפירוט כאילו אתם מסבירים את התשובה לאדם אחר בכיתה.";
-}
+# Technion version - remove essay part
 
 ######################################
 #  Setup
@@ -83,12 +74,6 @@ BEGIN_TEXT
 $BR
 \{ $mc->print_a() \}
 
-הסבירו את בחירתכם בתיבה הנתונה למטה.
-
-$essay_instructions 
-
-$BR
-\{ essay_box(15,60) \}
 END_TEXT
 Context()->normalStrings;
 
@@ -97,8 +82,6 @@ Context()->normalStrings;
 #  Answer evaluation
 
 ANS( radio_cmp( $mc->correct_ans() ) );
-
-ANS( essay_cmp() );
 
 #######################################
 #  Solution
@@ -121,6 +104,6 @@ $PAR
 END_SOLUTION
 Context()->normalStrings;
 
-COMMENT('Rated Quick.  Uses essay answer grader.  Multiple choice answers are always in the same order to make grading easier.');
+COMMENT('Technion version - dropped essay part.");
 
 ENDDOCUMENT();
