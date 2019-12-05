@@ -1,0 +1,62 @@
+## DBsubject(Calculus - single variable)
+## DBchapter(Limits and continuity)
+## DBsection(Rules of limits - basic)
+## Institution(Hope College)
+## Author(Paul Pearson)
+## Level(3)
+## MO(1)
+## TitleText1('APEX Calculus')
+## AuthorText1('Hartman')
+## EditionText1('3.0')
+## Section1('1.3')
+## Problem1('5')
+
+DOCUMENT();
+
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGML.pl",
+  "PGchoicemacros.pl",
+  "PGcourse.pl"
+);
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
+
+@main::ALPHABET = ('א','ב','ג','ד','ה','ו');
+
+TEXT(beginproblem());
+
+Context("Numeric");
+
+$a = random(2,9,1);
+do { $c = random(1,9,1); } until ($c != $a);
+
+$mc1 = new_checkbox_multiple_choice(displayLabels => 0);
+$mc1 -> qa (
+"מה ניתן לומר על הגודל היחסי של \( f(x) \) ו-\( g(x) \) כאשר \( x \) שואף ל- \( $c \)? בחר את כל האפשרויות הנכונות:",
+"הערכים של \( f(x) \) הם כ-$a פעמים יותר גדולים מהערכים של \( g(x) \) כאשר \( x \) שואף ל- \( $c \).", "\( f(x) \approx $a g(x) \) עבור ערכי \( x \) הקרובים ל- \( $c \).",
+);
+$mc1 -> extra(
+"הערכים של \( g(x) \) הם כ-$a פעמים יותר גדולים מהערכים של \( f(x) \) כאשר \( x \) שואף ל- \( $c \).",
+"\( g(x) \approx $a f(x) \) עבור ערכי \( x \) הקרובים ל- \( $c \).",
+);
+$mc1 -> makeLast(
+"לא ניתן לומר דבר באופן חד משמעי.",
+);
+
+
+BEGIN_PGML
+
+נניח כי [`f`] ו-[`g`] פונקציות המקיימות:
+- [``\lim_{x \to [$c]} f(x) = 0``]
+
+- [``\lim_{x \to [$c]} g(x) = 0``]
+
+- [``\lim_{x \to [$c]} \frac{f(x)}{g(x)} = [$a] ``]
+
+[@ $mc1 -> print_q() @]***  
+[@ ANS( checkbox_cmp( $mc1->correct_ans() ) ); $mc1 -> print_a() @]***
+END_PGML
+
+ENDDOCUMENT();

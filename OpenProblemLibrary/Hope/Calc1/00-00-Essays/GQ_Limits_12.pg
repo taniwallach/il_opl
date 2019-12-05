@@ -1,0 +1,126 @@
+#DESCRIPTION
+##  Calculus: functions
+##ENDDESCRIPTION
+
+
+## DBsubject(Calculus - single variable)
+## DBchapter(Limits and continuity)
+## DBsection(Rules of limits - basic)
+## Date(June 2013)
+## Institution(Hope College)
+## Author(Paul Pearson)
+## Level(2)
+## TitleText1('Cornell University Good Questions Project')
+## AuthorText1('Maria Terrell, Robert Connelly, David Henderson, Robert Strichartz')
+## EditionText1('')
+## Section1('.')
+## Problem1('12')
+## KEYWORDS('calculus', 'function')
+
+###################################
+#  Initialization
+
+DOCUMENT();        
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGchoicemacros.pl",
+  "PGessaymacros.pl",
+  "PGcourse.pl"
+);
+
+SET_PROBLEM_LANGUAGE("he-IL");
+SET_PROBLEM_TEXTDIRECTION("rtl");
+
+TEXT(beginproblem());
+
+install_problem_grader(~~&std_problem_grader);
+
+$showPartialCorrectAnswers = 0;
+$refreshCachedImages = 1;
+
+# $essay_instructions can be redefined globally by
+# creating a string $essay_instructions in a macro
+# file "PGcourse.pl" in the course templates/macros/
+# directory.
+
+if (!defined($essay_instructions)) {
+$essay_instructions = 
+"כתבו בפירוט כאילו אתם מסבירים את התשובה לאדם אחר בכיתה.";
+}
+
+######################################
+#  Setup
+
+Context("Numeric");
+
+$a = random(200,299,1);
+#do { $b = random(2,9,1); } until ($b != $a);
+
+SRAND(2); # fix the ordering in the multiple choice
+
+$mc = new_multiple_choice();
+$mc->qa(
+"אם \(\displaystyle{\lim_{x\rightarrow a} f(x)=0}\) וכן \(\displaystyle{\lim_{x\rightarrow a} g(x)=0}\), אזי \(\displaystyle{\lim_{x\rightarrow a} \frac{f(x)}{g(x)}}\):", 
+"לא ניתן לקבוע בצורה חד משמעית כיוון שאין מספיק נתונים. $BR",
+);
+#$mc->extra();
+$mc->makeLast(
+"שווה ל-1. $BR",
+"שווה ל-\( \infty \). $BR",
+"חייב להיות קיים. $BR",
+"לא קיים. $BR",
+"לא ניתן לקבוע בצורה חד משמעית כיוון שאין מספיק נתונים. $BR",
+);
+
+
+#######################################
+#  Main text
+
+Context()->texStrings;
+BEGIN_TEXT
+\{ $mc->print_q() \}
+$BR
+\{ $mc->print_a() \}
+
+הסבירו את בחירתכם בתיבה הנתונה למטה.
+
+$essay_instructions 
+
+$BR
+\{ essay_box(15,60) \}
+END_TEXT
+Context()->normalStrings;
+
+
+#######################################
+#  Answer evaluation
+
+ANS( radio_cmp( $mc->correct_ans() ) );
+
+ANS( essay_cmp() );
+
+#######################################
+#  Solution
+
+Context()->texStrings;
+BEGIN_SOLUTION
+התשובה הנכונה היא ${BBOLD}E${EBOLD}. $BR
+\(\frac{0}{0}\) אינו בהכרח שווה ל- \(1\), וחלוקה ב-0 לא גוררת שהגבול הוא אין-סוף.  
+$PAR
+הגבול לא חייב להיות קיים.  לדוגמא, אם \( f(x)=0 \) וכן
+\( g(x) = 0 \) לכל \( x \), אזי לכל \( a \) הגבול
+\( \displaystyle \lim_{x \to a} \frac{f(x)}{g(x)} \) לא קיים.
+$PAR
+בנוסף, הגבול יכול להיות קיים.  לדוגמא, אם \( f(x) = 2 x \) וכן \( g(x) = x \), אזי עבור \( a = 0 \) נקבל
+ \(\displaystyle{\lim_{x\rightarrow a} f(x)=0}\) וכן 
+\(\displaystyle{\lim_{x\rightarrow a} g(x)=0}\)
+והגבול \( \displaystyle \lim_{x \to a} \frac{f(x)}{g(x)} \) לא קיים ושווה ל- \( 2 \).  למעשה, אם \( 2 \) מוחלף ב- \( k \), אזי \( \displaystyle \lim_{x \to a} \frac{f(x)}{g(x)} = k \), המראה כי לגבול יכול להיות כל ערך \( k \).
+$PAR
+לכן, אין מספיק מידע כדי לענות על השאלה.
+END_SOLUTION
+Context()->normalStrings;
+
+COMMENT('Rated Quick.  Uses essay answer grader.  Multiple choice answers are always in the same order to make grading easier.');
+
+ENDDOCUMENT();
