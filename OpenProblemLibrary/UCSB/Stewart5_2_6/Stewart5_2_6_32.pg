@@ -1,0 +1,43 @@
+## DBsubject(Calculus - single variable)
+## DBchapter(Limits and continuity)
+## DBsection(Limits at infinity, horizontal and oblique asymptotes)
+## Institution(UCSB)
+## Level(2)
+## Static(1)
+## TitleText1('Calculus: Early Transcendentals')
+## AuthorText1('Stewart')
+## EditionText1('5')
+## Section1('2.6')
+## Problem1('32')
+## KEYWORDS('Product','Quotient','Differentiation')
+
+DOCUMENT();
+
+loadMacros(
+  "PGstandard.pl",
+  "PGchoicemacros.pl",
+  "PGcourse.pl"
+);
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
+TEXT(&beginproblem);
+$showPartialCorrectAnswers = 1;
+
+$a=random(1,10,1);
+$b=random(1,10,1);
+
+BEGIN_TEXT
+
+$PAR
+העריכו את הגבול הבא. במידת הצורך, הזינו INF עבור \( \infty \), MINF עבור \( -\infty \) או DNE במידה והגבול לא קיים.$PAR
+
+\[\displaystyle\lim_{x \to \infty} \tan^{-1}(x^2-x^4)\]
+$PAR
+
+הגבול = \{ans_rule(10)\}
+
+END_TEXT
+
+ANS(fun_cmp("-pi/2", var=>["INF","MINF","DNE"]));
+
+ENDDOCUMENT();
