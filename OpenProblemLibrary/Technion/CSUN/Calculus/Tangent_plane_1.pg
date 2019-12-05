@@ -97,8 +97,11 @@ $BR
 $BR
 א. וקטור נורמל:
 \{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
-
-\(\vec{N}\) = (\{$multians->ans_rule(8)\},\{$multians->ans_rule(8)\},\{$multians->ans_rule(8)\})
+\( \vec{N} = \left( \rule{0pt}{12pt} \right. \)
+  \{$multians->ans_rule(8)\},
+  \{$multians->ans_rule(8)\},
+  \{$multians->ans_rule(8)\}
+\( \left. \rule{0pt}{12pt} \right) \)
 \{ closeSpan() \}
 $PAR
 ב. משוואת מישור משיק:
