@@ -31,17 +31,22 @@ loadMacros(
 );
 
 TEXT(beginproblem());
+
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 $showPartialCorrectAnswers = 1;
 
 $a = random(2, 9, 1);
 $b = random(2, 9, 1);
 
 BEGIN_TEXT
-Find the maximum and minimum values of  \( f(x, y) = xy \) on the ellipse 
+$BR
+יש להשתמש בכופלי לגרנז' על מנת למצוא את ערכי המינימום והמקסימום של 
+\( f(x, y) = xy \), תחת האילוץ 
 \( $a\!x^{2} + y^{2} = $b \).
 $BR
-maximum value = \{ ans_rule(20) \}$BR
-minimum value = \{ ans_rule(20) \}
+מקסימום = \{ ans_rule(20) \}$BR
+מינימום = \{ ans_rule(20) \}
 END_TEXT
 
 ANS(num_cmp( .5*$b/sqrt($a) ) );
