@@ -39,33 +39,39 @@ loadMacros(
 );
 
 TEXT(beginproblem());
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 $showPartialCorrectAnswers = 1;
 
 $a = random(1, 10);
 $b = random(1, 10);
 
 BEGIN_TEXT
-The function \[ f(x, y) = xy(1 - $a x - $b y) \]
-has 4 critical points.  List them and select the type of
-critical point.
+$BR
+לפונקציה \[ f(x, y) = xy(1 - $a x - $b y) \]
+יש 4 נקודות קריטיות.
+יש לציין מהן הנקודות ולסווגן:
+
 $BR$BR
-Points should be entered as ordered pairs and listed
-in increasing lexicographic
-order.  By that we mean that \((x, y)\) comes before \((z, w)\) if 
-\( x < z \) or if \( x = z \) and \( y < w \).
+יש להזין את הנקודות לפי סדר לקסיקוגרפי,
+כלומר, 
+\((x, y)\) הנקודה
+תבוא לפני הנקודה
+\((z, w)\) אם
+\( x < z \) או אם \( x = z \) וגם \( y < w \).
 $BR$BR
-First point 
+נקודה ראשונה: 
 \{ ans_rule(25) \}
-of type \{ pop_up_list(['?','Maximum','Minimum','Saddle']) \}$BR
-Second point 
+מסוג: \{ pop_up_list(['?','מקסימום','מינימום','אוכף']) \}$BR
+נקודה שנייה:
 \{ ans_rule(25) \}
-of type \{ pop_up_list(['?','Maximum','Minimum','Saddle']) \}$BR
-Third point 
+מסוג: \{ pop_up_list(['?','מקסימום','מינימום','אוכף']) \}$BR
+נקודה שלישית 
 \{ ans_rule(25) \}
-of type \{ pop_up_list(['?','Maximum','Minimum','Saddle']) \}$BR
-Fourth point 
+מסוג \{ pop_up_list(['?','מקסימום','מינימום','אוכף']) \}$BR
+נקודה רביעית
 \{ ans_rule(25) \}
-of type \{ pop_up_list(['?','Maximum','Minimum','Saddle']) \}
+מסוג \{ pop_up_list(['?','מקסימום','מינימום','אוכף']) \}$BR
 END_TEXT
 
 $a3 = 3*$a;
@@ -73,13 +79,13 @@ $b3 = 3*$b;
 Context('Point');
 
 ANS(Compute("(0,0)")->cmp);
-ANS(str_cmp("Saddle", filters=>["trim_whitespace"]));
+ANS(str_cmp("אוכף", filters=>["trim_whitespace"]));
 ANS(Compute("(0, 1/$b)")->cmp);
-ANS(str_cmp("Saddle", filters=>["trim_whitespace"]));
+ANS(str_cmp("אוכף", filters=>["trim_whitespace"]));
 ANS(Compute("(1/$a3, 1/$b3)")->cmp);
-ANS(str_cmp("Maximum", filters=>["trim_whitespace"]));
+ANS(str_cmp("מקסימום", filters=>["trim_whitespace"]));
 ANS(Compute("(1/$a, 0)")->cmp);
-ANS(str_cmp("Saddle", filters=>["trim_whitespace"]));
+ANS(str_cmp("אוכף", filters=>["trim_whitespace"]));
 
 
 ENDDOCUMENT();		# This should be the last executable line in the problem.
