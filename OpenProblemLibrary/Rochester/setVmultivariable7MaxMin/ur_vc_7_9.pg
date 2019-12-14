@@ -35,18 +35,20 @@ loadMacros(
 
 TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
-
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 $a = random(2, 7, 1);
 $b = random(2, 7, 1);
 $c = $a**2;
 
 BEGIN_TEXT
-Find the maximum and minimum values of 
-\( f(x, y) = $b\!x + y \) on the ellipse 
-\( x^{2} + $c\!y^{2} = 1 \)
 $BR
-maximum value: \{ ans_rule(40) \}$BR
-minimum value: \{ ans_rule(40) \}
+יש להשתמש בכופלי לגרנז' על מנת למצוא את ערכי המינימום והמקסימום של 
+\( f(x, y) = $b\!x + y \) תחת האילוץ 
+\( x^{2} + $c\!y^{2} = 1 \).
+$BR
+מקסימום = \{ ans_rule(40) \}$BR
+מינימום = \{ ans_rule(40) \}
 END_TEXT
 
 
