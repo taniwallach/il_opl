@@ -34,24 +34,31 @@ loadMacros(
 
 ## Do NOT show partial correct answers
 $showPartialCorrectAnswers = 0;
-
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 $c = random(1,9);
 
 ## Ok, we are ready to begin the problem...
 ##
 TEXT(beginproblem());
 
-
 BEGIN_TEXT
-Find the absolute maximum and minimum of the function \( f(x,y) = y
-\sqrt x - y^2 - x + 3y \) on the domain \( 0 \le x \le 9,\ 0 \le y \le
-$c \).
+$BR
+ יש למצוא את ערכי המינימום והמקסימום הגלובליים עבור הפונקציה 
+\[ f(x,y) = y\sqrt x - y^2 - x + 3y\] 
+בתחום
+\( 0 \le x \le 9,\ 0 \le y \le
+$c \),
+ולציין את הנקודות בהן ערכים אלו מתקבלים:
 $PAR
-Absolute minimum value: \{ans_rule(10)\} attained at \{ans_rule(30)\}
+אם ערכי המינימום או המקסימום מתקבלים במספר נקודות, אנא הפרידו בין הנקודות על ידי פסיקים. 
 $PAR
-Absolute maximum value: \{ans_rule(10)\} attained at \{ans_rule(30)\}
+ערך המינימום המקומי: \{ans_rule()\}$BR
+מתקבל בנקודות: \{ans_rule(20)\}.
 $PAR
-In each case, your second answer should be one or more points \((x,y)\).  If there is more than one point at which the maximum or minimum value is attained, enter them all separated by commas (e.g. (1,2),(1,3) ).
+
+ערך המקסימום המקומי: \{ans_rule()\}$BR
+מתקבל בנקודות: \{ans_rule(20)\}.
 END_TEXT
 
 Context("Point");
