@@ -32,6 +32,7 @@ loadMacros(
   "PGstandard.pl",
   "PGchoicemacros.pl",
   "PGgraphmacros.pl",
+    "MathObjects.pl",
   "Dartmouthmacros.pl",
   "PGcourse.pl"
 );
@@ -40,6 +41,8 @@ loadMacros(
 ## Do NOT show partial correct answers
 $showPartialCorrectAnswers = 0;
 
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 $r = random(1,20);
 $a = random(1,10);  #keeps x and y same sign
 
@@ -48,23 +51,26 @@ $a = random(1,10);  #keeps x and y same sign
 ##
 TEXT(beginproblem());
 
-
 BEGIN_TEXT
 $BR
-
-Find the maximum and minimum values of the function 
-\(f(x,y,z) = yz + xy\) subject to the constraints 
-\( y^2 + z^2 = \{$r*$r\} \) and \( xy = $a\).
-
-Maximum value is \{ans_rule()\}.
-
-Minimum value is \{ans_rule()\}.
-
+יש למצוא את ערכי המינימום והמקסימום עבור הפונקציה
+\(f(x,y,z) = yz + xy\)  תחת האילוצים \( y^2 + z^2 = \{$r*$r\} \) ו 
+\( xy = $a\).
+$BR$BR
+ערך המקסימום \{ans_rule()\}, מתקבל בנקודה 
+(\{ans_rule(15)\}, \{ans_rule(15)\},\{ans_rule(15)\}).
+$BR
+ערך המינימום \{ans_rule()\}, מתקבל בנקודה
+(\{ans_rule(15)\}, \{ans_rule(15)\},\{ans_rule(15)\}).
 $PAR
 END_TEXT
+ANS(Compute("$a + $r*$r/2")->cmp());
+ANS(Compute("$a*sqrt(2)/$r")->cmp());
+ANS(Compute("$r/sqrt(2)")->cmp());
+ANS(Compute("$r/sqrt(2)")->cmp());
 
-
-ANS(num_cmp($a + $r*$r/2));
-
-ANS(num_cmp($a - $r*$r/2));
+ANS(Compute("$a - $r*$r/2")->cmp());
+ANS(Compute("$a*sqrt(2)/$r")->cmp());
+ANS(Compute("$r/sqrt(2)")->cmp());
+ANS(Compute("-$r/sqrt(2)")->cmp());
 ENDDOCUMENT();
