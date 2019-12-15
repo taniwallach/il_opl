@@ -1,0 +1,66 @@
+## DBsubject(Calculus - multivariable)
+## DBchapter(Differentiation of multivariable functions)
+## DBsection(Lagrange multipliers and constrained optimization)
+## Institution(W.H.Freeman)
+## Author(JustAsk - Vladimir Finkelshtein)
+## MLT(OptimizeOverOpenRegion)
+## Level(3)
+## MO(1)
+## TitleText1('Calculus: Early Transcendentals')
+## AuthorText1('Rogawski')
+## EditionText1('2')
+## Section1('14.7')
+## Problem1('37')
+## KEYWORDS('calculus')
+## RESOURCES('14-7-35-image.png')
+
+DOCUMENT();
+
+loadMacros(
+  "PGstandard.pl",
+  "Parser.pl",
+  "freemanMacros.pl",
+  "PGgraphmacros.pl",
+  "PGchoicemacros.pl",
+  "PGcourse.pl"
+);
+
+TEXT(beginproblem());
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
+Context()->texStrings;
+$context = Context();
+$context->variables->add(y=>'Real');
+$a=random(1,5,1);
+$b=random(2,8,1);
+$aminb=$a-$b;
+
+$f=Formula("$a*x^3-$b*y")->reduce();
+$fx=Formula("3*$a*x^2")->reduce();
+$fy=Real(-$b);
+
+$f1=Formula("$a*x^3")->reduce();
+$f2=Formula("$a-$b*y")->reduce();
+$f3=Formula("$a*x^3-$b")->reduce();
+$f4=Formula("-$b*y")->reduce();
+
+$fmin=-$b;
+$fmax=$a;
+
+BEGIN_TEXT
+\{ textbook_ref_exact("Rogawski ET 2e", "14.7","37") \}
+$PAR
+יש למצוא את ערכי המינימום והמקסימום הגלובליים של הפונקציה:
+\(f(x,y)=$f, \quad 0 \le x,y \le 1\)
+$PAR
+מינימום גלובלי = \{ans_rule()\} $BR
+מקסימום גלובלי = \{ans_rule()\} 
+$BR
+END_TEXT 
+
+Context()->normalStrings;
+ANS(Real($fmin)->cmp);
+ANS(Real($fmax)->cmp);
+Context()->texStrings;
+
+ENDDOCUMENT();
