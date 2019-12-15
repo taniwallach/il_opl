@@ -26,7 +26,8 @@ loadMacros(
 );
 
 TEXT(beginproblem());
-
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 Context()->texStrings;
 $context = Context();
 $context->variables->add(y=>'Real');
@@ -49,11 +50,11 @@ $fmax=$a;
 BEGIN_TEXT
 \{ textbook_ref_exact("Rogawski ET 2e", "14.7","37") \}
 $PAR
-Determine the global extreme values of the function 
+יש למצוא את ערכי המינימום והמקסימום הגלובליים של הפונקציה:
 \(f(x,y)=$f, \quad 0 \le x,y \le 1\)
 $PAR
-\(f_{min}=\)\{ans_rule()\} $BR
-\(f_{max}=\)\{ans_rule()\} 
+מינימום גלובלי = \{ans_rule()\} $BR
+מקסימום גלובלי = \{ans_rule()\} 
 $BR
 END_TEXT 
 
@@ -61,31 +62,5 @@ Context()->normalStrings;
 ANS(Real($fmin)->cmp);
 ANS(Real($fmax)->cmp);
 Context()->texStrings;
-
-SOLUTION(EV3(<<'END_SOLUTION'));
-$PAR
-$SOL
-$BR
-First we find the critical points
-\[f_x(x,y)=$fx=0, \quad f_y(x,y)=$fy\]
-The two equations have no solutions, hence there are no critical points.
-$BR
-The extreme values occur either at the critical points or at a point on the boundary of the domain. $BR
-To check the boundary we consider each edge of the square \(0\le x,y \le 1\) separately.$BR
-\{image("14-7-35-image.png", width=>150, height=>150)\}
-$BR
-The segment \(\mathrm{OA}\): On this segment \(y=0, 0\le x\le 1\), and \(f\) takes the values \(f(x,0)=$f1\). $BR
-The minimum value is \(f(0,0)=0\) and the maximum value is \(f(1,0)=$a\). $PAR
-The segment \(\mathrm{AB}\): On this segment \(x=1, 0\le y\le 1\), and \(f\) takes the values \(f(1,y)=$f2\). $BR
-The minimum value is \(f(1,1)=$aminb\) and the maximum value is \(f(1,0)=$a\). $PAR
-The segment \(\mathrm{BC}\): On this segment \(y=1, 0\le x\le 1\), and \(f\) takes the values \(f(x,1)=$f3\). $BR
-The minimum value is \(f(0,1)=-$b\) and the maximum value is \(f(1,1)=$aminb\). $PAR
-The segment \(\mathrm{OC}\): On this segment \(x=0, 0\le y\le 1\), and \(f\) takes the values \(f(0,y)=$f4\). $BR
-The minimum value is \(f(0,1)=-$b\) and the maximum value is \(f(0,0)=0\). $PAR
-
-The smallest value is \(f_{min}=$fmin\) and it is the global minimum of \(f\) on the square. $BR
-The global maximum is the largest value \(f_{max}=$fmax\).
-$BR
-END_SOLUTION
 
 ENDDOCUMENT();
