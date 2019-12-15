@@ -26,7 +26,8 @@ loadMacros(
 );
 
 TEXT(beginproblem());
-
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 Context()->texStrings;
 $context = Context();
 $context->variables->add(y=>'Real');
@@ -68,11 +69,11 @@ $fmin=0;
 BEGIN_TEXT
 \{ textbook_ref_exact("Rogawski ET 2e", "14.7","40") \}
 $PAR
-Determine the global extreme values of the function 
+יש לקבוע מהם ערכי המינימום והמקסימום בגלובלים של הפונקציה 
 \(f(x,y)=$f, \quad x,y \ge 0,  x+y \le 1\)
 $PAR
-\(f_{min}=\)\{ans_rule()\} $BR
-\(f_{max}=\)\{ans_rule()\} 
+מינימום גלובלי = \{ans_rule()\} $BR
+מקסימום גלובלי =\{ans_rule()\} 
 $BR
 END_TEXT 
 
@@ -81,38 +82,5 @@ ANS(Real($fmin)->cmp);
 ANS(Real($fmax)->cmp);
 Context()->texStrings;
 
-SOLUTION(EV3(<<'END_SOLUTION'));
-$PAR
-$SOL
-$BR
-We examine the critical points
-\[f_x(x,y)=$fx=$fx1=0\]
-\[f_y(x,y)=$fy=0\]
-The first equation gives \(x=0\) or \(y=$y\). $BR
-Substituting \(x=0\) in the second equation gives \($c2 y=0\) or \(y=0\). $BR
-We obtain the critical point \((0,0)\). We now substitute \(y=$y\) in the second equation and solve for \(x\):
-\[$fy1=$fy2=0 \quad \Rightarrow \quad x=0, x=$x0 \]
-We get the critical points \((0,0), ($x0,$y0)\). $BR
-None of the critical points is in the interior of the domain.
-$PAR
-We check the boundary. The boundary consists of the three segments \(\mathrm{OA},\mathrm{OB}\) and \(\mathrm{AB}\) shown in the figure.$BR
-We consider each part of the boundary separately. $BR
-\{image("14-7-39-image.png", width=>150, height=>150)\}
-$BR
-The segment \(\mathrm{OA}\): On this segment \(y=0, 0\le x\le 1\), and \(f(x,y)=f(x,0)=$f1\). $BR
-The minimum value is \(f(0,0)=0\) and the maximum value is \(f(1,0)=$a\). $BR
-The segment \(\mathrm{OB}\): On this segment \(x=0, 0\le y\le 1\), and \(f(x,y)=f(0,y)=$f2\). $BR
-The minimum value is \(f(0,0)=0\) and the maximum value is \(f(1,0)=$c\). $BR
-
-The segment \(\mathrm{AB}\): On this segment \(y=1-x, 0\le x\le 1\), and 
-\[f(x,1-x)=$f3=$f31\]
-
-We find extreme values of \(g(x)=$f31\) in the interval \(0\le x\le 1\). $BR Setting \(g'(x)=0\) we find
-\[g'(x)=$gder=0 \quad \Rightarrow \quad x=$gx\]
-\[g\left($gx\right)=$gmin, \quad g(0)=$g0, \quad g(1)=$g1\]
-$PAR
-In conclusion, we find that the global minimum of \(f\) on the given domain is \(f_{min}=0\) and the global maximum \(f_{max}=$fmax\)
-$BR
-END_SOLUTION
 
 ENDDOCUMENT();
