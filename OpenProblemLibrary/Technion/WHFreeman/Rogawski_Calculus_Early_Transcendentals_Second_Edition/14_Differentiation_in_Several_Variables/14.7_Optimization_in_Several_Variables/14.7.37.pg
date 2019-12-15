@@ -48,19 +48,29 @@ $fmin=-$b;
 $fmax=$a;
 
 BEGIN_TEXT
-\{ textbook_ref_exact("Rogawski ET 2e", "14.7","37") \}
+$BR
+יש למצוא את ערכי המינימום והמקסימום הגלובליים עבור הפונקציה 
+\[f(x,y)=$f\] בתחום
+\( 0 \le x,y \le 1\)
+ולציין את הנקודות בהן ערכים אלו מתקבלים:
 $PAR
-יש למצוא את ערכי המינימום והמקסימום הגלובליים של הפונקציה:
-\(f(x,y)=$f, \quad 0 \le x,y \le 1\)
+
+אם ערכי המינימום או המקסימום מתקבלים במספר נקודות, אנא הפרידו בין הנקודות על ידי פסיקים. 
 $PAR
-מינימום גלובלי = \{ans_rule()\} $BR
-מקסימום גלובלי = \{ans_rule()\} 
+ערך המינימום המקומי: \{ans_rule()\}$BR
+מתקבל בנקודות: \{ans_rule(20)\}.
+$PAR
+
+ערך המקסימום המקומי: \{ans_rule()\}$BR
+מתקבל בנקודות: \{ans_rule(20)\}.
 $BR
 END_TEXT 
 
 Context()->normalStrings;
-ANS(Real($fmin)->cmp);
-ANS(Real($fmax)->cmp);
+ANS(num_cmp(-$b));
+ANS(List(Point(0,1))->cmp());
+ANS(num_cmp($a));
+ANS(List(Point(1,0))->cmp());
 Context()->texStrings;
 
 ENDDOCUMENT();
