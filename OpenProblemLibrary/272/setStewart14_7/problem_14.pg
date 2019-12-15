@@ -33,7 +33,8 @@ loadMacros(
 
 ## Do show partial correct answers
 $showPartialCorrectAnswers = 1;
-
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 Context("Point");
 
 $a = Real(random(1,7));
@@ -47,18 +48,19 @@ TEXT(beginproblem());
 
 Context()->texStrings;
 BEGIN_TEXT
-Find the absolute minimum and absolute maximum of the function
-\( f(x,y) = xy - $a y - $b x + \{$a*$b\} \) on the region on or above
-\( y = x^2\) and on or below \( y = $k\) and list the points where they occur.
+$BR
+יש למצוא את ערכי המינימום והמקסימום הגלובליים עבור הפונקציה 
+\( f(x,y) = xy - $a y - $b x + \{$a*$b\} \) בתחום החסום מלמטה על ידי
+\( y = x^2\) ומלמעלה על ידי  \( y = $k\) ולציין את הנקודות בהן ערכים אלו מתקבלים:
 $PAR
-If the absolute min or max is attained at multiple points list them all, separated by commas. 
+אם ערכי המינימום או המקסימום מתקבלים במספר נקודות, אנא הפרידו בין הנקודות על ידי פסיקים. 
 $PAR
-Absolute minimum value: \{ans_rule()\}$BR
-attained at \{ans_rule(20)\}.
+ערך המינימום המקומי: \{ans_rule()\}$BR
+מתקבל בנקודות: \{ans_rule(20)\}.
 $PAR
 
-Absolute maximum value: \{ans_rule()\}$BR
-attained at \{ans_rule(20)\}.
+ערך המקסימום המקומי: \{ans_rule()\}$BR
+מתקבל בנקודות: \{ans_rule(20)\}.
 
 END_TEXT
 
