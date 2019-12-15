@@ -24,13 +24,15 @@ loadMacros(
   "PGchoicemacros.pl",
   "PGgraphmacros.pl",
   "Dartmouthmacros.pl",
+  "MathObjects.pl",
   "PGcourse.pl"
 );
  
 
 ## Do NOT show partial correct answers
 $showPartialCorrectAnswers = 0;
-
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
 $a = non_zero_random(-10,10);
 $r = random(1,20);
 
@@ -43,26 +45,26 @@ TEXT(beginproblem());
 
 BEGIN_TEXT
 $BR
-
-Find the maximum and minimum values of the function \(f(x,y,z) = 3x - y -3z\) subject to the constraints \(x^2 + 2z^2  = \{$r*$r\} \) and 
+יש למצוא את ערכי המינימום והמקסימום עבור הפונקציה
+\(f(x,y,z) = 3x - y -3z\) תחת האילוצים \(x^2 + 2z^2  = \{$r*$r\} \) ו 
 \( x + y - z = $a\).
-
-Maximum value is \{ans_rule()\}, occuring at 
+$BR$BR
+ערך המקסימום \{ans_rule()\}, מתקבל בנקודה 
 (\{ans_rule(15)\}, \{ans_rule(15)\},\{ans_rule(15)\}).
-
-Minimum value is \{ans_rule()\}, occuring at 
+$BR
+ערך המינימום \{ans_rule()\}, מתקבל בנקודה
 (\{ans_rule(15)\}, \{ans_rule(15)\},\{ans_rule(15)\}).
 $PAR
 END_TEXT
 
-ANS(num_cmp(-$a + 12*$r/sqrt(6)));
-ANS(num_cmp(2*$r/sqrt(6)));
-ANS(num_cmp($a - 3*$r/sqrt(6)));
-ANS(num_cmp(-$r/sqrt(6)));
-ANS(num_cmp(-$a - 12*$r/sqrt(6)));
-ANS(num_cmp(-2*$r/sqrt(6)));
-ANS(num_cmp($a + 3*$r/sqrt(6)));
-ANS(num_cmp($r/sqrt(6)));
+ANS(Compute("-$a + 12*$r/sqrt(6)")->cmp());
+ANS(Compute("2*$r/sqrt(6)")->cmp());
+ANS(Compute("$a - 3*$r/sqrt(6)")->cmp());
+ANS(Compute("-$r/sqrt(6)")->cmp());
+ANS(Compute("-$a - 12*$r/sqrt(6)")->cmp());
+ANS(Compute("-2*$r/sqrt(6)")->cmp());
+ANS(Compute("$a + 3*$r/sqrt(6)")->cmp());
+ANS(Compute("($r/sqrt(6))")->cmp());
 ENDDOCUMENT();
 
 
