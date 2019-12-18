@@ -68,7 +68,13 @@ $PAR
 END_TEXT
 ANS(fun_cmp("0",vars=>["x","y"]));
 
-ANS(fun_cmp("x*(2*$a+($a**2)*y)*e^{$a*y}",vars=>["x","y"]));
+# OLD 
+# ANS(fun_cmp("x*(2*$a+($a**2)*y)*e^{$a*y}",vars=>["x","y"]));
+# OK:
+# ANS(fun_cmp("($a)*x*(2+(($a)*y))*e^{$a*y}",vars=>["x","y"]));
+
+ANS(fun_cmp("x*((2*($a))+(($a)**2)*y)*e^{$a*y}",vars=>["x","y"]));
+
 
 ANS(fun_cmp("$a*y*e^{$a*y} + e^{$a*y}",vars=>["x","y"]));
 
