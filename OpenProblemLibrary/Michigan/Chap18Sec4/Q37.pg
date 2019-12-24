@@ -67,25 +67,28 @@ Context()->texStrings;
 TEXT(beginproblem());
 BEGIN_TEXT
 $BR
-יהי \( \vec F = $fx\,\vec i + $fy\,\vec j \). 
+נתון השדה הוקטורי \( \vec F = $fx\, \hat{\imath} + $fy\, \hat{\jmath} \). 
 $BR
-בהנתן האינטגרל הקווי עבור \( \vec F \) מסביב למעגל שרדיוסו \( a \), מרכזו בראשית הצירים וכיוונו נגד כיוון השעון.
-
+נסמן ב-\(C_a\) את המעגל שמרכזו בראשית הצירים, רדיוסו \(a\) , ומגמתו נגדית למגמת מחוגי השעון.
 $PAR
-${BBOLD}.א$EBOLD
-יש למצוא את האינטגרל הקווי עבור \( a=1 \):
-$BR
+א.
+עבור \(a = 1\):
+\{ openSpan( { "dir" => "ltr" } ) \}
+\(\displaystyle \oint_{C_1} \vec{F}\cdot d\vec{r} = \)
 \{ ans_rule(35) \}
+\{ closeSpan() \}
 
 $PAR
-${BBOLD}ב.$EBOLD
-יש למצוא את הערך של  \( a \) עבורו האינטגרל הקווי מקסימלי:
+ב.
+יש למצוא את ערכו של הפרמטר \(a\) שעבורו העבודה \(\displaystyle\oint_{C_a} \vec{F}\cdot d\vec{r}\) מקבלת את ערכה המקסימלי:
 $BR
 \{ openSpan( { "dir" => "ltr" } ) \}
 \( a = \) \{ ans_rule(15) \}
 \{ closeSpan() \}
 $BR
-${BITALIC}(ודאו כי אתם יכולים להסביר למה הערך המתקבל עבור התשובה שלכם הוא המקסימום הנכון.)$EITALIC
+
+(הסבירו לעצמכם במילים כיצד ניתן להגיע לתשובה שבסעיף ב' ללא חישוב העבודה כמו בסעיף א').
+
 
 END_TEXT
 Context()->normalStrings;
@@ -93,45 +96,47 @@ Context()->normalStrings;
 ANS($ans1->cmp() );
 ANS($ans2->cmp() );
 
-($n,$d) = reduce( $k2, 2 );
-$k2o2 = ( $d == 1 ) ? $n : "\frac{$n}{$d}";
-($n,$d) = reduce( $k1, 4 );
-$k1o4 = ( $d == 1 ) ? $n : "\frac{$n}{$d}";
-($n,$d) = reduce( 2*$k2 - $k1, 2 );
-$val = ( $d == 1 ) ? $n : "\frac{$n}{$d}";
+#($n,$d) = reduce( $k2, 2 );
+#$k2o2 = ( $d == 1 ) ? $n : "\frac{$n}{$d}";
+#($n,$d) = reduce( $k1, 4 );
+#$k1o4 = ( $d == 1 ) ? $n : "\frac{$n}{$d}";
+#($n,$d) = reduce( 2*$k2 - $k1, 2 );
+#$val = ( $d == 1 ) ? $n : "\frac{$n}{$d}";
 
-Context()->texStrings;
-SOLUTION(EV3(<<'END_SOLUTION'));
-$PAR פתרון $PAR
+#Context()->texStrings;
+#SOLUTION(EV3(<<'END_SOLUTION'));
+#$PAR פתרון $PAR
 
-${BBOLD}א.$EBOLD
-נשתמש בנוסחת גרין. יהי \(R\) השטח החסום על ידי המעגל \(C\).
-אזי:
-\[
-\int_C \vec F\cdot d\vec r =
-\int_R\left( \frac{\partial}{\partial x}$fy -
-             \frac{\partial}{\partial y}$fx\right)\,dA =
-\]
-\[
-\int_R $k2 - $k1(x^2 + y^2)\, dA.
-\]
-נמיר לקורדינטות פולריות ונקבל:
-\[
-\int_C \vec F\cdot d\vec r =
-\int_0^{2\pi}\int_0^1 ($k2 - $k1 r^2)r\,dr\,d\theta =
-2\pi\left($k2o2 r^2 - $k1o4 r^4\right)\bigg|_0^1 = $val\pi.
-\]
+#${BBOLD}א.$EBOLD
+#נשתמש בנוסחת גרין.
+#יהי \(R\) השטח החסום על ידי המעגל \(C\)#.
+#אזי
 
-$PAR
-${BBOLD}ב.$EBOLD
-האינטגרנד של האינטגרל עבור הדיסקה \(R\) הוא
-\($k2 - $k1(x^2+y^2)\). מכיוון שהאינטגרנד חיובי עבור
-\(x^2 + y^2 < \frac{$k2}{$k1} = $asq\) ושלילי עבור
-\(x^2 + y^2 > $asq\), האינטגרנד חיובי בתוך מעגל ברדיוס $a ושלילי מחוץ למעגל. 
-לכן, האינטגרל ב \(R\) הולך וגדל עם \(a\) עד ש \(a=$a\) ואז הולך וקטן. לכן, הערך המקסימלי מתקבל עבור
-\(a = $a\).
+#\[
+#\int_C \vec F\cdot d\vec r =
+#\int_R\left( \frac{\partial}{\partial x}$fy -
+#             \frac{\partial}{\partial y}$fx\right)\,dA =
+#\]
+#\[
+#\int_R $k2 - $k1(x^2 + y^2)\, dA.
+#\]
+#נמיר לקורדינטות פולריות ונקבל:
+#\[
+#\int_C \vec F\cdot d\vec r =
+#\int_0^{2\pi}\int_0^1 ($k2 - $k1 r^2)r\,dr\,d\theta =
+#2\pi\left($k2o2 r^2 - $k1o4 r^4\right)\bigg|_0^1 = $val\pi.
+#\]
 
-END_SOLUTION
+#$PAR
+#${BBOLD}ב.$EBOLD
+#האינטגרנד של האינטגרל עבור הדיסקה \(R\) הוא
+#\($k2 - $k1(x^2+y^2)\). מכיוון שהאינטגרנד חיובי עבור
+#\(x^2 + y^2 < \frac{$k2}{$k1} = $asq\) ושלילי עבור
+#\(x^2 + y^2 > $asq\), האינטגרנד חיובי בתוך מעגל ברדיוס $a ושלילי מחוץ למעגל. 
+#לכן, האינטגרל ב \(R\) הולך וגדל עם \(a\) עד ש \(a=$a\) ואז הולך וקטן. לכן, הערך המקסימלי מתקבל עבור
+#\(a = $a\).
+
+#END_SOLUTION
 Context()->normalStrings;
 
 ;
