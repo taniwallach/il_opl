@@ -71,11 +71,9 @@ if($c > 0){$c_str = "+ $c";}
 if ($c == 1){$c_str = "+";}
 if ($c == -1){$c_str = "-";}
 
-$d = $a+$b+$c*$z**2;
+# x^2 is always 1 and y^2 is always 2 for the allowed points.
+$d = $a + 4 * $b + $c*$z**2;
 
-#
-#  The function
-#
 $f = "$a_str x^2 $b_str y^2 $c_str z^2";
 
 #
@@ -141,8 +139,11 @@ $BR
 $BR
 א. וקטור נורמל:
 \{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
-
-\(\vec{N}\) = (\{$multians->ans_rule(8)\},\{$multians->ans_rule(8)\},\{$multians->ans_rule(8)\})
+\( \vec{N} = \left( \rule{0pt}{12pt} \right. \)
+  \{$multians->ans_rule(8)\},
+  \{$multians->ans_rule(8)\},
+  \{$multians->ans_rule(8)\}
+\( \left. \rule{0pt}{12pt} \right) \)
 \{ closeSpan() \}
 $PAR
 ב. משוואת מישור משיק:

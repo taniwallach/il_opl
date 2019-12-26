@@ -104,6 +104,6 @@ $PAR
 END_SOLUTION
 Context()->normalStrings;
 
-COMMENT('Technion version - dropped essay part.");
+COMMENT('Technion version - dropped essay part.');
 
 ENDDOCUMENT();
