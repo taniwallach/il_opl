@@ -1,0 +1,101 @@
+# DESCRIPTION
+# Problem from Calculus, multi-variable, Hughes-Hallett et al.,
+# originally from 5ed (with updates)
+# WeBWorK problem written by Gavin LaRose, <glarose@umich.edu>
+
+## Tagged by glr 02/08/10
+
+
+## DBsubject(Calculus - multivariable)
+## DBchapter(Differentiation of multivariable functions)
+## DBsection(Extreme values and optimization)
+## Institution(University of Michigan)
+## Author(Gavin LaRose)
+## Level(5)
+## MO(1)
+## TitleText1('Calculus')
+## TitleText2('Calculus')
+## TitleText3('Applied Calculus')
+## TitleText4('Calculus')
+## AuthorText1('Hughes-Hallett')
+## AuthorText2('Hughes-Hallett')
+## AuthorText3('Hughes-Hallett')
+## AuthorText4('Hughes-Hallett')
+## EditionText1('5')
+## EditionText2('6')
+## EditionText3('4')
+## EditionText4('7')
+## Section1('15.2')
+## Section2('15.2')
+## Section3('9.5')
+## Section4('15.2')
+## Problem1('25')
+## Problem2('23')
+## Problem3('21')
+## Problem4('35')
+## KEYWORDS('maximum', 'minimum', 'absolute maximum', 'absolute minimum', 'local maximum', 'local minimum', 'extrema', 'calculus', 'differentiation', 'multivariable', 'functions')
+
+## Textbook tags
+## HHChapter1('Optimization: Local and Global Extrema')
+
+DOCUMENT();
+
+loadMacros(
+  "PGstandard.pl",
+  "PGchoicemacros.pl",
+  "MathObjects.pl",
+  "PGcourse.pl"
+);
+
+Context("Numeric");
+$showPartialCorrectAnswers = 1;
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
+$c1 = random(6, 10, 0.5);
+$c2 = random(3, 5.4, 0.2);
+$q1 = random(0.01, 0.04, 0.01);
+$q2 = $q1 + random(0.01, 0.03, 0.01);
+$p0 = random(30,80,10);
+
+$twoq2 = 2*$q2;
+$c1pc2 = $c1 + $c2;
+$q2pq1 = $q2 + $q1;
+$twoq2pq1 = 2*$q2pq1;
+$fourq2 = 4*$q2;
+
+$q1val = Compute( "$p0/(2*(2*$q1 + $q2))" );
+$q2val = Compute( "$p0*$q1/(2*(2*$q1 + $q2)*$q2)" );
+($q1n, $q1d) = reduce( 10000*$p0, 20000*(2*$q1 + $q2) );
+($q2n, $q2d) = reduce( 10000*$p0*$q1, (20000*(2*$q1 + $q2)*$q2) );
+$q1disp = ( $q1d == 1 ) ? $q1n : "\frac{$q1n}{$q1d}";
+$q2disp = ( $q2d == 1 ) ? $q2n : "\frac{$q2n}{$q2d}";
+
+$dval = $twoq2pq1*$twoq2 - $twoq2*$twoq2;
+
+Context()->texStrings;
+TEXT(beginproblem());
+BEGIN_TEXT
+$BR
+חברה מחזיקה בזוג מפעלים המייצרים את אותו המוצר, כאשר משוואות העלות הכוללת הן:
+\[
+C_1 = $c1 + $q1 q_1^2 \quad\mbox{,}\quad C_2 = $c2 + $q2 q_2^2
+\]
+כאשר  \(q_1\) ו \(q_2\) הן הכמויות המיוצרות על ידי כל מפעל בהתאמה. 
+הקשר בין הכמות הכוללת הנדרשת \(q = q_1 + q_2\)  למחיר
+\(p\) , נתון על ידי:
+\[
+p = $p0 - $q2 q.
+\]
+מהי הכמות שכל מפעל צריך ליצר על מנת למקסם את רווחי החברה?
+$PAR
+\(= q_1\) \{ ans_rule(35) \}$BR
+\(= q_2 \) \{ ans_rule(35) \}
+
+END_TEXT
+Context()->normalStrings;
+
+ANS($q1val->cmp() );
+ANS($q2val->cmp() );
+
+;
+ENDDOCUMENT();
