@@ -2,7 +2,8 @@
 # Problem from Calculus, multi-variable, Hughes-Hallett et al.,
 # originally from 5ed (with updates)
 # WeBWorK problem written by Gavin LaRose, <glarose@umich.edu>
-
+# Based on M.Rosser "Basic Mathematics for Economists" p.318 (NY, Routledge, 1993) 
+# update by Lydia Peres Hari, recoded by shani barzel on january 2020
 ## Tagged by glr 02/08/10
 
 
@@ -51,49 +52,65 @@ Context("Numeric");
 $showPartialCorrectAnswers = 1;
 SET_PROBLEM_TEXTDIRECTION("rtl");
 SET_PROBLEM_LANGUAGE("he-IL");
-$c1 = random(6, 10, 0.5);
-$c2 = random(3, 5.4, 0.2);
-$q1 = random(0.01, 0.04, 0.01);
-$q2 = $q1 + random(0.01, 0.03, 0.01);
-$p0 = random(30,80,10);
+$a = random(6, 10, 0.5);
+$c = random(3, 5.4, 0.2);
+$b = random(0.01, 0.04, 0.01);
+$d = random(0.01, 0.05, 0.01);
+$n = random(0.01, 0.06, 0.01);
+$m = random(30,80,10);
 
-$twoq2 = 2*$q2;
-$c1pc2 = $c1 + $c2;
-$q2pq1 = $q2 + $q1;
-$twoq2pq1 = 2*$q2pq1;
-$fourq2 = 4*$q2;
-
-$q1val = Compute( "$p0/(2*(2*$q1 + $q2))" );
-$q2val = Compute( "$p0*$q1/(2*(2*$q1 + $q2)*$q2)" );
-($q1n, $q1d) = reduce( 10000*$p0, 20000*(2*$q1 + $q2) );
-($q2n, $q2d) = reduce( 10000*$p0*$q1, (20000*(2*$q1 + $q2)*$q2) );
-$q1disp = ( $q1d == 1 ) ? $q1n : "\frac{$q1n}{$q1d}";
-$q2disp = ( $q2d == 1 ) ? $q2n : "\frac{$q2n}{$q2d}";
-
-$dval = $twoq2pq1*$twoq2 - $twoq2*$twoq2;
+# m = p0, n=q2, a=c1, b=q1, c=c2, d= q2
+$q1val = Compute("0.5*$m/($n+$b+($n*$b/$d))");
+$q2val = Compute("0.5*$m*($b/$d)/($n+$b+($n*$b/$d))");
 
 Context()->texStrings;
 TEXT(beginproblem());
 BEGIN_TEXT
 $BR
-חברה מחזיקה בזוג מפעלים המייצרים את אותו המוצר, כאשר משוואות העלות הכוללת הן:
+חברה מסויימת מוכרת סוג מסויים של רכיבים אשר מיוצרים בשני מפעלים שונים.$BR
+העלות הכוללת של הייצור בכל אחד מן המפעלים נתונה ע"י:
 \[
-C_1 = $c1 + $q1 q_1^2 \quad\mbox{,}\quad C_2 = $c2 + $q2 q_2^2
+C_1 = $a + $b q_1^2 \quad\mbox{,}\quad C_2 = $c + $d q_2^2
 \]
-כאשר  \(q_1\) ו \(q_2\) הן הכמויות המיוצרות על ידי כל מפעל בהתאמה. 
-הקשר בין הכמות הכוללת הנדרשת \(q = q_1 + q_2\)  למחיר
-\(p\) , נתון על ידי:
+כאשר  \(q_1\) , \(q_2\) מסמלים את כמות הרכיבים המיוצרים בכל אחד מן המפעלים. 
+(כלומר, במפעל מס' 1 עלות הייצור של כל רכיב נמוכה יותר לעומת עלות הייצור במפעל מס' 2, אבל עלות התפעול הקבועה גבוהה יותר).
+$BR
+כמות הרכיבים הכוללת הדרושה לחברה תסומן ע"י: 
+\(q = q_1 + q_2\) .
+$BR
+המחיר שהחברה יכולה לדרוש עבור כל רכיב תלוי בכמות הרכיבים שיוצרו בסך הכל, והוא נתון ע"י:
 \[
-p = $p0 - $q2 q.
+p = $m - $n q.
 \]
-מהי הכמות שכל מפעל צריך ליצר על מנת למקסם את רווחי החברה?
-$PAR
-\(= q_1\) \{ ans_rule(35) \}$BR
-\(= q_2 \) \{ ans_rule(35) \}
+הכנסות החברה ממכירת הרכיבים יהיו לכן \(pg\) (המחיר של כל רכיב כפול כמות הרכיבים שיוצרו).
+$BR$BR
+א. יש לרשום את פונקצית הרווח כתלות בכמויות הייצור \(q_1, q_2\):
+$BR
+\{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
+\(R(q_1,q_2) = \) \{ ans_rule(10) \}\(q_1 +\)\{ ans_rule(10) \}\(q_2 +\)
+\{ ans_rule(10) \}\(q_1^2 +\)\{ ans_rule(10) \}\(q_2^2 +\)
+\{ ans_rule(10) \}\(q_1 q_2 +\)\{ ans_rule(10) \}
+\{ closeSpan() \}
+$BR$BR
+ב. מצא את כמויות הייצור האופטימליות אשר יביאו את הרווח של החברה למקסימום: $BR
+\{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
+\(q_1 =\) \{ ans_rule(35) \}$BR
+\(q_2 = \) \{ ans_rule(35) \}
+\{ closeSpan() \}
+
 
 END_TEXT
 Context()->normalStrings;
-
+ANS(Compute("$m")->cmp() );
+ANS(Compute("$m")->cmp() );
+$tmp = Compute(-$n-$b);
+ANS($tmp->cmp() );
+$tmp = Compute(-$n-$d);
+ANS($tmp->cmp() );
+$tmp = Compute(-2*$n);
+ANS($tmp->cmp() );
+$tmp = Compute(-$a-$c);
+ANS($tmp->cmp() );
 ANS($q1val->cmp() );
 ANS($q2val->cmp() );
 
