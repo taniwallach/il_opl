@@ -132,7 +132,7 @@ $BR
 \((\)\{$multians->ans_rule(3)\},\{$multians->ans_rule(3)\}\()\)
 \{ closeSpan() \}
 $BR
-ו\(3\)
+ושלוש
 נקודות אוכף בנקודות:
 $BR
 \{ openSpan( { "lang" => "en", "dir" => "ltr"} ) \}

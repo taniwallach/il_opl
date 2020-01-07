@@ -46,25 +46,28 @@ TEXT(beginproblem());
 BEGIN_TEXT
 $BR
 יש למצוא את ערכי המינימום והמקסימום עבור הפונקציה
-\(f(x,y,z) = 3x - y -3z\) תחת האילוצים \(x^2 + 2z^2  = \{$r*$r\} \) ו 
-\( x + y - z = $a\).
+\(f(x,y,z) = 3x - y -3z\) תחת האילוצים 
+\[x^2 + 2z^2  = \{$r*$r\} ,  x + y - z = $a\]
 $BR$BR
-ערך המקסימום \{ans_rule()\}, מתקבל בנקודה 
+ערך המקסימום \{ans_rule()\},$BR מתקבל בנקודה 
 (\{ans_rule(15)\}, \{ans_rule(15)\},\{ans_rule(15)\}).
 $BR
-ערך המינימום \{ans_rule()\}, מתקבל בנקודה
+ערך המינימום \{ans_rule()\},$BR מתקבל בנקודה
 (\{ans_rule(15)\}, \{ans_rule(15)\},\{ans_rule(15)\}).
 $PAR
 END_TEXT
 
 ANS(Compute("-$a + 12*$r/sqrt(6)")->cmp());
-ANS(Compute("2*$r/sqrt(6)")->cmp());
-ANS(Compute("$a - 3*$r/sqrt(6)")->cmp());
+
 ANS(Compute("-$r/sqrt(6)")->cmp());
+ANS(Compute("$a - 3*$r/sqrt(6)")->cmp());
+ANS(Compute("2*$r/sqrt(6)")->cmp());
+
 ANS(Compute("-$a - 12*$r/sqrt(6)")->cmp());
-ANS(Compute("-2*$r/sqrt(6)")->cmp());
-ANS(Compute("$a + 3*$r/sqrt(6)")->cmp());
+
 ANS(Compute("($r/sqrt(6))")->cmp());
+ANS(Compute("$a + 3*$r/sqrt(6)")->cmp());
+ANS(Compute("-2*$r/sqrt(6)")->cmp());
 ENDDOCUMENT();
 
 

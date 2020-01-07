@@ -74,8 +74,8 @@ Context()->texStrings;
 TEXT(beginproblem());
 BEGIN_TEXT
 $BR
-יש להשתמש בכופלי לגרנז' על מנת למצוא את ערכי המינימום והמקסימום של 
-\( f(x,y) = $md x - $nd y \) תחת האילוץ
+יש למצוא את ערכי המינימום והמקסימום של הפונקציה 
+\( f(x,y) = $md x - $nd y \) בכפוף לאילוץ
 \( x^2 + $ad y^2 = $b \), אם הם קיימים.
 
 $PAR
@@ -85,13 +85,12 @@ $BR
 מקסימום = 
 \{ ans_rule(35) \}
 $BR
-${BITALIC}(יש להזין ${BBOLD}DNE$EBOLD עבור ערך שאיננו קיים)$EITALIC
 
 END_TEXT
 Context()->normalStrings;
 
-ANS($max->cmp() );
 ANS($min->cmp() );
+ANS($max->cmp() );
 
 $twoa = 2*$a;
 $am = $a*$m;

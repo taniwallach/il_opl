@@ -46,15 +46,13 @@ loadMacros(
   "PGchoicemacros.pl",
   "MathObjects.pl",
   "parserMultiAnswer.pl",
-  "PGcourse.pl"
-);
+  "PGcourse.pl",
+  "parserPopUp.pl"
+  );
 SET_PROBLEM_TEXTDIRECTION("rtl");
 SET_PROBLEM_LANGUAGE("he-IL");
 Context("Point");
-Context()->strings->add( 'מקסימום'=>{},
-'מינימום'=>{}, 
-'נקודת אוכף'=>{},
-'אף אחד'=>{} );$showPartialCorrectAnswers = 1;
+$showPartialCorrectAnswers = 1;
 
 $m = random(1,4,1);
 $n = random(1,4,1);
@@ -65,38 +63,43 @@ $threen = 3*$n;
 $func = Compute("x^3 + y^3 - $threen*x^2 - $b*y + $c")->reduce();
 
 ## then
-$critPts = List( Point("(0,$m)"), Point("(0,-$m)"), Point("($a,$m)"),
-		 Point("($a,-$m)") );
-$classify = List( String("נקודת אוכף"), String("מקסימום"),
-		  String("מינימום"), String("נקודת אוכף") );
+$critPts1 = Point("(0,$m)");
+$critPts2 = Point("(0,-$m)");
+$critPts3 = Point("($a,$m)");
+$critPts4 =	Point("($a,-$m)");
 
-$anschek = MultiAnswer( $critPts, $classify )->with(
+$popup_min =PopUp(["מינימום","מקסימום","נקודת אוכף","אף אחד"],
+"מינימום");
+
+$popup_max =PopUp(["מינימום","מקסימום","נקודת אוכף","אף אחד"],
+"מקסימום");
+
+$popup_sadd =PopUp(["מינימום","מקסימום","נקודת אוכף","אף אחד"],
+"נקודת אוכף");
+
+$popup_sadd2 =PopUp(["מינימום","מקסימום","נקודת אוכף","אף אחד"],
+"נקודת אוכף");
+
+$anschek = MultiAnswer( $critPts1,$popup_sadd,
+$critPts2,$popup_max
+,$critPts3,$popup_min
+,$critPts4,$popup_sadd2 )->with(
     singleResult => 0,
     allowBlankAnswers => 1,
     checkTypes => 0,
     checker => sub {
 	my ( $cor, $stu, $self ) = @_;
-	my ($corList, $corClass) = @$cor;
-	my ($stuList, $stuClass) = @$stu;
-	$stuList = List( $stuList ) if ( ref( $stuList ) ne 'Value::List' );
-	$stuClass = List( $stuClass ) if ( ref( $stuClass ) ne 'Value::List' );
+	my ( $p1,$s1,$p2,$s2,$p3,$s3,$p4,$s4 ) = @$stu;
+	my ( $pc1,$sc1,$pc2,$sc2,$pc3,$sc3,$pc4,$sc4 ) = @$cor;
 
 	## now $corList and $stuList should be lists of points,
 	##    and the class veriables lists of strings
-	my @corPts = $corList->value;
-	my @stuPts = $stuList->value;
-	my @corStr = $corClass->value;
-	my @stuStr = $stuClass->value;
+	my @corPts = ($pc1,$pc2,$pc3,$pc4);
+	my @stuPts = ($p1,$p2,$p3,$p4);
+	my @corStr = ($sc1,$sc2,$sc3,$sc4);
+	my @stuStr = ($s1,$s2,$s3,$s4);
 
-	if ( @corPts != @stuPts ) {
-	    $self->setMessage( 1, "מספר הנקודות שהזנת " .
-			       ((@corPts > @stuPts) ? "קטן " : "גדול ") .
-			       "מהמצופה." );
-	}
-
-	my @ret = ( 0, 0 );
-	my $numpts = ( @corPts > @stuPts ) ? @corPts : @stuPts;
-	my $retInc = 1/$numpts;
+	my @ret = ( 0,0,0,0,0,0,0,0 );
 
 	my $i = 0; my $j = 0;
 	my %matched = ();
@@ -109,24 +112,23 @@ $anschek = MultiAnswer( $critPts, $classify )->with(
 		    next;
 		}
 
-		if ( ref($cpt) eq ref($spt) && $cpt == $spt  ) {
-		    $ret[0] += $retInc;
+		if ( $cpt == $spt  ) {
+		    $ret[2*$j] = 1;
 		    $matched{$j} = 1;
 
 		    if ( $j < @stuStr ) {
-			if ( ref($corStr[$i]) eq ref($stuStr[$j]) &&
-			     $corStr[$i] == $stuStr[$j] ) {
-			    $ret[1] += $retInc;
-			}
-		    }
-		}
+		    	if ( $corStr[$i] == $stuStr[$j] ) {
+			       $tmp =2*$j+1;
+                   $ret[$tmp] = 1;
+                  }
+			    }
+		  
+         }
 		$j++;
 	    }
 	    $i++;
 	}
-	$ret[0] = sprintf("%.2f", $ret[0]);
-	$ret[1] = sprintf("%.2f", $ret[1]);
-	return [ @ret ];
+	return @ret;
     } );
 
 Context()->texStrings;
@@ -137,31 +139,10 @@ $BR
 \[ f(x,y) = $func \]
 ולסווגן כמינימום מקומי, מקסימום מקומי, נקודת אוכף, או אף אחד מהנ"ל.
 $PAR
-נקודות קריטיות: \{ $anschek->ans_rule(55) \}
-$BR
-${BITALIC}(יש להזין את התשובה כרשימה של קורדינטות (x,y) שהאיברים בה מופרדים על ידי פסיק.
-למשל:
- \((1,3),(2,3)\))$EITALIC
-$PAR
-סיווג:\{$anschek->ans_rule(55) \}
-$BR
-${BITALIC}(יש להזין את התשובות 
-כרשימת מחרוזות המופרדת על ידי פסיק כך שכל מחרוזת היא אחת מהמחרוזות:
-${BBOLD}
-מקסימום
-$EBOLD,
-${BBOLD}
-מינימום
-$EBOLD,
-${BBOLD}
-נקודת אוכף
-$EBOLD,או
-${BBOLD}
-אף אחד
-$EBOLD
-כאשר סדר ההכנסה הוא בהתאמה לסדר בו הזנת את הנקודות (סדר הופעתן בחלון בו מילאת את התשובה,משמאל לימין).
-)$EITALIC
-
+\{ $anschek->ans_rule(10) \}\{ $anschek->ans_rule\}$BR
+\{ $anschek->ans_rule(10) \}\{ $anschek->ans_rule\}$BR
+\{$anschek->ans_rule(10)\}\{$anschek->ans_rule\} $BR
+\{$anschek->ans_rule(10)\}\{$anschek->ans_rule\}$BR
 END_TEXT
 Context()->normalStrings;
 

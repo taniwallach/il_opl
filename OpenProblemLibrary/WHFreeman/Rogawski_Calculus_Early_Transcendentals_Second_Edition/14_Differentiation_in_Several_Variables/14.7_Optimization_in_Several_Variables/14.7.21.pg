@@ -28,8 +28,8 @@ loadMacros(
 TEXT(beginproblem());
 SET_PROBLEM_TEXTDIRECTION("rtl");
 SET_PROBLEM_LANGUAGE("he-IL");
-$y0=non_zero_random(-3.5,3.5,0.5);
-$b=non_zero_random(1,6,1);
+$y0=non_zero_random(0,3.5,0.5);#shani: changed the lower limit to zero because we want $a and $b to have the same signs.
+$b=non_zero_random(-6,-1,1);
 $a=-2*$y0*$b;
 $xnum=-$y0*$a+1;
 $x="\frac{$xnum}{$a}";
@@ -62,7 +62,7 @@ BEGIN_TEXT
 \{ textbook_ref_exact("Rogawski ET 2e", "14.7","21") \}
 $PAR
 נתונה הפונקציה \(f(x,y)=$f\).
-לפונקציה זו יש נקודה סטציונרית 
+לפונקציה זו יש נקודה קריטית 
 (נקודה שבה \(f_{x}=0,f_{y}=0\))
  אחת בלבד,והיא:
 $PAR
@@ -70,7 +70,7 @@ $PAR
 \((\)\{ans_rule()\},\{ans_rule()\}\()\)
 \{ closeSpan() \}
 $BR
-יש להשתמש המבחן הנגזרת השנייה ולקבוע האם סוג האקסטרימום הוא:
+נקודת הקיצון היא מסוג :
 $BCENTER
 \{$mc -> print_a\} 
 $ECENTER
