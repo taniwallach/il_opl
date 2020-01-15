@@ -47,6 +47,7 @@ loadMacros(
   "PGchoicemacros.pl",
   "MathObjects.pl",
   "parserMultiAnswer.pl",
+  "parserRadioButtons.pl",
   "PGcourse.pl",
    "parserPopUp.pl",
 );
@@ -88,10 +89,16 @@ $y0=$m;
 
 Context()->texStrings;
 TEXT(beginproblem());
-$mc = new_multiple_choice();
-$mc -> qa ("","\(\ \)מינימום מקומי\(\ \)",);
-$mc ->extra("\(\ \)נקודת אוכף\(\ \ \  \)","מקסימום מקומי","\(\ \)לא ניתן לקבוע\(\ \)",);
-
+$radio = RadioButtons(
+  [  {"Choice 1"=>"מינימום מקומי"}, # left side is the label
+     {"Choice 2"=>"מקסימום מקומי"},
+     {"Choice 3"=>"נקודת אוכף"},
+     {"Choice 4"=>"לא מינימום, לא מקסימום ולא אוכף"},
+     {"Choice 5"=>"לא ניתן לקבוע"},
+  ],
+  "מינימום מקומי", # correct answer
+  displayLabels => 0, # Do not display the label in the text
+);
 BEGIN_TEXT
 $PAR
 נתונה הפונקציה \(f(x,y)=$func\).
@@ -104,9 +111,8 @@ $PAR
 \{ closeSpan() \}
 $BR
 נקודת הקיצון היא מסוג :
-$BCENTER
-\{$mc -> print_a\} 
-$ECENTER
+ $BR
+\{$radio->buttons\} 
 $PAR
 $BR
 END_TEXT 
@@ -116,7 +122,7 @@ Context("Point");
 ANS(Real($x0)->cmp);
 ANS(Real($y0)->cmp);
 Context("Numeric");
-ANS(str_cmp($mc->correct_ans));
+ANS( $radio->cmp());
 Context()->texStrings;
 
 ENDDOCUMENT();

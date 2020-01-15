@@ -53,15 +53,39 @@ TEXT(beginproblem());
 
 BEGIN_TEXT
 $BR
-יש למצוא את ערכי המינימום והמקסימום עבור הפונקציה
-\(f(x,y,z) = yz + xy\)  תחת האילוצים \( y^2 + z^2 = \{$r*$r\} \) ו 
-\( xy = $a\).
+$BCENTER
+\{ openDiv( { "allowStyle" => 1, 
+"style2" => "background-color: #afafaf; float: left;height: 12px;",
+"style" => "font-size: 48px; font-weight: 400; background-color: #fff100; color: #aa0000;"  ,
+} ) \}
+$SP$BR
+$SP$BR
+$SP$BR
+התגלתה תקלה בשאלה.$BR
+$SP$BR
+$SP$BR
+$SP$BR
+$SP$BR
+$SP$BR
+\{ closeDiv() \}
+$ECENTER
+$PAR
+$BR
+$BR
+יש למצוא את ערכי המינימום והמקסימום של הפונקציה
+\(f(x,y,z) = yz + xy\)  בכפוף לאילוצים \[ y^2 + z^2 = \{$r*$r\}\ ,\ xy = $a\].
 $BR$BR
 ערך המקסימום \{ans_rule()\}, מתקבל בנקודה 
-(\{ans_rule(15)\}, \{ans_rule(15)\},\{ans_rule(15)\}).
+$BR
+\{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
+.(\{ans_rule(15)\}, \{ans_rule(15)\},\{ans_rule(15)\})
+\{ closeSpan() \}
 $BR
 ערך המינימום \{ans_rule()\}, מתקבל בנקודה
-(\{ans_rule(15)\}, \{ans_rule(15)\},\{ans_rule(15)\}).
+$BR
+\{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
+.(\{ans_rule(15)\}, \{ans_rule(15)\},\{ans_rule(15)\})
+\{ closeSpan() \}
 $PAR
 END_TEXT
 ANS(Compute("$a + $r*$r/2")->cmp());

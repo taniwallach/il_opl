@@ -54,15 +54,21 @@ TEXT(beginproblem());
 
 BEGIN_TEXT
 $BR
-יש למצוא את ערכי המינימום והמקסימום עבור הפונקציה
-\(f(x,y,z) = x+2y\)  תחת האילוצים \(y^2 + z^2  = \{$r*$r\} \) ו 
-\( x + y + z = $a\).
+יש למצוא את ערכי המינימום והמקסימום של הפונקציה
+\(f(x,y,z) = x+2y\)  
+בכפוף לאילוצים \[y^2 + z^2  = \{$r*$r\}\ ,\ x + y + z = $a\].
 $BR$BR
 ערך המקסימום \{ans_rule()\}, מתקבל בנקודה 
-(\{ans_rule(15)\}, \{ans_rule(15)\},\{ans_rule(15)\}).
+$BR
+\{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
+.(\{ans_rule(15)\}, \{ans_rule(15)\},\{ans_rule(15)\})
+\{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
 $BR
 ערך המינימום \{ans_rule()\}, מתקבל בנקודה
-(\{ans_rule(15)\}, \{ans_rule(15)\},\{ans_rule(15)\}).
+$BR
+\{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
+.(\{ans_rule(15)\}, \{ans_rule(15)\},\{ans_rule(15)\})
+\{ closeSpan() \}
 $PAR
 END_TEXT
 

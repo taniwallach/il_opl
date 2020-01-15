@@ -28,9 +28,15 @@ loadMacros(
 TEXT(beginproblem());
 SET_PROBLEM_TEXTDIRECTION("rtl");
 SET_PROBLEM_LANGUAGE("he-IL");
+
+Context("Point");
+
+
 Context()->texStrings;
-$context = Context();
-$context->variables->add(y=>'Real');
+
+#$context = Context();
+#$context->variables->add(y=>'Real');
+
 $b=random(2,4,2);
 $a=$b;
 $c=random(1,5,1);
@@ -68,8 +74,31 @@ $y0=$y->eval(x=>$x0);
 
 $fmin=0;
 
+$ans1 = Real(0);
+$ans2 = List(Point((0,0)));
+$ans3 = Real($g1);
+$ans4 = List(Point((1,0)));
 
 BEGIN_TEXT
+$BR
+$BCENTER
+\{ openDiv( { "allowStyle" => 1, 
+"style2" => "background-color: #afafaf; float: left;height: 12px;",
+"style" => "font-size: 48px; font-weight: 400; background-color: #fff100; color: #aa0000;"  ,
+} ) \}
+$SP$BR
+$SP$BR
+$SP$BR
+התגלתה תקלה בשאלה.$BR
+$SP$BR
+$SP$BR
+$SP$BR
+$SP$BR
+$SP$BR
+\{ closeDiv() \}
+$ECENTER
+$PAR
+$BR
 $BR
 יש למצוא את ערכי המינימום והמקסימום הגלובליים עבור הפונקציה 
 \[f(x,y)=$f\] בתחום
@@ -79,21 +108,27 @@ $PAR
 
 אם ערכי המינימום או המקסימום מתקבלים במספר נקודות, יש להפריד בין הנקודות על ידי פסיקים. 
 $PAR
-ערך המינימום המקומי: \{ans_rule()\}$BR
-מתקבל בנקודות: \{ans_rule(20)\}.
+ערך המינימום המקומי: \{ $ans1->ans_rule(4) \}$BR
+מתקבל בנקודות: \{ $ans2->ans_rule(12) \}.
 $PAR
 
-ערך המקסימום המקומי: \{ans_rule()\}$BR
-מתקבל בנקודות: \{ans_rule(20)\}.
+ערך המקסימום המקומי: \{ $ans3->ans_rule(4) \}$BR
+מתקבל בנקודות: \{ $ans4->ans_rule(12) \}.
 $BR
 END_TEXT 
 
 Context()->normalStrings;
-ANS(num_cmp(0));
-ANS(List(Point(0,0))->cmp());
-ANS(num_cmp($g1));
-ANS(List(Point(1,0))->cmp());
-Context()->texStrings;
 
+#ANS(num_cmp(0));
+#ANS(List(Point(0,0))->cmp());
+#ANS(num_cmp($g1));
+#ANS(List(Point(1,0))->cmp());
+
+ANS( $ans1->cmp() );
+ANS( $ans2->cmp() );
+ANS( $ans3->cmp() );
+ANS( $ans4->cmp() );
+
+Context()->texStrings;
 
 ENDDOCUMENT();

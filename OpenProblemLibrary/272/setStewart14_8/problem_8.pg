@@ -45,15 +45,21 @@ TEXT(beginproblem());
 
 BEGIN_TEXT
 $BR
-יש למצוא את ערכי המינימום והמקסימום עבור הפונקציה
-\(f(x,y,z) = 3x - y -3z\) תחת האילוצים 
-\[x^2 + 2z^2  = \{$r*$r\} ,  x + y - z = $a\]
+יש למצוא את ערכי המינימום והמקסימום של הפונקציה
+\(f(x,y,z) = 3x - y -3z\) בכפוף לאילוצים 
+\[x^2 + 2z^2  = \{$r*$r\}\ ,\  x + y - z = $a\]
 $BR$BR
 ערך המקסימום \{ans_rule()\},$BR מתקבל בנקודה 
-(\{ans_rule(15)\}, \{ans_rule(15)\},\{ans_rule(15)\}).
+$BR
+\{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
+.(\{ans_rule(15)\}, \{ans_rule(15)\},\{ans_rule(15)\})
+\{ closeSpan() \}
 $BR
 ערך המינימום \{ans_rule()\},$BR מתקבל בנקודה
-(\{ans_rule(15)\}, \{ans_rule(15)\},\{ans_rule(15)\}).
+$BR
+\{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
+.(\{ans_rule(15)\}, \{ans_rule(15)\},\{ans_rule(15)\})
+\{ closeSpan() \}
 $PAR
 END_TEXT
 
