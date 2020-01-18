@@ -1,0 +1,93 @@
+## DBsubject(Calculus - multivariable)
+## DBchapter(Differentiation of multivariable functions)
+## DBsection(Lagrange multipliers and constrained optimization)
+## Institution(W.H.Freeman)
+## Author(JustAsk - Vladimir Finkelshtein)
+## MLT(OptimizeOverOpenRegion)
+## Level(3)
+## MO(1)
+## TitleText1('Calculus: Early Transcendentals')
+## AuthorText1('Rogawski')
+## EditionText1('2')
+## Section1('14.7')
+## Problem1('37')
+## KEYWORDS('calculus')
+## RESOURCES('14-7-35-image.png')
+
+DOCUMENT();
+
+loadMacros(
+  "PGstandard.pl",
+  "Parser.pl",
+  "freemanMacros.pl",
+  "PGgraphmacros.pl",
+  "PGchoicemacros.pl",
+  "PGcourse.pl"
+);
+
+TEXT(beginproblem());
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
+
+Context("Point");
+
+Context()->texStrings;
+
+#$context = Context();
+#$context->variables->add(y=>'Real');
+
+$a=random(1,5,1);
+$b=random(2,8,1);
+$aminb=$a-$b;
+
+$f=Formula("$a*x^3-$b*y")->reduce();
+$fx=Formula("3*$a*x^2")->reduce();
+$fy=Real(-$b);
+
+$f1=Formula("$a*x^3")->reduce();
+$f2=Formula("$a-$b*y")->reduce();
+$f3=Formula("$a*x^3-$b")->reduce();
+$f4=Formula("-$b*y")->reduce();
+
+$fmin=-$b;
+$fmax=$a;
+
+$ans1 = Real(-$b);
+$ans2 = List(Point((0,1)));
+$ans3 = Real($a);
+$ans4 = List(Point((1,0)));
+
+BEGIN_TEXT
+$BR
+יש למצוא את ערכי המינימום והמקסימום המוחלטים עבור הפונקציה 
+\[f(x,y)=$f\] בתחום
+\( 0 \le x \le 1,0 \le y \le 1\)
+ולציין את הנקודות בהן ערכים אלו מתקבלים:
+$PAR
+
+אם ערכי המינימום או המקסימום מתקבלים במספר נקודות, יש להפריד בין הנקודות על ידי פסיקים. 
+$PAR
+ערך המינימום המוחלט: \{ $ans1->ans_rule(4) \}$BR
+מתקבל בנקודות: \{ $ans2->ans_rule(12) \}.
+$PAR
+
+ערך המקסימום המוחלט: \{ $ans3->ans_rule(4) \}$BR
+מתקבל בנקודות: \{ $ans4->ans_rule(12) \}.
+$BR
+END_TEXT 
+
+Context()->normalStrings;
+
+#ANS(num_cmp(-$b));
+#ANS(List(Point((0,1)))->cmp());
+#ANS(num_cmp($a));
+#ANS(List(Point((1,0)))->cmp());
+
+ANS( $ans1->cmp() );
+ANS( $ans2->cmp() );
+ANS( $ans3->cmp() );
+ANS( $ans4->cmp() );
+
+Context()->texStrings;
+
+ENDDOCUMENT();

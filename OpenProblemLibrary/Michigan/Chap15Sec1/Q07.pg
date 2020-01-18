@@ -1,0 +1,128 @@
+# DESCRIPTION
+# Problem from Calculus, multi-variable, Hughes-Hallett et al.,
+# originally from 5ed (with updates)
+# WeBWorK problem written by Gavin LaRose, <glarose@umich.edu>
+
+## Tagged by glr 01/11/10
+
+
+## DBsubject(Calculus - multivariable)
+## DBchapter(Differentiation of multivariable functions)
+## DBsection(Extreme values and optimization)
+## Institution(University of Michigan)
+## Author(Gavin LaRose)
+## MLT(ListCritPtsAndClassify)
+## Level(4)
+## MO(1)
+## TitleText1('Calculus')
+## TitleText2('Calculus')
+## TitleText3('Applied Calculus')
+## TitleText4('Calculus')
+## AuthorText1('Hughes-Hallett')
+## AuthorText2('Hughes-Hallett')
+## AuthorText3('Hughes-Hallett')
+## AuthorText4('Hughes-Hallett')
+## EditionText1('5')
+## EditionText2('6')
+## EditionText3('4')
+## EditionText4('7')
+## Section1('15.1')
+## Section2('15.1')
+## Section3('9.5')
+## Section4('15.1')
+## Problem1('7')
+## Problem2('8')
+## Problem3('10')
+## Problem4('14')
+## KEYWORDS('extrema', 'multivariable', 'functions', 'calculus', 'derivatives')
+
+## Textbook tags
+## HHChapter1('Optimization: Local and Global Extrema')
+
+
+DOCUMENT();
+
+loadMacros(
+  "PGstandard.pl",
+  "PGchoicemacros.pl",
+  "MathObjects.pl",
+  "parserMultiAnswer.pl",
+  "parserRadioButtons.pl",
+  "PGcourse.pl",
+   "parserPopUp.pl",
+);
+
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
+Context("Point");
+$showPartialCorrectAnswers = 1;
+
+
+
+$a = random(1,5,1);
+$twoa = 2*$a;
+$b = $a + random(1,2,1);
+$twob = 2*$b;
+$bminusa = $b - a;
+$twobminusa = 2*$bminusa;
+$m = random(1,3,1);
+$c = 2*$m*($b - $a);
+
+$func = Compute( "$a*x^2 - $twoa*x*y + $b*y^2 - $c*y" )->reduce();
+## with this choice of function, we have
+$fx = "$twoa x - $twoa y";
+$fy = "-$twoa x + $twob y - $c";
+## so that x = y, and then
+$yval = $m;
+$xval = $m;
+
+$critPts = List( Point("($m,$m)") );
+## then
+$fxx= "$twoa";
+$fyy = "$twob";
+$fxy = "-$twoa";
+$disc = $twoa*$twob - $twoa*$twoa;
+$x0=$m;
+$y0=$m;
+
+## we know that disc > 0 and fxx > 0, so this is a minimum
+
+Context()->texStrings;
+TEXT(beginproblem());
+$radio = RadioButtons(
+  [  {"Choice 1"=>"מינימום מקומי"}, # left side is the label
+     {"Choice 2"=>"מקסימום מקומי"},
+     {"Choice 3"=>"נקודת אוכף"},
+     {"Choice 4"=>"לא מינימום, לא מקסימום ולא אוכף"},
+     {"Choice 5"=>"לא ניתן לקבוע"},
+  ],
+  "מינימום מקומי", # correct answer
+  displayLabels => 0, # Do not display the label in the text
+);
+BEGIN_TEXT
+$PAR
+נתונה הפונקציה \(f(x,y)=$func\).
+לפונקציה זו יש נקודה קריטית 
+(נקודה שבה \(f_{x}=0,f_{y}=0\))
+ אחת בלבד,והיא:
+$PAR
+\{ openSpan( { "lang" => "en", "dir" => "ltr"} ) \}
+\((\)\{ans_rule()\},\{ans_rule()\}\()\)
+\{ closeSpan() \}
+$BR
+נקודת הקיצון היא מסוג :
+ $BR
+\{$radio->buttons\} 
+$PAR
+$BR
+END_TEXT 
+
+Context()->normalStrings;
+Context("Point");
+ANS(Real($x0)->cmp);
+ANS(Real($y0)->cmp);
+Context("Numeric");
+ANS( $radio->cmp());
+Context()->texStrings;
+
+ENDDOCUMENT();

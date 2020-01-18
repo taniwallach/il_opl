@@ -1,0 +1,155 @@
+# DESCRIPTION
+# Problem from Calculus, multi-variable, Hughes-Hallett et al.,
+# originally from 5ed (with updates)
+# WeBWorK problem written by Gavin LaRose, <glarose@umich.edu>
+
+## Tagged by glr 01/11/10
+
+
+## DBsubject(Calculus - multivariable)
+## DBchapter(Differentiation of multivariable functions)
+## DBsection(Extreme values and optimization)
+## Institution(University of Michigan)
+## Author(Gavin LaRose)
+## MLT(ListCritPtsAndClassify)
+## Level(4)
+## MO(1)
+## TitleText1('Calculus')
+## TitleText2('Calculus')
+## TitleText3('Applied Calculus')
+## TitleText4('Calculus')
+## AuthorText1('Hughes-Hallett')
+## AuthorText2('Hughes-Hallett')
+## AuthorText3('Hughes-Hallett')
+## AuthorText4('Hughes-Hallett')
+## EditionText1('5')
+## EditionText2('6')
+## EditionText3('4')
+## EditionText4('7')
+## Section1('15.1')
+## Section2('15.1')
+## Section3('9.5')
+## Section4('15.1')
+## Problem1('11')
+## Problem2('16')
+## Problem3('14')
+## Problem4('22')
+## KEYWORDS('extrema', 'multivariable', 'functions', 'calculus', 'derivatives')
+
+## Textbook tags
+## HHChapter1('Optimization: Local and Global Extrema')
+
+DOCUMENT();
+
+loadMacros(
+  "PGstandard.pl",
+  "PGchoicemacros.pl",
+  "MathObjects.pl",
+  "parserMultiAnswer.pl",
+  "PGcourse.pl",
+  "parserPopUp.pl"
+  );
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
+Context("Point");
+$showPartialCorrectAnswers = 1;
+
+$m = random(1,4,1);
+$n = random(1,4,1);
+$a = 2*$n;
+$b = 3*$m*$m;
+$c = non_zero_random(-10,10,1);
+$threen = 3*$n;
+$func = Compute("x^3 + y^3 - $threen*x^2 - $b*y + $c")->reduce();
+
+## then
+$critPts1 = Point("(0,$m)");
+$critPts2 = Point("(0,-$m)");
+$critPts3 = Point("($a,$m)");
+$critPts4 =	Point("($a,-$m)");
+
+$popup_min =PopUp(["מינימום","מקסימום","נקודת אוכף","אף אחד"],
+"מינימום");
+
+$popup_max =PopUp(["מינימום","מקסימום","נקודת אוכף","אף אחד"],
+"מקסימום");
+
+$popup_sadd =PopUp(["מינימום","מקסימום","נקודת אוכף","אף אחד"],
+"נקודת אוכף");
+
+$popup_sadd2 =PopUp(["מינימום","מקסימום","נקודת אוכף","אף אחד"],
+"נקודת אוכף");
+
+$anschek = MultiAnswer( $critPts1,$popup_sadd,
+$critPts2,$popup_max
+,$critPts3,$popup_min
+,$critPts4,$popup_sadd2 )->with(
+    singleResult => 0,
+    allowBlankAnswers => 1,
+    checkTypes => 0,
+    checker => sub {
+	my ( $cor, $stu, $self ) = @_;
+	my ( $p1,$s1,$p2,$s2,$p3,$s3,$p4,$s4 ) = @$stu;
+	my ( $pc1,$sc1,$pc2,$sc2,$pc3,$sc3,$pc4,$sc4 ) = @$cor;
+
+	## now $corList and $stuList should be lists of points,
+	##    and the class veriables lists of strings
+	my @corPts = ($pc1,$pc2,$pc3,$pc4);
+	my @stuPts = ($p1,$p2,$p3,$p4);
+	my @corStr = ($sc1,$sc2,$sc3,$sc4);
+	my @stuStr = ($s1,$s2,$s3,$s4);
+
+	my @ret = ( 0,0,0,0,0,0,0,0 );
+
+	my $i = 0; my $j = 0;
+	my %matched = ();
+	foreach my $cpt ( @corPts ) {
+	    $j = 0;
+	    foreach my $spt ( @stuPts ) {
+		$matched{$j} = 0 if ( ! defined( $matched{$j} ) );
+		if ( $matched{$j} ) {
+		    $j++;
+		    next;
+		}
+
+		if ( $cpt == $spt  ) {
+		    $ret[2*$j] = 1;
+		    $matched{$j} = 1;
+
+		    if ( $j < @stuStr ) {
+		    	if ( $corStr[$i] == $stuStr[$j] ) {
+			       $tmp =2*$j+1;
+                   $ret[$tmp] = 1;
+                  }
+			    }
+		  
+         }
+		$j++;
+	    }
+	    $i++;
+	}
+	return @ret;
+    } );
+
+Context()->texStrings;
+TEXT(beginproblem());
+BEGIN_TEXT
+$BR
+יש למצוא את הנקודות הקריטיות עבור הפונקציה
+\[ f(x,y) = $func \]
+ולסווגן כמינימום מקומי, מקסימום מקומי, נקודת אוכף, או אף אחד מהנ"ל.
+$PAR
+\{ $anschek->ans_rule(10) \}\{ $anschek->ans_rule\}$BR
+\{ $anschek->ans_rule(10) \}\{ $anschek->ans_rule\}$BR
+\{$anschek->ans_rule(10)\}\{$anschek->ans_rule\} $BR
+\{$anschek->ans_rule(10)\}\{$anschek->ans_rule\}$BR
+END_TEXT
+Context()->normalStrings;
+
+ANS($anschek->cmp() );
+
+Context()->normalStrings;
+
+
+;
+ENDDOCUMENT();

@@ -1,0 +1,71 @@
+## DBsubject(Calculus - multivariable)
+## DBchapter(Differentiation of multivariable functions)
+## DBsection(Differentiability, linearization and tangent planes)
+## Institution(W.H.Freeman)
+## Author(JustAsk - Vladimir Finkelshtein)
+## MLT(change)
+## MLTleader(1)
+## Level(4)
+## MO(1)
+## TitleText1('Calculus: Early Transcendentals')
+## AuthorText1('Rogawski')
+## EditionText1('2')
+## Section1('14.4')
+## Problem1('35')
+## KEYWORDS('calculus')
+
+DOCUMENT();
+
+loadMacros(
+  "PGstandard.pl",
+  "Parser.pl",
+  "freemanMacros.pl",
+  "PGgraphmacros.pl",
+  "PGchoicemacros.pl",
+  "PGcourse.pl"
+);
+
+TEXT(beginproblem());
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
+Context()->texStrings;
+$mc=new_multiple_choice();
+$mc->qa ("","שגיאה של \(1%\) במדידת \(r\)",);
+$mc->extra("שגיאה של \(1%\) במדידת \(h\)","שגיאה של \(1%\) במדידת \(r\) תגרור שגיאה שווה לזו שתמדד עבור שגיאה של  \(1%\) ב \(h\)");
+
+$dr=random(0.5,5,0.1);
+$dh=random(0.5,5,0.1);
+$perc=2*$dr+$dh;
+
+$context = Context();
+$context->variables->add(h=>'Real');
+$context->variables->add(r=>'Real');
+
+BEGIN_TEXT
+\{ textbook_ref_exact("Rogawski ET 2e", "14.4","35") \}
+$PAR
+כידוע, נפח גליל שרדיוסו \(r\) וגובהו \(h\) הוא \(V=\pi r^2h\).$BR
+א. יש לחשב את אחוז הגידול של הנפח \(V\) בהנתן ש \(r\) גדל ב \($dr %\) ו \(h\) גדל ב \($dh %\).
+$BR
+הדרכה: יש להעזר בקירוב הלינארי
+(כלומר בפיתוח טיילור מסדר ראשון, ללא שארית) של
+פונקצית הנפח \(V\) :
+\[ \Delta V \approx V_r \Delta r + V_h \Delta h \]
+$PAR
+\{ openSpan( { "lang" => "en", "dir" => "ltr"} ) \}
+\(\frac{\Delta V}{V}\times 100%=\) \{ans_rule()\} \(%\)
+\{ closeSpan() \}
+$PAR
+ב. נניח כי הנפח \(V\) של גליל כלשהו נקבע על ידי מדידת \(r\) ו \(h\). $BR
+מי מהבאים יגרור שגיאת מדידה \(\Delta V\)  גדולה יותר?: $BR
+\{$mc -> print_a\}
+$BR
+END_TEXT 
+
+Context()->normalStrings;
+ANS(Real($perc)->cmp);
+ANS(str_cmp($mc->correct_ans));
+Context()->texStrings;
+
+
+ENDDOCUMENT();

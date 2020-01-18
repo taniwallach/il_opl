@@ -1,0 +1,148 @@
+##DESCRIPTION
+#
+# File Created: 5/30/2000
+# Last Modified: 5/30/2000
+# Problem Author: Joseph Neisendorfer
+# WeBWorK Entry: Victoria Sweetser
+# Location: University of Rochester
+#
+##ENDDESCRIPTION
+
+## lcao tagged and PAID on 2-20-2004
+
+## DBsubject(Calculus - multivariable)
+## DBchapter(Differentiation of multivariable functions)
+## DBsection(Extreme values and optimization)
+## Date(6/3/2002)
+## MLT(ListCritPtsAndClassify)
+## Level(4)
+## MO(1)
+## TitleText1('Calculus: Early Transcendentals')
+## AuthorText1('Stewart')
+## EditionText1('6')
+## Section1('14.7')
+## Problem1('5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20')
+## TitleText2('Calculus: Early Transcendentals')
+## AuthorText2('Rogawski')
+## EditionText2('1')
+## Section2('14.7')
+## Problem2('5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20')
+## KEYWORDS('Extrema','critical points' 'minimum' 'maximum' 'multivariable','calculus','critical point')
+
+# Formatted by Shani Barzel,December 2019, for use in the Technion
+
+DOCUMENT();		# This should be the first executable line in the problem.
+
+loadMacros(
+  "PGstandard.pl",
+  "Parser.pl",
+  "PGcourse.pl",
+  "parserMultiAnswer.pl",  
+"weightedGrader.pl",
+);
+
+TEXT(beginproblem());
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
+$showPartialCorrectAnswers = 1;
+install_weighted_grader();
+
+$a = random(1, 10);
+$b = random(1, 10);
+
+$a3 = 3*$a;
+$b3 = 3*$b;
+$pmxc = Compute("1/$a3");
+$pmyc = Compute("1/$b3");
+$multians = MultiAnswer($pmxc, $pmyc)->with(
+  singleResult => 1,
+  allowBlankAnswers => 1,
+  checker => sub {
+		my ( $correct, $student, $self ) = @_;
+		my ( $pmx, $pmy) = @{$student};
+        $zzz = Real(0);
+        if(!$zzz->typeMatch($pmx)|| !$zzz->typeMatch($pmy)){
+        	$self->setMessage(1," אין להשאיר שדות ריקים"); 
+            return 0;
+        }
+        Context('Point');
+        $pmc = Point($pmxc,$pmyc);
+        $pm = Point($pmx,$pmy);
+        if($pm == $pmc){
+            return 1;
+        }
+       return 0;
+  });
+$p1xc = Compute("0");
+$p1yc = Compute("0");
+$p2xc = Compute("0");
+$p2yc = Compute("1/$b");
+$p3xc = Compute("1/$a");
+$p3yc = Compute("0");
+
+$multians2 = MultiAnswer($p1xc,$p1yc,$p2xc,$p2yc,$p3xc,$p3yc)->with(
+  singleResult => 1,
+  allowBlankAnswers => 1,
+  checker => sub {
+		my ( $correct, $student, $self ) = @_;
+		my ( $p1x, $p1y,$p2x,$p2y,$p3x,$p3y) = @{$student};
+        $zzz = Real(0);
+        if(!$zzz->typeMatch($p1x)|| !$zzz->typeMatch($p1y)||
+        !$zzz->typeMatch($p2x)|| !$zzz->typeMatch($p2y)||
+        !$zzz->typeMatch($p3x)|| !$zzz->typeMatch($p3y)){
+        	$self->setMessage(1," אין להשאיר שדות ריקים"); 
+            return 0;
+        }
+        Context('Point');
+        $p1c = Point($p1xc,$p1yc);
+        $p2c = Point($p2xc,$p2yc);
+        $p3c = Point($p3xc,$p3yc);
+        $p1 = Point($p1x,$p1y);
+        $p2 = Point($p2x,$p2y);
+        $p3 = Point($p3x,$p3y);
+        $corr1 =0;
+        $corr2 =0;
+        $corr2 =0;
+        if(($p1 == $p1c || $p1 == $p2c ||$p1 == $p3c )){
+            $corr1 =1;
+        }
+        if(($p2 == $p1c || $p2 == $p2c ||$p2 == $p3c )){
+            $corr2=1;
+            if($corr1 && ($p2 == $p1)){
+                $corr2 =0;
+            }
+        }
+        if(($p3 == $p1c || $p3 == $p2c ||$p3 == $p3c )){
+                $corr3=1;
+               if(($corr1 && ($p3 == $p1))||
+                    ($corr2 && ($p3 == $p2))){
+                  $corr3 =0;
+                }
+        }
+        return ($corr1+$corr2+$corr3)/3;
+       
+  });
+BEGIN_TEXT
+$BR
+נתונה הפונקציה \[ f(x, y) = xy(1 - $a x - $b y) \]
+לפונקציה זו יש:
+$BR
+נקודת מקסימום בנקודה:
+\{ openSpan( { "lang" => "en", "dir" => "ltr"} ) \}
+\((\)\{$multians->ans_rule(3)\},\{$multians->ans_rule(3)\}\()\)
+\{ closeSpan() \}
+$BR
+ושלוש
+נקודות אוכף בנקודות:
+$BR
+\{ openSpan( { "lang" => "en", "dir" => "ltr"} ) \}
+\((\)\{$multians2->ans_rule(3)\},\{$multians2->ans_rule(3)\}\()\),
+\((\)\{$multians2->ans_rule(3)\},\{$multians2->ans_rule(3)\}\()\),
+\((\)\{$multians2->ans_rule(3)\},\{$multians2->ans_rule(3)\}\()\)
+\{ closeSpan() \}
+END_TEXT
+
+WEIGHTED_ANS($multians->cmp(),25);
+WEIGHTED_ANS($multians2->cmp(),75);
+
+ENDDOCUMENT();		# This should be the last executable line in the problem.

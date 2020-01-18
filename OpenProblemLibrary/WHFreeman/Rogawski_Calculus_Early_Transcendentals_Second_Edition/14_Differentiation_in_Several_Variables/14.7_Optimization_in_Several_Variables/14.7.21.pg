@@ -1,0 +1,114 @@
+## DBsubject(Calculus - multivariable)
+## DBchapter(Differentiation of multivariable functions)
+## DBsection(Extreme values and optimization)
+## Institution(W.H.Freeman)
+## Author(JustAsk - Vladimir Finkelshtein)
+## MLT(SingleCritPtClassifyGivenFcn)
+## MLTleader(1)
+## Level(3)
+## MO(1)
+## TitleText1('Calculus: Early Transcendentals')
+## AuthorText1('Rogawski')
+## EditionText1('2')
+## Section1('14.7')
+## Problem1('21')
+## KEYWORDS('calculus')
+
+DOCUMENT();
+
+loadMacros(
+  "PGstandard.pl",
+  "Parser.pl",
+  "freemanMacros.pl",
+  "PGgraphmacros.pl",
+  "PGchoicemacros.pl",
+  "PGcourse.pl"
+);
+
+TEXT(beginproblem());
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
+
+
+BEGIN_TEXT
+$BR
+$BCENTER
+\{ openDiv( { "allowStyle" => 1, 
+"style2" => "background-color: #afafaf; float: left;height: 12px;",
+"style" => "font-size: 48px; font-weight: 400; background-color: #fff100; color: #aa0000;"  ,
+} ) \}
+$SP$BR
+$SP$BR
+$SP$BR
+התגלתה תקלה בשאלה.$BR
+$SP$BR
+$SP$BR
+$SP$BR
+$SP$BR
+$SP$BR
+\{ closeDiv() \}
+$ECENTER
+$PAR
+$BR
+END_TEXT
+
+$y0=non_zero_random(0,3.5,0.5);#shani: changed the lower limit to zero because we want $a and $b to have the same signs.
+$b=non_zero_random(-6,-1,1);
+$a=-2*$y0*$b;
+$xnum=-$y0*$a+1;
+$x="\frac{$xnum}{$a}";
+$x0=(-$y0*$a+1)/$a;
+
+Context()->texStrings;
+$context = Context();
+$context->variables->add(y=>'Real');
+
+
+#$f=Formula("$a*x-$b*y^2-ln(x+y)")->reduce();
+$f=Formula("$a*x-$b*y^2-ln|x+y|")->reduce();
+$fx=Formula("$a-1/(x+y)")->reduce();
+$fy=Formula("-2*$b*y-1/(x+y)")->reduce();
+
+$f2=Formula("-2*$b*y-$a")->reduce();
+
+$fxx=Formula("1/(x+y)^2")->reduce();
+$fyy=Formula("-2*$b+1/(x+y)^2")->reduce();
+$fxy=Formula("1/(x+y)^2")->reduce();
+
+$disc=Formula("-2*$b/(x+y)^2")->reduce();
+$d0=$disc->eval(x=>$x0,y=>$y0);
+
+$mc = new_multiple_choice();
+$mc -> qa ("","\(\ \)נקודת אוכף\(\ \ \ \ \)",);
+$mc ->extra("\(\ \)מינימום מקומי\(\ \)","מקסימום מקומי","\(\ \)לא ניתן לקבוע\(\ \)",);
+
+BEGIN_TEXT
+\{ textbook_ref_exact("Rogawski ET 2e", "14.7","21") \}
+$PAR
+נתונה הפונקציה \(f(x,y)=$f\).
+לפונקציה זו יש נקודה קריטית 
+(נקודה שבה \(f_{x}=0,f_{y}=0\))
+ אחת בלבד,והיא:
+$PAR
+\{ openSpan( { "lang" => "en", "dir" => "ltr"} ) \}
+\((\)\{ans_rule()\},\{ans_rule()\}\()\)
+\{ closeSpan() \}
+$BR
+נקודת הקיצון היא מסוג :
+$BCENTER
+\{$mc -> print_a\} 
+$ECENTER
+$PAR
+$BR
+END_TEXT 
+
+Context()->normalStrings;
+Context("Point");
+ANS(Real($x0)->cmp);
+ANS(Real($y0)->cmp);
+Context("Numeric");
+ANS(str_cmp($mc->correct_ans));
+Context()->texStrings;
+
+
+ENDDOCUMENT();

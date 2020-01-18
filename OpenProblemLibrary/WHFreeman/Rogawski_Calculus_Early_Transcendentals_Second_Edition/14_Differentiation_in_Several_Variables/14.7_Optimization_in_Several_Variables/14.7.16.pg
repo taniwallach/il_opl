@@ -1,0 +1,90 @@
+## DBsubject(Calculus - multivariable)
+## DBchapter(Differentiation of multivariable functions)
+## DBsection(Extreme values and optimization)
+## Institution(W.H.Freeman)
+## Author(JustAsk - Vladimir Finkelshtein)
+## MLT(SingleCritPtClassifyGivenFcn)
+## Level(3)
+## MO(1)
+## TitleText1('Calculus: Early Transcendentals')
+## AuthorText1('Rogawski')
+## EditionText1('2')
+## Section1('14.7')
+## Problem1('16')
+## KEYWORDS('calculus')
+
+DOCUMENT();
+
+loadMacros(
+  "PGstandard.pl",
+  "Parser.pl",
+  "freemanMacros.pl",
+  "PGgraphmacros.pl",
+  "parserRadioButtons.pl",
+  "PGchoicemacros.pl",
+  "PGcourse.pl"
+);
+
+TEXT(beginproblem());
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
+$a=random(1,5,1);
+$a1=$a;
+if ($a1==1){$a1='';}
+$b=random(1,5,1);
+
+Context()->texStrings;
+$context = Context();
+$context->variables->add(y=>'Real');
+
+$f=Formula("$a*e^x-$b*x*e^y")->reduce();
+$fx=Formula("$a*e^x-$b*e^y")->reduce();
+$fy=Formula("-$b*x*e^y")->reduce();
+
+$fxx=Formula("$a*e^x")->reduce();
+$fyy=Formula("-$b*x*e^y")->reduce();
+$fxy=Formula("-$b*e^y")->reduce();
+
+$x0=0;
+$y0=Real(ln($a/$b));
+$y01=Real(ln($a/$b));
+$disc=Formula("-$a*$b*x*e^(x+y)-(($b)^2*e^(2*y))")->reduce();
+$d0=$disc->eval(x=>$x0,y=>$y01);
+Context()->texStrings;
+$radio = RadioButtons(
+  [  {"Choice 1"=>"מינימום מקומי"}, # left side is the label
+     {"Choice 2"=>"מקסימום מקומי"},
+     {"Choice 3"=>"נקודת אוכף"},
+     {"Choice 4"=>"לא מינימום, לא מקסימום ולא אוכף"},
+     {"Choice 5"=>"לא ניתן לקבוע"},
+  ],
+  "נקודת אוכף", # correct answer
+  displayLabels => 0, # Do not display the label in the text
+);
+BEGIN_TEXT
+\{ textbook_ref_exact("Rogawski ET 2e", "14.7","21") \}
+$PAR
+נתונה הפונקציה \(f(x,y)=$f\).
+לפונקציה זו יש נקודה קריטית  
+(נקודה שבה \(f_{x}=0,f_{y}=0\))
+ אחת בלבד,והיא:
+$PAR
+\{ openSpan( { "lang" => "en", "dir" => "ltr"} ) \}
+\((\)\{ans_rule()\},\{ans_rule()\}\()\)
+\{ closeSpan() \}
+$BR
+נקודת הקיצון היא מסוג: 
+ $BR
+\{$radio->buttons\} 
+$PAR
+$BR
+END_TEXT 
+
+Context()->normalStrings;
+Context("Point");
+ANS(Real($x0)->cmp);
+ANS(Real($y0)->cmp);
+Context("Numeric");
+ANS( $radio->cmp());
+Context()->texStrings;
+ENDDOCUMENT();

@@ -1,0 +1,123 @@
+# DESCRIPTION
+# Problem from Calculus, multi-variable, Hughes-Hallett et al.,
+# originally from 5ed (with updates)
+# WeBWorK problem written by Gavin LaRose, <glarose@umich.edu>
+# Based on M.Rosser "Basic Mathematics for Economists" p.318 (NY, Routledge, 1993) 
+# update by Lydia Peres Hari, recoded by shani barzel on january 2020
+## Tagged by glr 02/08/10
+
+
+## DBsubject(Calculus - multivariable)
+## DBchapter(Differentiation of multivariable functions)
+## DBsection(Extreme values and optimization)
+## Institution(University of Michigan)
+## Author(Gavin LaRose)
+## Level(5)
+## MO(1)
+## TitleText1('Calculus')
+## TitleText2('Calculus')
+## TitleText3('Applied Calculus')
+## TitleText4('Calculus')
+## AuthorText1('Hughes-Hallett')
+## AuthorText2('Hughes-Hallett')
+## AuthorText3('Hughes-Hallett')
+## AuthorText4('Hughes-Hallett')
+## EditionText1('5')
+## EditionText2('6')
+## EditionText3('4')
+## EditionText4('7')
+## Section1('15.2')
+## Section2('15.2')
+## Section3('9.5')
+## Section4('15.2')
+## Problem1('25')
+## Problem2('23')
+## Problem3('21')
+## Problem4('35')
+## KEYWORDS('maximum', 'minimum', 'absolute maximum', 'absolute minimum', 'local maximum', 'local minimum', 'extrema', 'calculus', 'differentiation', 'multivariable', 'functions')
+
+## Textbook tags
+## HHChapter1('Optimization: Local and Global Extrema')
+
+DOCUMENT();
+
+loadMacros(
+  "PGstandard.pl",
+  "PGchoicemacros.pl",
+  "MathObjects.pl",
+  "PGcourse.pl"
+);
+
+Context("Numeric");
+$showPartialCorrectAnswers = 1;
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
+$a = random(6, 10, 0.5);
+$c = random(3, 5.4, 0.2);
+$b = random(0.01, 0.04, 0.01);
+$d = $b-1;
+while($d <= $b){
+    $d = random(0.01, 0.05, 0.01);
+}
+$n = random(0.01, 0.06, 0.01);
+$m = random(30,80,10);
+
+# m = p0, n=q2, a=c1, b=q1, c=c2, d= q2
+$q1val = Compute("0.5*$m/($n+$b+($n*$b/$d))");
+$q2val = Compute("0.5*$m*($b/$d)/($n+$b+($n*$b/$d))");
+
+Context()->texStrings;
+TEXT(beginproblem());
+BEGIN_TEXT
+$BR
+חברה מסויימת מוכרת סוג מסויים של רכיבים אשר מיוצרים בשני מפעלים שונים.$BR
+העלות הכוללת של הייצור בכל אחד מן המפעלים נתונה ע"י:
+\[
+C_1 = $a + $b q_1^2 \quad\mbox{,}\quad C_2 = $c + $d q_2^2
+\]
+כאשר  \(q_1\) , \(q_2\) מסמלים את כמות הרכיבים המיוצרים בכל אחד מן המפעלים. 
+(כלומר, במפעל מס' 1 עלות הייצור של כל רכיב נמוכה יותר לעומת עלות הייצור במפעל מס' 2, אבל עלות התפעול הקבועה גבוהה יותר).
+$BR
+כמות הרכיבים הכוללת הדרושה לחברה תסומן ע"י: 
+\(q = q_1 + q_2\) .
+$BR
+המחיר שהחברה יכולה לדרוש עבור כל רכיב תלוי בכמות הרכיבים שיוצרו בסך הכל, והוא נתון ע"י:
+\[
+p = $m - $n q.
+\]
+הכנסות החברה ממכירת הרכיבים יהיו לכן \(pq\) (המחיר של כל רכיב כפול כמות הרכיבים שיוצרו).$BR
+הוצאות החברה בגין ייצור הרכיבים הן \(C_1 +C_2\).$BR
+הרווח של החברה מוגדר כמובן כהפרש בין ההכנסות להוצאות.
+$BR$BR
+א. יש לרשום את פונקצית הרווח כתלות בכמויות הייצור \(q_1, q_2\):
+$BR
+\{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
+\(R(q_1,q_2) = \) \{ ans_rule(10) \}\(q_1 +\)\{ ans_rule(10) \}\(q_2 +\)
+\{ ans_rule(10) \}\(q_1^2 +\)$BR\{ ans_rule(10) \}\(q_2^2 +\)
+\{ ans_rule(10) \}\(q_1 q_2 +\)\{ ans_rule(10) \}
+\{ closeSpan() \}
+$BR$BR
+ב. מצא את כמויות הייצור האופטימליות אשר יביאו את הרווח של החברה למקסימום: $BR
+\{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
+\(q_1 =\) \{ ans_rule(35) \}$BR
+\(q_2 = \) \{ ans_rule(35) \}
+\{ closeSpan() \}
+
+
+END_TEXT
+Context()->normalStrings;
+ANS(Compute("$m")->cmp() );
+ANS(Compute("$m")->cmp() );
+$tmp = Compute(-$n-$b);
+ANS($tmp->cmp() );
+$tmp = Compute(-$n-$d);
+ANS($tmp->cmp() );
+$tmp = Compute(-2*$n);
+ANS($tmp->cmp() );
+$tmp = Compute(-$a-$c);
+ANS($tmp->cmp() );
+ANS($q1val->cmp() );
+ANS($q2val->cmp() );
+
+;
+ENDDOCUMENT();

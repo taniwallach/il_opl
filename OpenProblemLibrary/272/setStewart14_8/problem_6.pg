@@ -1,0 +1,100 @@
+## DESCRIPTION
+##   Absolute Extrema with a Constraint
+## ENDDESCRIPTION
+
+## Tagged by nhamblet
+
+## DBsubject(Calculus - multivariable)
+## DBchapter(Differentiation of multivariable functions)
+## DBsection(Lagrange multipliers and constrained optimization)
+## Institution(Dartmouth)
+## MLT(ThreeVarTwoConstraints)
+## Level(3)
+## TitleText1('Calculus: Early Transcendentals')
+## AuthorText1('Stewart')
+## EditionText1('6')
+## Section1('14.8')
+## Problem1('')
+## TitleText2('Calculus')
+## AuthorText2('Stewart')
+## EditionText2('5')
+## Section2('15.8')
+## Problem2('')
+## TitleText3('Calculus: Early Transcendentals')
+## AuthorText3('Rogawski')
+## EditionText3('1')
+## Section3('14.8')
+## Problem3('34')
+## KEYWORDS('Extrema', 'Multivariable', 'Lagrange Multiplier','absolute' 'maximum' 'minimum' 'constraint')
+
+DOCUMENT();
+loadMacros(
+  "PGstandard.pl",
+  "PGchoicemacros.pl",
+  "PGgraphmacros.pl",
+    "MathObjects.pl",
+  "Dartmouthmacros.pl",
+  "PGcourse.pl"
+);
+ 
+
+## Do NOT show partial correct answers
+$showPartialCorrectAnswers = 0;
+
+SET_PROBLEM_TEXTDIRECTION("rtl");
+SET_PROBLEM_LANGUAGE("he-IL");
+$r = random(1,20);
+$a = random(1,10);  #keeps x and y same sign
+
+
+## Ok, we are ready to begin the problem...
+##
+TEXT(beginproblem());
+
+BEGIN_TEXT
+$BR
+$BCENTER
+\{ openDiv( { "allowStyle" => 1, 
+"style2" => "background-color: #afafaf; float: left;height: 12px;",
+"style" => "font-size: 48px; font-weight: 400; background-color: #fff100; color: #aa0000;"  ,
+} ) \}
+$SP$BR
+$SP$BR
+$SP$BR
+התגלתה תקלה בשאלה.$BR
+$SP$BR
+$SP$BR
+$SP$BR
+$SP$BR
+$SP$BR
+\{ closeDiv() \}
+$ECENTER
+$PAR
+$BR
+$BR
+יש למצוא את ערכי המינימום והמקסימום של הפונקציה
+\(f(x,y,z) = yz + xy\)  בכפוף לאילוצים \[ y^2 + z^2 = \{$r*$r\}\ ,\ xy = $a\].
+$BR$BR
+ערך המקסימום \{ans_rule()\}, מתקבל בנקודה 
+$BR
+\{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
+.(\{ans_rule(15)\}, \{ans_rule(15)\},\{ans_rule(15)\})
+\{ closeSpan() \}
+$BR
+ערך המינימום \{ans_rule()\}, מתקבל בנקודה
+$BR
+\{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
+.(\{ans_rule(15)\}, \{ans_rule(15)\},\{ans_rule(15)\})
+\{ closeSpan() \}
+$PAR
+END_TEXT
+ANS(Compute("$a + $r*$r/2")->cmp());
+ANS(Compute("$a*sqrt(2)/$r")->cmp());
+ANS(Compute("$r/sqrt(2)")->cmp());
+ANS(Compute("$r/sqrt(2)")->cmp());
+
+ANS(Compute("$a - $r*$r/2")->cmp());
+ANS(Compute("$a*sqrt(2)/$r")->cmp());
+ANS(Compute("$r/sqrt(2)")->cmp());
+ANS(Compute("-$r/sqrt(2)")->cmp());
+ENDDOCUMENT();
