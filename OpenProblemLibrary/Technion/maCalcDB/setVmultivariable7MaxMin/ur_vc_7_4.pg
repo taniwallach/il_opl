@@ -83,6 +83,8 @@ $p3yc = Compute("0");
 $multians2 = MultiAnswer($p1xc,$p1yc,$p2xc,$p2yc,$p3xc,$p3yc)->with(
   singleResult => 1,
   allowBlankAnswers => 1,
+  tex_format => "\left( %s, %s \right),\;\;\left( %s, %s \right),\;\;\left( %s, %s \right)",
+  format => "(%s, %s), (%s, %s), (%s, %s)",
   checker => sub {
 		my ( $correct, $student, $self ) = @_;
 		my ( $p1x, $p1y,$p2x,$p2y,$p3x,$p3y) = @{$student};
@@ -102,22 +104,22 @@ $multians2 = MultiAnswer($p1xc,$p1yc,$p2xc,$p2yc,$p3xc,$p3yc)->with(
         $p3 = Point($p3x,$p3y);
         $corr1 =0;
         $corr2 =0;
-        $corr2 =0;
-        if(($p1 == $p1c || $p1 == $p2c ||$p1 == $p3c )){
+        $corr3 =0;
+        if ( ( $p1 == $p1c || $p1 == $p2c || $p1 == $p3c ) ) {
             $corr1 =1;
         }
-        if(($p2 == $p1c || $p2 == $p2c ||$p2 == $p3c )){
+        if ( ( $p2 == $p1c || $p2 == $p2c || $p2 == $p3c ) ) {
             $corr2=1;
-            if($corr1 && ($p2 == $p1)){
+            if ( $corr1 && ( $p2 == $p1 ) ) {
                 $corr2 =0;
             }
         }
         if(($p3 == $p1c || $p3 == $p2c ||$p3 == $p3c )){
-                $corr3=1;
-               if(($corr1 && ($p3 == $p1))||
-                    ($corr2 && ($p3 == $p2))){
-                  $corr3 =0;
-                }
+            $corr3=1;
+            if (    ( $corr1 && ( $p3 == $p1 ) )
+                 || ( $corr2 && ( $p3 == $p2 ) ) ) {
+                $corr3 =0;
+            }
         }
         return ($corr1+$corr2+$corr3)/3;
        

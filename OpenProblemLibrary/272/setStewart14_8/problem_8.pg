@@ -30,13 +30,34 @@ loadMacros(
  
 
 ## Do NOT show partial correct answers
-$showPartialCorrectAnswers = 0;
+$showPartialCorrectAnswers = 1;
 SET_PROBLEM_TEXTDIRECTION("rtl");
 SET_PROBLEM_LANGUAGE("he-IL");
+
 $a = non_zero_random(-10,10);
 $r = random(1,20);
 
+# =========================================
 
+$R2  =  2 * $r;
+$R3  =  3 * $r;
+$R12 = 12 * $r;
+
+$ma = -1 * $a;
+
+$max_val = Compute("$ma + $R12/sqrt(6)");
+
+$max_x = Compute("$R2/sqrt(6)");
+$max_y = Compute("$a -$R3/sqrt(6)");
+$max_z = Compute("-$r/sqrt(6)");
+
+$min_val = Compute("$ma - $R12/sqrt(6)");
+
+$min_x = Compute("-$R2/sqrt(6)");
+$min_y = Compute("$a + $R3/sqrt(6)");
+$min_z = Compute("$r/sqrt(6)");
+
+# =========================================
 
 ## Ok, we are ready to begin the problem...
 ##
@@ -49,31 +70,40 @@ $BR
 \(f(x,y,z) = 3x - y -3z\) בכפוף לאילוצים 
 \[x^2 + 2z^2  = \{$r*$r\}\ ,\  x + y - z = $a\]
 $BR$BR
-ערך המקסימום \{ans_rule()\},$BR מתקבל בנקודה 
+ערך המקסימום \{ $max_val->ans_rule() \},$BR מתקבל בנקודה 
 $BR
 \{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
-.(\{ans_rule(15)\}, \{ans_rule(15)\},\{ans_rule(15)\})
-\{ closeSpan() \}
+\( \left( \rule{0pt}{11pt} \right. \)
+\{ $max_x->ans_rule(15) \} \(,\) 
+\{ $max_y->ans_rule(15) \} \(,\) 
+\{ $max_z->ans_rule(15) \} 
+\( \left. \rule{0pt}{11pt} \right) \)
+\{ closeSpan() \}.
 $BR
-ערך המינימום \{ans_rule()\},$BR מתקבל בנקודה
+ערך המינימום \{ $min_val->ans_rule() \},$BR מתקבל בנקודה
 $BR
 \{ openSpan( { "lang" => "en", "dir" => "ltr" } ) \}
-.(\{ans_rule(15)\}, \{ans_rule(15)\},\{ans_rule(15)\})
-\{ closeSpan() \}
+\( \left( \rule{0pt}{11pt} \right. \)
+\{ $min_x->ans_rule(15) \} \(,\) 
+\{ $min_y->ans_rule(15) \} \(,\) 
+\{ $min_z->ans_rule(15) \} 
+\( \left. \rule{0pt}{11pt} \right) \)
+\{ closeSpan() \}.
 $PAR
 END_TEXT
 
-ANS(Compute("-$a + 12*$r/sqrt(6)")->cmp());
+ANS( $max_val->cmp() );
 
-ANS(Compute("-$r/sqrt(6)")->cmp());
-ANS(Compute("$a - 3*$r/sqrt(6)")->cmp());
-ANS(Compute("2*$r/sqrt(6)")->cmp());
+ANS( $max_x->cmp() );
+ANS( $max_y->cmp() );
+ANS( $max_z->cmp() );
 
-ANS(Compute("-$a - 12*$r/sqrt(6)")->cmp());
+ANS( $min_val->cmp() );
 
-ANS(Compute("($r/sqrt(6))")->cmp());
-ANS(Compute("$a + 3*$r/sqrt(6)")->cmp());
-ANS(Compute("-2*$r/sqrt(6)")->cmp());
+ANS( $min_x->cmp() );
+ANS( $min_y->cmp() );
+ANS( $min_z->cmp() );
+
 ENDDOCUMENT();
 
 
