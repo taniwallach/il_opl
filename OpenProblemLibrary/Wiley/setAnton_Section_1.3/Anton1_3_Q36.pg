@@ -33,12 +33,22 @@ loadMacros(
 );
 SET_PROBLEM_TEXTDIRECTION("rtl");
 SET_PROBLEM_LANGUAGE("he-IL");
-# allow the student to change the seed for this problem.
-
-
-rand_button();
-
+ 
+## Show partial correct answers
+$showPartialCorrectAnswers = 1;
+## Display the problem information
 TEXT(beginproblem());
+
+## Declare Variables
+Context("Numeric");
+Context()->flags->set(
+  tolerance => 0.00000001,
+  tolType => "absolute",
+);
+Context()->variables->are(x=>'Real',y=>'Real');
+
+
+
 
 ###################################
 # Setup  
@@ -51,10 +61,24 @@ $A=random(1,6,1);
 $B=random(1,6,1);
 $S=random(-1,1,2);
 $A=$A*$S;
-Context("Fraction");
-$ans=Compute("($a/$A)")->reduce;
-Context("Numeric");
-#
+
+#Context("Fraction");
+#$ans=Compute("($a/$A)")->reduce;
+
+$tmpN = $a;
+$tmpD = $A;
+$tmpG = gcd( $tmpN, $tmpD );
+$tmpN /= $tmpG;
+$tmpD /= $tmpG;
+if ( $tmpD < 0 ) {
+  $tmpN *= -1;
+  $tmpD *= -1;
+}
+if ( $tmpD == 1 ) {
+  $ans = Compute("$tmpN");
+} else {
+  $ans = Compute("($tmpN)/($tmpD)");
+}
 
 Context()->reduction->set('(-x)+y'=>0);
 Context()->reduction->set('(-x)-y'=>0);

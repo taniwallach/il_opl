@@ -43,6 +43,10 @@ TEXT(beginproblem());
 
 ## Declare Variables
 Context("Numeric");
+Context()->flags->set(
+  tolerance => 0.00000001,
+  tolType => "absolute",
+);
 Context()->variables->are(x=>'Real',y=>'Real');
 
 ## Function Definition

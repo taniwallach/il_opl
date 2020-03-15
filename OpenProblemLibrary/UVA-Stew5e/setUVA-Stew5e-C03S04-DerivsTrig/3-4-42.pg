@@ -29,26 +29,64 @@ DOCUMENT();        # This should be the first executable line in the problem.
 loadMacros(
   "PGstandard.pl",
   "PGchoicemacros.pl",
+#  "PGgraphmacros.pl",
+  "MathObjects.pl",
   "PGcourse.pl"
 );
 SET_PROBLEM_TEXTDIRECTION("rtl");
 SET_PROBLEM_LANGUAGE("he-IL");
-
-
-TEXT(beginproblem());
+ 
+## Show partial correct answers
 $showPartialCorrectAnswers = 1;
+## Display the problem information
+TEXT(beginproblem());
+
+## Declare Variables
+Context("Numeric");
+Context()->flags->set(
+  tolerance => 0.00000001,
+  tolType => "absolute",
+);
+
+#Context()->variables->are(x=>'Real',y=>'Real');
+
+## Function Definition
 
 $a = random(2,6,1);
 $b = random(2,5,1);
 
-TEXT(EV2(<<EOT));
-חשבו את הגבול הבא:
-\[ \lim_{ x \to {\pi}/4 } \frac{ $a( \sin x - \cos x) }{ $b \cos 2x } . \]
-הגבול = \{ ans_rule(20) \}
-$BR
-EOT
+$ans1 = Compute("-$a /( $b*sqrt(2) )");
 
-$ans = -$a /( $b*sqrt(2) );
-ANS(num_cmp($ans));
+$tmpN = $a;
+$tmpD = $b;
+$tmpG = gcd( $tmpN, $tmpD );
+$tmpN /= $tmpG;
+$tmpD /= $tmpG;
+
+if ( $tmpD == 1 ) {
+  $ans1 = Compute("-$tmpN / sqrt(2) ");
+} else {
+  $ans1 = Compute("-$tmpN /( $tmpD*sqrt(2) )");
+}
+
+
+Context()->texStrings;
+BEGIN_TEXT
+חשבו את הגבול הבא:
+$PAR
+\{ openDiv({"dir" => "ltr"}) \}
+$BCENTER
+\( \displaystyle \lim_{ x \to {\pi}/4 } \frac{ $a( \sin x - \cos x) }{ $b \cos 2x } \)
+= \{ $ans1->ans_rule(20) \}
+$ECENTER
+\{ closeDiv() \}
+$BR
+הזינו \{ openSpan({"dir" => "ltr"}) \}$BBOLD inf $EBOLD\{ closeSpan() \}$SPACE עבור \(\infty\),
+\{ openSpan({"dir" => "ltr"}) \}$BBOLD -inf $EBOLD\{ closeSpan() \}$SPACE עבור \(-\infty\),
+וכן \{ openSpan({"dir" => "ltr"}) \}$BBOLD DNE $EBOLD\{ closeSpan() \}$SPACE במידה והגבול לא קיים.
+END_TEXT
+Context()->normalStrings;
+ANS($ans1->cmp);
+
 
 ENDDOCUMENT();        # This should be the last executable line in the problem.
