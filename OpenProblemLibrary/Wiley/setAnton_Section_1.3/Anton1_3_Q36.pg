@@ -69,12 +69,18 @@ $g=$g1/$g2;
 # Main text
 Context()->texStrings;
 BEGIN_TEXT
-מצאו את הגבול הבא (במידה והגבול לא קיים, הזינו "DNE"):$PAR
+מצאו את הגבול הבא:
+$PAR
+\{ openDiv({"dir" => "ltr"}) \}
 $BCENTER
-\(\displaystyle \lim_{x\to -\infty} $f\)
+\( \displaystyle \lim_{x\to -\infty} $f \) = \{ $ans->ans_rule(20) \}
 $ECENTER
- $BR
-הגבול = \{ans_rule(20) \} 
+\{ closeDiv() \}
+$BR
+$BR
+הזינו \{ openSpan({"dir" => "ltr"}) \}$BBOLD inf $EBOLD\{ closeSpan() \}$SPACE עבור \(\infty\),
+\{ openSpan({"dir" => "ltr"}) \}$BBOLD -inf $EBOLD\{ closeSpan() \}$SPACE עבור \(-\infty\),
+וכן \{ openSpan({"dir" => "ltr"}) \}$BBOLD DNE $EBOLD\{ closeSpan() \}$SPACE במידה והגבול לא קיים.
 END_TEXT
 
 ###################################

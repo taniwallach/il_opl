@@ -59,20 +59,18 @@ Context()->texStrings;
 BEGIN_TEXT
 מצאו את הגבול הבא:
 $PAR
+\{ openDiv({"dir" => "ltr"}) \}
 $BCENTER
-\(\> \displaystyle \lim_{x \rightarrow +\infty} $f \)
+\( \displaystyle \lim_{x \rightarrow +\infty} $f \) = \{ $ans1->ans_rule(20) \}
 $ECENTER
-$BR
-הזינו $BBOLD inf $EBOLD עבור \(\infty\),\{ openSpan({"dir" => "ltr"}) \}
- $BBOLD -inf $EBOLD\{ closeSpan() \}
- עבור \{ openSpan({"dir" => "ltr"}) \}\(-\infty\)\{ closeSpan() \}, וכן $BBOLD DNE $EBOLD במידה והגבול לא קיים.
+\{ closeDiv() \}
 $BR
 $BR
-הגבול = \{ans_rule(20)\}
-$BR
+הזינו \{ openSpan({"dir" => "ltr"}) \}$BBOLD inf $EBOLD\{ closeSpan() \}$SPACE עבור \(\infty\),
+\{ openSpan({"dir" => "ltr"}) \}$BBOLD -inf $EBOLD\{ closeSpan() \}$SPACE עבור \(-\infty\),
+וכן \{ openSpan({"dir" => "ltr"}) \}$BBOLD DNE $EBOLD\{ closeSpan() \}$SPACE במידה והגבול לא קיים.
 $BR
 רמז: הוציאו גורם \( e^x \) מתוך המונה והמכנה.
-
 END_TEXT
 Context()->normalStrings;
 ANS($ans1->cmp);
